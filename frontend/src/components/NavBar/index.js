@@ -10,6 +10,7 @@ const NavBar = () => {
                         <button class="btn btn-outline-success me-2" type="button">Inicio</button>
                         <button class="btn btn-sm btn-outline-secondary" type="button">Agendar</button>
                     </nav>
+
                 </div>
             </div>
         </div>

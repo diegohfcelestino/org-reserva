@@ -7,6 +7,7 @@ const Footer = () => {
                     <a href="https://www.orgsystem.com.br/" target="_blank" rel="noreferrer">Orgsystem Software</a>
                 </p>
             </div>
+
         </footer >
     );
 }
