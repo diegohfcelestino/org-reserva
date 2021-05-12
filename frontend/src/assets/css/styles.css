@@ -2,7 +2,7 @@
 /* Para usar outros padrões de cores basta colocar no root  usar conforme está no fim deste aquivo*/
 :root {
     --color-primary: #428ee6;
-    --color-secondary: #FF0000;
+    --color-secondary: #504d4d;
 }
 
 html, body {
@@ -28,8 +28,8 @@ html, body {
 
 /* Codigo abaixo usado para alterar as cores paões do bootstrap*/
 
-.bg-primary {
-    background-color: var(--color-primary) !important;
+.bg-secondary {
+    background-color: var(--color-secondary) !important;
 }
 
 .text-primary {
