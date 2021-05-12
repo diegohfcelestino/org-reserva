@@ -4,10 +4,14 @@
     --color-primary: #428ee6;
     --color-secondary: #504d4d;
 }
+    
+
+
 
 html, body {
     height: 100%;
     font-family: "Ubuntu", sans-serif;
+    
 }
 
 #root {
