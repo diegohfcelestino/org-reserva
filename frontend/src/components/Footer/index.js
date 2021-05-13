@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer class="footer mt-auto py-3 bg-secondary">
+        <footer class="footer mt-auto py-2 bg-secondary">
             <div class="container">
                 <p class="text-light">App desenvolvido pelo time <a href="https://github.com/diegohfcelestino/org-reserva" target="_blank" rel="noreferrer">DevPadawan</a></p>
                 <p>
