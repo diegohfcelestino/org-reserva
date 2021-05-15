@@ -1,5 +1,5 @@
-import Footer from '../../components/Footer';
-import NavBar from '../../components/NavBar';
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 
 const Login = () => {
 
@@ -9,7 +9,7 @@ const Login = () => {
 
         if (email.value === "admin@admin.com" && senha.value === "123") {
             localStorage.setItem("acesso", true);
-            window.location.href = "main";
+            window.location.href = "/home";
         } else {
             alert("Usuário ou senha inválidos");
         }
@@ -17,7 +17,7 @@ const Login = () => {
 
     return (
         <>
-            <NavBar />
+            <NavBar showButton={false} />
             <div class="login">
                 <div class="container">
                     <div class="d-flex justify-content-center">
@@ -43,7 +43,7 @@ const Login = () => {
                                 </div>
 
                             </form>
-                            <button onClick={() => logar()} type="submit" class="btn btn-primary">Login</button>
+                            <button onClick={() => logar()} type="button" class="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </div>
