@@ -25,12 +25,12 @@ const Login = () => {
                     </div>
 
                     <div class="d-flex justify-content-center mb-3">
-                        <div class="row login-form" style={{ margin: 0, marginTop: 50, width: "40%" }}>
+                        <div class="row login-form" style={{ margin: 0, marginTop: 50, width: "30%" }}>
                             <form class="container">
                                 <div class="mb-4">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
-                                    <div id="emailHelp" class="form-text">Nunca compartilharemos seu e-mail com mais ninguém.</div>
+                                    <div id="emailHelp" class="form-text">Não compartilharemos seu e-mail com mais ninguém.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="senha" class="form-label">Senha</label>
@@ -38,8 +38,7 @@ const Login = () => {
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    <a class="cadastrar" href="/cadastro.html">Cadastrar</a>
+                                    <label class="form-check-label" for="exampleCheck1">Lembrar Senha</label>
                                 </div>
 
                             </form>
