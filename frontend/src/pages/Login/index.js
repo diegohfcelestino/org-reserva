@@ -1,5 +1,5 @@
-import Footer from '../../components/Footer';
-import NavBar from '../../components/NavBar';
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 
 const Login = () => {
 
@@ -9,29 +9,25 @@ const Login = () => {
 
         if (email.value === "admin@admin.com" && senha.value === "123") {
             localStorage.setItem("acesso", true);
-
-
-
-            window.location.href = "main";
+            window.location.href = "/home";
         } else {
             alert("Usuário ou senha inválidos");
         }
-
     }
 
     return (
         <>
-            <NavBar />
+            <NavBar showButton={false} />
             <div class="login">
                 <div class="container">
                     <div class="d-flex justify-content-center">
-                        <h2 class="display-5 text-dark mt-5">Controle de agendamento de veiculos e salas</h2>
+                        <h2 class="display-5 text-dark mt-3">Controle de agendamento de veiculos e salas</h2>
                     </div>
 
-                    <div class="d-flex justify-content-center">
-                        <div class="row login-form" style={{ margin: 0, marginTop: 100, width: "40%" }}>
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="row login-form" style={{ margin: 0, marginTop: 50, width: "40%" }}>
                             <form class="container">
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
                                     <div id="emailHelp" class="form-text">Nunca compartilharemos seu e-mail com mais ninguém.</div>
@@ -47,7 +43,7 @@ const Login = () => {
                                 </div>
 
                             </form>
-                            <button onClick={() => logar()} type="submit" class="btn btn-primary">Login</button>
+                            <button onClick={() => logar()} type="button" class="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </div>

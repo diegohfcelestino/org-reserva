@@ -1,0 +1,29 @@
+.alto {
+    padding: 2rem 0.5rem;
+    height: calc(100vh - 3.5rem - 4.8rem);
+}
+
+.alto .box {
+    /* box-shadow: 0px 0px 5px 1px #BCBCBC; */
+    height: 7.5rem;
+}
+
+.alto .rolagem {
+    margin-bottom: 3rem;
+    overflow-y: scroll;
+    height: calc(100vh - 20.5rem);
+}
+
+.alto .rolagem tbody tr:hover {
+    background: var(--gray-50);
+}
+
+.alto .rolagem tbody tr td:nth-child(1) {
+    width: 4rem;
+    text-align: center;
+}
+
+.alto .rolagem tbody tr td:nth-child(3) {
+    width: 8rem;
+    text-align: center;
+}

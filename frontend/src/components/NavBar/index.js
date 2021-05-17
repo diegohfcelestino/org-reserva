@@ -1,67 +1,86 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Orgsystem from '../../assets/img/logo-org-tsplus.png'
+import { FaCalendarAlt, FaDatabase, FaHome, FaSignOutAlt } from 'react-icons/fa'
 
-const NavBar = () => {
+const classes = {
+  open: "animated-icon1 open",
+  closed: "animated-icon1"
+}
+const NavBar = props => {
+  const showButton = props.showButton
+  const [toggle, setToggle] = useState(false)
+  const [toggleText, setToggleText] = useState(classes.closed)
 
-    /*  $(document).ready(function () {
- 
-         $('.first-button').on('click', function () {
- 
-             $('.animated-icon1').toggleClass('open');
-         });
- 
-     }); */
-    return (
+  function handleToggle() {
+    setToggle(!toggle)
+  }
 
-        <div>
+  useEffect(() => {
+    if (!toggle) {
+      setToggleText(classes.closed)
+    }
+    if (toggle) {
+      setToggleText(classes.open)
+    }
+  }, [toggle])
 
-            {/* <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-light border-bottom shadow-sm">
-                <div class="container-fluid">
-                    <nav class="my-2 my-md-0 mr-md-3">
-                        <Link to="/">
-                            <img src={Orgsystem} alt="Orgsystem" width="120" />
-                        </Link>
-                    </nav>
+  return (
+    <div className={`mynav ${toggle && "openNav"}`}>
+      <nav className="navbar navbar-light amber lighten-4">
+        <a className="navbar-brand" href="/">
+          <img src={Orgsystem} alt="Orgsystem" width="120" />
+        </a>
 
-                </div>
-            </div> */}
+        {showButton && (
+          <button
+            className="navbar-toggler first-button"
+            type="button"
+            onClick={handleToggle}
+          >
+            <div className={toggleText}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        )}
 
-            <nav class="navbar navbar-light amber lighten-4 mb-4">
-
-                <div class="container-fluid">
-                    <nav class="my-2 my-md-0 mr-md-3">
-                        <Link to="/">
-                            <img src={Orgsystem} alt="Orgsystem" width="120" />
-                        </Link>
-                    </nav>
-
-                </div>
-
-                <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
-                    aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="animated-icon1"><span></span><span></span><span></span></div>
-                </button>
+      </nav>
 
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent20">
-
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Pricing</a>
-                        </li>
-                    </ul>
-
-                </div>
-
-            </nav>
+      {toggle && (
+        <div className="menu">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              {/* <a className="nav-link" href="/home">Home</a> */}
+              <Link to="/home" className="link">
+                <FaHome /> Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              {/* <a className="nav-link" href="/home">Features</a> */}
+              <Link to="/cadastros/salas" className="link">
+                <FaDatabase /> Cadastros
+              </Link>
+            </li>
+            <li className="nav-item">
+              {/* <a className="nav-link" href="/home">Pricing</a> */}
+              <Link to="/" className="link">
+                <FaCalendarAlt /> Agendamento
+              </Link>
+            </li>
+            <li className="nav-item">
+              {/* <a className="nav-link" href="/home">Pricing</a> */}
+              <Link to="/" className="link">
+                <FaSignOutAlt /> Sair
+              </Link>
+            </li>
+          </ul>
         </div>
-    );
+      )}
+    </div >
+  )
 }
 
 export default NavBar;
