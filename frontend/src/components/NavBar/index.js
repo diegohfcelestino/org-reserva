@@ -28,9 +28,7 @@ const NavBar = props => {
   return (
     <div className={`mynav ${toggle && "openNav"}`}>
       <nav className="navbar navbar-light amber lighten-4">
-        <a className="navbar-brand" href="/">
-          <img src={Orgsystem} alt="Orgsystem" width="120" />
-        </a>
+        <img className="navbar-brand" src={Orgsystem} alt="Orgsystem" width="120" />
 
         {showButton && (
           <button
