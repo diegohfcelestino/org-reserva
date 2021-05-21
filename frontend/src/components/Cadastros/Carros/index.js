@@ -3,27 +3,26 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 
 import '../cadastro.style.css'
 
-
-const SalasCadastro = () => {
-	const [rooms, setRooms] = useState([])
-	const [sala, setSala] = useState('')
+const CarrosCadastro = () => {
+	const [cars, setCars] = useState([])
+	const [car, setCar] = useState('')
 
 	function save() {
-		if (!sala) {
-			return alert(`Preencha a sala!`)
+		if (!car) {
+			return alert(`Preencha o carro!`)
 		}
-		var temp = rooms
-		temp.push(sala)
-		setRooms(temp)
-		setSala('')
+		var temp = cars
+		temp.push(car)
+		setCars(temp)
+		setCar('')
 	}
 
 	function remove(index, s) {
-		var temp = rooms
+		var temp = cars
 		temp.splice(index, 1)
-		setRooms(temp)
-		alert(`Sala ${s} foi deletada!`)
-		setSala('')
+		setCars(temp)
+		alert(`Carro ${s} foi deletado!`)
+		setCar('')
 		return s;
 	}
 
@@ -31,7 +30,7 @@ const SalasCadastro = () => {
 		<div className="container-fluid alto">
 			<div className="box">
 				<div className="mb-3">
-					<h1>Cadastro de Salas</h1>
+					<h1>Cadastro de Carros</h1>
 				</div>
 				<div className="col-12">
 					<form>
@@ -41,10 +40,10 @@ const SalasCadastro = () => {
 								<input
 									type="text"
 									className="form-control"
-									id="sala"
-									name="sala"
-									value={sala}
-									onChange={e => setSala(e.target.value)}
+									id="car"
+									name="car"
+									value={car}
+									onChange={e => setCar(e.target.value)}
 								/>
 							</div>
 							<div className="col-1">
@@ -65,7 +64,7 @@ const SalasCadastro = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{rooms.map((room, i) => {
+						{cars.map((room, i) => {
 							return (
 								<tr key={i}>
 									<td>{i + 1}</td>
@@ -74,12 +73,12 @@ const SalasCadastro = () => {
 										<button
 											className="btn btn-sm btn-outline-dark"
 											style={{ marginRight: "1rem" }}
-											onClick={() => setSala(room)}
+											onClick={() => setCar(room)}
 										>
 											<FaRegEdit /></button>
 										<button
 											className="btn btn-sm btn-outline-dark"
-											onClick={() => remove(i, room)}
+											onClick={() => remove(i, car)}
 										>
 											<FaRegTrashAlt /></button>
 									</td>
@@ -93,4 +92,4 @@ const SalasCadastro = () => {
 	)
 }
 
-export default SalasCadastro;
+export default CarrosCadastro;
