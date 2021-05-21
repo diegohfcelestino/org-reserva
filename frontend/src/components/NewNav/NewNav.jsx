@@ -25,7 +25,7 @@ const NewNav = () => {
         </button>
         <img className="navbar-brand" src={Orgsystem} alt="Orgsystem" width="120" />
         <div className="navbar-collapse collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav nav-dropdown" data-app-modern-menu="true">
+          <ul className="navbar-nav nav-dropdown me-auto mb-2 mb-lg-0" data-app-modern-menu="true">
             <li className="nav-item">
               <Link className="nav-link text" aria-current="page" to="/home">Home</Link>
             </li>
