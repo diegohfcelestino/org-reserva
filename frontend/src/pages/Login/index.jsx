@@ -23,10 +23,11 @@ const Login = () => {
                 <div className="header">
 
                 </div>
-                <div className="title">
-                    <h2 /* className="display-5 text-light" */>Agendamento de salas e veiculos</h2>
-                </div>
+
                 <div className="container">
+                    <div className="title">
+                        <h2 /* className="display-5 text-light" */>Agendamento de salas e veiculos</h2>
+                    </div>
                     <div className="d-flex justify-content-center align-content-center mb-3">
 
                         <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
@@ -41,6 +42,7 @@ const Login = () => {
                                 <div className="mb-3">
                                     <label htmlFor="senha" className="form-label">Senha</label>
                                     <input type="password" className="form-control" id="senha" />
+                                    <div id="emailHelp" className="form-text">Solicite a senha ao seu gestor.</div>
                                 </div>
                                 <div className="mb-3 form-check">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
