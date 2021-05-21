@@ -9,9 +9,7 @@ const NewNav = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-light" style={{ backgroundColor: "#b9aeae" }}>
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          <img src={Orgsystem} alt="Orgsystem" width="120" />
-        </Link>
+        <img className="navbar-brand" src={Orgsystem} alt="Orgsystem" width="120" />
         <button
           className="navbar-toggler"
           type="button"
