@@ -16,6 +16,13 @@
     --gray-500: #808080;
 }
 
+
+@media (max-width: 1366px) {
+    html {
+      font-size: 80%;
+    }
+}
+
 @media (max-width: 1080px) {
     html {
         font-size: 93.75%
@@ -49,25 +56,6 @@ body, input, textarea, button {
     flex-direction: column;
     height: 100%;
 }
-/*
-@media (max-width: 1366px) {
-    html {
-      font-size: 80%;
-    }
-  }
-
-@media (max-width: 1080px) {
-    html {
-        font-size: 93.75%;
-    }
-}
-
-@media (max-width: 720) {
-    html {
-        font-size: 87.5%;
-    }
-}
-*/
     
 
 .mb-3 {
