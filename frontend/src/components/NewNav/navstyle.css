@@ -1,0 +1,16 @@
+.collapse .navbar-nav .nav-item .nav-link {
+    color: rgb(46, 42, 42);
+    transition: filter 0.3s;
+}
+
+.collapse .navbar-nav .nav-item .nav-link:hover {
+    filter: invert(0.5) brightness(0.9);
+}
+
+.text {
+    color: rgb(65, 59, 59);
+}
+
+.text:hover {
+    color: white;
+}

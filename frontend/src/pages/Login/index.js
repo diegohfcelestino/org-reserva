@@ -1,5 +1,6 @@
 import Footer from "../../components/Footer";
-import NavBar from "../../components/NavBar";
+/* import NavBar from "../../components/NavBar"; */
+import Orgsystem from '../../assets/img/logo-org-tsplus.png'
 
 const Login = () => {
 
@@ -17,32 +18,35 @@ const Login = () => {
 
     return (
         <>
-            <NavBar showButton={false} />
-            <div class="login">
-                <div class="container">
-                    <div class="d-flex justify-content-center">
-                        <h2 class="display-5 text-dark mt-3">Controle de agendamento de veiculos e salas</h2>
-                    </div>
-
-                    <div class="d-flex justify-content-center mb-3">
-                        <div class="row login-form" style={{ margin: 0, marginTop: 50, width: "30%" }}>
-                            <form class="container">
-                                <div class="mb-4">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
-                                    <div id="emailHelp" class="form-text">Não compartilharemos seu e-mail com mais ninguém.</div>
+            {/* <NavBar showButton={false} /> */}
+            <div className="login">
+                <div className="header">
+                    <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
+                </div>
+                <div className="title">
+                    <h2 /* className="display-5 text-light" */>Controle de agendamento de veiculos e salas</h2>
+                </div>
+                <div className="container">
+                    <div className="d-flex justify-content-center mb-3">
+                        <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
+                            <form className="container">
+                                <div className="mb-4">
+                                    <label for="email" className="form-label">Email</label>
+                                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                                    <div id="emailHelp" className="form-text">Nunca compartilharemos seu e-mail com mais ninguém.</div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="senha" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="senha" />
+                                <div className="mb-3">
+                                    <label for="senha" className="form-label">Senha</label>
+                                    <input type="password" className="form-control" id="senha" />
                                 </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                    <label class="form-check-label" for="exampleCheck1">Lembrar Senha</label>
+                                <div className="mb-3 form-check">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                    <label className="form-check-label" for="exampleCheck1">Check me out</label>
+                                    <a className="cadastrar" href="/cadastro.html">Cadastrar</a>
                                 </div>
 
                             </form>
-                            <button onClick={() => logar()} type="button" class="btn btn-primary">Login</button>
+                            <button onClick={() => logar()} type="button" className="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </div>

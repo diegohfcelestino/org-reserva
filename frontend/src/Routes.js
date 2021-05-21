@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SalasCadastro from "./components/Cadastros/Salas";
-import Main from "./components/Main";
+/* import SalasCadastro from "./components/Cadastros/Salas";
+ */import Main from "./components/Main";
+import Cadastros from "./pages/Cadastros";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
@@ -15,8 +16,8 @@ const Routes = () => {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/cadastros/salas">
-            <SalasCadastro />
+          <Route path="/cadastros">
+            <Cadastros />
           </Route>
         </Main>
 
