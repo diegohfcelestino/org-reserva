@@ -24,7 +24,7 @@ const Login = () => {
 
                 </div>
                 <div className="title">
-                    <h2 /* className="display-5 text-light" */>Controle de agendamento de veiculos e salas</h2>
+                    <h2 /* className="display-5 text-light" */>Agendamento de salas e veiculos</h2>
                 </div>
                 <div className="container">
                     <div className="d-flex justify-content-center align-content-center mb-3">
