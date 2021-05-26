@@ -22,7 +22,7 @@ const Cadastros = () => {
 
     return (
         <div className="cadastroContainer">
-            <div>
+            <div className="selection">
                 <button className={` ${salaClick && 'active'}`}
                     onClick={() => setSala()}
                 >

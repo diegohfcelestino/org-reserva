@@ -29,7 +29,7 @@ const Login = () => {
                 <div className="container">
                     <div className="d-flex justify-content-center mb-3">
                         <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
-                            <form className="container">
+                            <form className="container form">
                                 <div className="mb-4">
                                     <label for="email" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
@@ -44,9 +44,10 @@ const Login = () => {
                                     <label className="form-check-label" for="exampleCheck1">Check me out</label>
                                     <a className="cadastrar" href="/cadastro.html">Cadastrar</a>
                                 </div>
-
+                                <div className="d-grid gap-2">
+                                    <button onClick={() => logar()} type="button" className="btn btn-primary">Login</button>
+                                </div>
                             </form>
-                            <button onClick={() => logar()} type="button" className="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </div>
@@ -55,5 +56,4 @@ const Login = () => {
         </>
     );
 }
-
 export default Login;

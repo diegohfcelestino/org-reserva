@@ -70,14 +70,14 @@ const NavBar = props => {
             </li>
             <li className="nav-item">
               {/* <a className="nav-link" href="/home">Pricing</a> */}
-              <Link to="/" className="link">
+              <Link to="/" className="nav-link link">
                 <FaSignOutAlt /> Sair
               </Link>
             </li>
           </ul>
         </div>
       )}
-    </div >
+    </div>
   )
 }
 
