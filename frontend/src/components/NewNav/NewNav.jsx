@@ -51,6 +51,7 @@ const NewNav = () => {
         </div>
       </div>
     </nav>
+
   )
 }
 

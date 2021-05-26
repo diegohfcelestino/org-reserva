@@ -21,28 +21,33 @@ const Login = () => {
             {/* <NavBar showButton={false} /> */}
             <div className="login">
                 <div className="header">
-                    <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
+
                 </div>
-                <div className="title">
-                    <h2 /* className="display-5 text-light" */>Controle de agendamento de veiculos e salas</h2>
-                </div>
+
                 <div className="container">
-                    <div className="d-flex justify-content-center mb-3">
+                    <div className="title">
+                        <h2 /* className="display-5 text-light" */>Agendamento de salas e veiculos</h2>
+                    </div>
+                    <div className="d-flex justify-content-center align-content-center mb-3">
+
                         <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
-                            <form className="container form">
+                            <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
+                            <form className="container">
                                 <div className="mb-4">
-                                    <label for="email" className="form-label">Email</label>
+
+                                    <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
-                                    <div id="emailHelp" className="form-text">Nunca compartilharemos seu e-mail com mais ninguém.</div>
+                                    <div id="emailHelp" className="form-text">Não compartilharemos seu e-mail com mais ninguém.</div>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="senha" className="form-label">Senha</label>
+                                    <label htmlFor="senha" className="form-label">Senha</label>
                                     <input type="password" className="form-control" id="senha" />
+                                    <div id="emailHelp" className="form-text">Solicite a senha ao seu gestor.</div>
                                 </div>
                                 <div className="mb-3 form-check">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                                    <a className="cadastrar" href="/cadastro.html">Cadastrar</a>
+                                    <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label>
+
                                 </div>
                                 <div className="d-grid gap-2">
                                     <button onClick={() => logar()} type="button" className="btn btn-primary">Login</button>
