@@ -16,10 +16,9 @@
     --gray-500: #808080;
 }
 
-
 @media (max-width: 1366px) {
     html {
-      font-size: 80%;
+        font-size: 80%;
     }
 }
 
@@ -107,11 +106,9 @@ body, input, textarea, button {
 .login .login-form img {
     width: 12rem;
     padding: 2rem 0;
-    
 }
 
 .login-form {
-    
     /* margin-top: 12.75rem; */
     background-color: rgba(230, 212, 247, 0.5);
     border-radius: 5px;
@@ -326,7 +323,7 @@ body, input, textarea, button {
     width: 9%;
     border-radius: 5px;
     border: none;
-    border-top: 1px solid rgba(167, 146, 146, 0.9);
+    /* border-top: 1px solid rgba(167, 146, 146, 0.9); */
     /*  border-left: 1px solid black; */
     border-bottom: 1px solid rgba(167, 146, 146, 0.9);
 }

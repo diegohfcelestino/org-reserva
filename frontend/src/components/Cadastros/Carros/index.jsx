@@ -30,7 +30,7 @@ const CarrosCadastro = () => {
 		<div className="container-fluid alto">
 			<div className="box">
 				<div className="mb-3">
-					<h1>Cadastro de Carros</h1>
+					<h2>Cadastro de Carros</h2>
 				</div>
 				<div className="col-12">
 					<form>
