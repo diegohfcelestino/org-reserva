@@ -1,9 +1,6 @@
-/* .navbar {
-    height: auto;
-} */
-
 .collapse .navbar-nav .nav-item .nav-link {
     color: rgb(46, 42, 42);
+    font-size: 1.1rem;
     transition: filter 0.3s;
 }
 
