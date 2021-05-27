@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Agendamento from "./components/Agendamento";
 /* import SalasCadastro from "./components/Cadastros/Salas";
  */import Main from "./components/Main";
 import Cadastros from "./pages/Cadastros";
@@ -18,6 +19,9 @@ const Routes = () => {
           </Route>
           <Route path="/cadastros">
             <Cadastros />
+          </Route>
+          <Route path="/agendamento">
+            <Agendamento />
           </Route>
         </Main>
 

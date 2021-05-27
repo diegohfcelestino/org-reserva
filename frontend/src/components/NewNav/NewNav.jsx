@@ -37,7 +37,7 @@ const NewNav = () => {
               <Link className={collapse ? "nav-link text" : "nav-link"} aria-current="page" to="/home">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className={collapse ? "nav-link text" : "nav-link"} to="/home">Agendamento</Link>
+              <Link className={collapse ? "nav-link text" : "nav-link"} to="/agendamento">Agendamento</Link>
             </li>
             <li className="nav-item">
               <Link className={collapse ? "nav-link text" : "nav-link"} to="/cadastros/salas">Cadastros</Link>
