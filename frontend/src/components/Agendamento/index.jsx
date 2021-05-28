@@ -1,18 +1,19 @@
 import { format } from 'date-fns'
-/* import ptBr from 'date-fns/locale/pt-BR' */
+import ptBr from 'date-fns/locale/pt-BR'
 
 export default function Agendamento() {
-    const date = format(new Date(), 'yyyy-MM-dd')
+    const datePt = format(new Date(), 'dd/MM/yyyy', { locale: ptBr })
+    const date1 = format(new Date(), 'yyyy-MM-dd')
     return (
         <div className="container-fluid">
             <h2>Agendamento</h2>
             <div className="container-fluid mb-3">
-                <p>Data: {date}</p>
+                <p>Data: {datePt}</p>
                 <form >
                     <div className="col-12 row">
                         <div className="col-auto">
                             <label htmlFor="data_agendamento" className="form-label">Data Inserção</label>
-                            <input type="date" name="data_agendamento" className="form-control" value={date} disabled />
+                            <input type="date" name="data_agendamento" className="form-control" value={date1} disabled />
                         </div>
                         <div className="col-auto">
                             <label htmlFor="data_inicio" className="form-label">Data Inicio</label>
