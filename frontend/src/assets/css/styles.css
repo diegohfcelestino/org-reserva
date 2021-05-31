@@ -314,7 +314,7 @@ body, input, textarea, button {
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    height: calc(100vh - 8.3rem);
+    min-height: calc(100vh - 8.3rem);
 }
 
 .cadastroContainer .selection button {

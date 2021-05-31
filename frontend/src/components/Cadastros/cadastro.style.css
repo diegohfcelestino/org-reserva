@@ -5,7 +5,7 @@
 
 .alto .box {
     /* box-shadow: 0px 0px 5px 1px #BCBCBC; */
-    height: 5.5rem;
+    height: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

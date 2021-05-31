@@ -2,29 +2,32 @@ import { format } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 import { useState } from 'react'
 
+import './agendamento.css'
+
 const tipos = [
   { id: 's', desc: 'Sala' },
   { id: 'v', desc: 'Veículo' }
 ]
 
 export default function Agendamento() {
-  const datePt = format(new Date(), 'dd/MM/yyyy', { locale: ptBr })
+  const currentDate = format(new Date(), 'EEEE, dd MMMM', {
+    locale: ptBr
+  });
 
   const [tipoAg, setTipoAg] = useState('')
 
-
-
   return (
-    <div className="container-fluid">
-      <h2>Agendamento</h2>
-      <div className="container-fluid mb-3">
-        <p>Data: {datePt}</p>
+    <div className="container-fluid mt-3 mb-3 total">
+      {/* <div className="d-flex justify-content-center">
+        <h1 className="display-5">Agendamento</h1>
+      </div> */}
+      <div className="container-fluid">
+        <div className="d-flex me-auto line">
+          <h3 className="lead">Agendamento</h3>
+          <p className="lead">{currentDate}</p>
+        </div>
         <form >
-          <div className="col-12 row">
-            <div className="col-auto">
-              <label htmlFor="user" className="form-label">Usuário</label>
-              <input type="text" disabled class="form-control" value="Usuário" />
-            </div>
+          <div className="container-fluid justify-content-center col-12 row mb-3">
             <div className="col-auto">
               <label htmlFor="tipo" className="form-label">Tipo Agendamento</label>
               <select
@@ -95,6 +98,15 @@ export default function Agendamento() {
               </>
             )}
           </div>
+          {tipoAg && (
+            <div className="d-flex justify-content-center" >
+              <button
+                className="btn btn-primary"
+              >
+                Verificar
+            </button>
+            </div>
+          )}
         </form>
       </div>
     </div>
