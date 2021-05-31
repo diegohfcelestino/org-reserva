@@ -3,7 +3,7 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 
 import '../cadastro.style.css'
 
-const CarrosCadastro = () => {
+const VeiculosCadastro = () => {
 	const [cars, setCars] = useState([])
 	const [car, setCar] = useState('')
 
@@ -92,4 +92,4 @@ const CarrosCadastro = () => {
 	)
 }
 
-export default CarrosCadastro;
+export default VeiculosCadastro;

@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 /* import { Link } from 'react-router-dom' */
-import CarrosCadastro from '../../components/Cadastros/Carros'
+import VeiculosCadastro from '../../components/Cadastros/Veiculos'
 import SalasCadastro from '../../components/Cadastros/Salas'
 
 const Cadastros = () => {
     const [page, setPage] = useState('')
     const [salaClick, setSalaClick] = useState(false)
-    const [carroClick, setCarroClick] = useState(false)
+    const [VeiculoClick, setVeiculoClick] = useState(false)
 
     function setSala() {
         setSalaClick(true)
-        setCarroClick(false)
+        setVeiculoClick(false)
         setPage('sala')
     }
     function setCarro() {
         setSalaClick(false)
-        setCarroClick(true)
+        setVeiculoClick(true)
         setPage('carro')
     }
 
@@ -29,7 +29,7 @@ const Cadastros = () => {
                     Sala
                 </button>
                 <button
-                    className={`${carroClick && 'active'}`}
+                    className={`${VeiculoClick && 'active'}`}
                     onClick={() => setCarro()}
                 >
                     Carro
@@ -40,7 +40,7 @@ const Cadastros = () => {
                     <SalasCadastro />
                 )}
                 {page === 'carro' && (
-                    <CarrosCadastro />
+                    <VeiculosCadastro />
                 )}
             </span>
         </div>
