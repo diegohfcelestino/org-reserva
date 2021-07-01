@@ -1,21 +1,20 @@
 .total {
-    min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 10rem);
 }
 
 .line {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    margin-bottom: 1.3rem;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem auto;
-}
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem auto;
 
-.line h3 {
+  h3 {
     font-weight: 700;
     font-size: 2rem;
-}
-
-.line p {
+  }
+  p {
     font-weight: 300;
     font-size: 1.2rem;
+  }
 }
