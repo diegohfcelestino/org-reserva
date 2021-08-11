@@ -1,5 +1,4 @@
-import { format } from "date-fns";
-import ptBr from "date-fns/locale/pt-BR";
+
 import { useState } from "react";
 
 import "./agendamento.scss";
@@ -10,22 +9,15 @@ const tipos = [
 ];
 
 export default function Agendamento() {
-  const currentDate = format(new Date(), "EEEE, dd MMMM", {
-    locale: ptBr,
-  });
-
   const [tipoAg, setTipoAg] = useState("");
 
   return (
-    <div className="container-fluid mt-3 mb-3 total">
-      {/* <div className="d-flex justify-content-center">
-        <h1 className="display-5">Agendamento</h1>
-      </div> */}
+    <div className="container-fluid mt-3 mb-3">
       <div className="container-fluid">
-        <div className="d-flex me-auto line">
+        {/* <div className="d-flex me-auto ">
           <h3 className="lead">Agendamento</h3>
           <p className="lead">{currentDate}</p>
-        </div>
+        </div> */}
         <form>
           <div className="container-fluid justify-content-center col-12 row mb-3">
             <div className="col-auto">
@@ -139,6 +131,7 @@ export default function Agendamento() {
           )}
         </form>
       </div>
+      <div className="line mt-2"></div>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './styles.scss'
+
 const DataTable = () => {
     return (
-        <div className="table-responsive">
+        <div className="table-responsive rolagem">
             <table className="table table-striped table-sm">
                 <thead>
                     <tr>
