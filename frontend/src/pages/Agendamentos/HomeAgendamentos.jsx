@@ -21,12 +21,12 @@ export default function HomeAgendamentos() {
     <div className="container">
       <h1 className="text-primary py-3">Agendamentos</h1>
       <div className="d-flex align-items-center navbar p-3 mb-3">
-        <p className="text-dark lead">{currentDate}</p>
+        <h6 className="text-dark lead">{currentDate}</h6>
         <button
           className="btn btn-outline-dark"
           onClick={handleAgendar}
         >
-          {showAgendar ? "Exibir Gráficos" : "Agendar"}
+          {showAgendar ? "Exibir gráficos de uso" : "Realizar Agendamento"}
         </button>
       </div>
 
@@ -46,7 +46,7 @@ export default function HomeAgendamentos() {
       }
 
       <div className="py-3">
-        <h2 className="text-primary">Todos Agendamentos</h2>
+        <h3 className="text-primary">Agendamentos Realizados</h3>
       </div>
 
       <DataTable />
