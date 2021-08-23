@@ -1,39 +1,47 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import ButtonMenu from '../../components/ButtonMenu';
 
-import Servicos from '../../assets/img/icons8-serviços.gif'
+import Cadastrar from '../../assets/icons/online-form.svg'
+import Calendar from '../../assets/icons/calendar-date.svg'
+import Config from '../../assets/icons/config.svg'
+import Ponto from '../../assets/icons/realtime.svg'
+import Treinamento from '../../assets/icons/online-learning.svg'
+import Video from '../../assets/icons/video.svg'
+
+import './style.scss'
+import Line from '../../components/Line/Line';
 
 export default function Home() {
   return (
-    <div className="container" style={{
-      minHeight: "81vh"
-    }}>
-      <div className="d-flex justify-content-center py-5">
-        <h1>Em breve novos conteúdos...</h1>
+    <div className="home-container">
+      <h1>Selecione uma opção:</h1>
+      <div className="button">
+        <ButtonMenu>
+          <img src={Calendar} alt="Agenda" />
+          <p>Agendamento</p>
+        </ButtonMenu>
+        <ButtonMenu path="/cadastros">
+          <img src={Cadastrar} alt="Cadastrar" />
+          <p>Cadastros</p>
+        </ButtonMenu>
+        <ButtonMenu path="/cadastros">
+          <img src={Ponto} alt="Cadastrar" />
+          <p>Ponto</p>
+        </ButtonMenu>
+        <ButtonMenu path="/cadastros">
+          <img src={Video} alt="Cadastrar" />
+          <p>Videos Reinf</p>
+        </ButtonMenu>
+        <ButtonMenu path="/cadastros">
+          <img src={Treinamento} alt="Cadastrar" />
+          <p className="text-center">Cursos e Treinamentos</p>
+        </ButtonMenu>
+        <ButtonMenu path="/">
+          <img src={Config} alt="Configurações" />
+          <p>Configurações</p>
+        </ButtonMenu>
       </div>
-      <div style={
-        {
-          display: "flex",
-          flexDirection: "column",
-          gap: "3rem",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "25px 25px 50px 0"
-        }
-      }>
-        <img
-          src={Servicos}
-          alt="Rodando"
-        />
-        <h4>Enquanto isso visite a página de
-          <Link /* className={collapse ? "nav-link text" : "nav-link"} */
-            to="/agendamento"
-          >
-            {' '}  Agendamento
-          </Link>
-        </h4>
-      </div>
-    </div>
+    </div >
   )
 }
 
