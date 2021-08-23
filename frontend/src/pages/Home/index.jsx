@@ -24,7 +24,7 @@ export default function Home() {
           <p>Cadastros</p>
         </ButtonMenu>
         <ButtonMenu path="/cadastros">
-          <img src={Ponto} alt="Cadastrar" />
+          <img src={Ponto} alt="/" />
           <p>Ponto</p>
         </ButtonMenu>
         <ButtonMenu path="/cadastros">
