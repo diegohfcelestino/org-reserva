@@ -9,7 +9,6 @@ import Treinamento from '../../assets/icons/online-learning.svg'
 import Video from '../../assets/icons/video.svg'
 
 import './style.scss'
-import Line from '../../components/Line/Line';
 
 export default function Home() {
   return (
