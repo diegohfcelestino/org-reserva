@@ -28,7 +28,7 @@ export default function Home() {
           <img src={Ponto} alt="Ponto" />
           <p>Ponto</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
+        <ButtonMenu path="/videos">
           <img src={Video} alt="Reinf" />
           <p>Videos Reinf</p>
         </ButtonMenu>

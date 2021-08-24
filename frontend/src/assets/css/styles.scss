@@ -84,6 +84,16 @@ button {
   margin-bottom: 0.1875rem;
 }
 
+.container {
+  p{
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2b2b69;
+  }
+}
+
 .login {
   background-image: url("../img/background.png");
   height: calc(100vh - 4.8rem);

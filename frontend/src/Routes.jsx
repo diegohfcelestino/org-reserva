@@ -6,6 +6,7 @@ import HomeAgendamentos from "./pages/Agendamentos/HomeAgendamentos";
 import Cadastros from "./pages/Cadastros";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Videos from "./pages/Videos/Videos";
 
 const Routes = () => {
   return (
@@ -23,6 +24,9 @@ const Routes = () => {
           </Route>
           <Route path="/agendamento">
             <HomeAgendamentos />
+          </Route>
+          <Route path="/videos">
+            <Videos />
           </Route>
         </Main>
 
