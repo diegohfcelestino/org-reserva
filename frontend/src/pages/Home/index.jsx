@@ -23,19 +23,19 @@ export default function Home() {
           <img src={Cadastrar} alt="Cadastrar" />
           <p>Cadastros</p>
         </ButtonMenu>
-        <ButtonMenu path="/cadastros">
-          <img src={Ponto} alt="/" />
+        <ButtonMenu path="/home">
+          <img src={Ponto} alt="Ponto" />
           <p>Ponto</p>
         </ButtonMenu>
-        <ButtonMenu path="/cadastros">
-          <img src={Video} alt="Cadastrar" />
+        <ButtonMenu path="/home">
+          <img src={Video} alt="Reinf" />
           <p>Videos Reinf</p>
         </ButtonMenu>
-        <ButtonMenu path="/cadastros">
-          <img src={Treinamento} alt="Cadastrar" />
+        <ButtonMenu path="/home">
+          <img src={Treinamento} alt="Treinamentos" />
           <p className="text-center">Cursos e Treinamentos</p>
         </ButtonMenu>
-        <ButtonMenu path="/">
+        <ButtonMenu path="/home">
           <img src={Config} alt="Configurações" />
           <p>Configurações</p>
         </ButtonMenu>
