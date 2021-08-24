@@ -4,14 +4,16 @@
   justify-content: center;
   align-content: center;
   align-items: center;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 0;
   background: rgb(231, 230, 230);
   height: 100%;
+  color: #2b2b69;
 
   h1 {
     font-size: 3rem;
     font-family: "Ubuntu Condensed", sans-serif;
     font-weight: 700;
+    margin-top: 0.8rem;
   }
 
   .button {
@@ -21,11 +23,12 @@
     align-items: center;
     flex-wrap: wrap;
     flex-grow: 0.1;
-    gap: 1rem;
+    gap: 2rem;
     border-radius: 1rem;
     // box-shadow: 5px 5px 5px 1px rgba(32, 31, 31, 0.2);
-    height: 80vh;
+    height: 70vh;
     width: 50%;
+    margin-top: 2rem;
     padding: 2rem 2rem 2rem 2rem;
     overflow-y: scroll;
     overflow-x: hidden;

@@ -1,14 +1,15 @@
-import React from 'react';
-import ButtonMenu from '../../components/ButtonMenu';
+import React from "react";
 
-import Cadastrar from '../../assets/icons/online-form.svg'
-import Calendar from '../../assets/icons/calendar-date.svg'
-import Config from '../../assets/icons/config.svg'
-import Ponto from '../../assets/icons/realtime.svg'
-import Treinamento from '../../assets/icons/online-learning.svg'
-import Video from '../../assets/icons/video.svg'
+import ButtonMenu from "../../components/ButtonMenu";
 
-import './style.scss'
+import Cadastrar from "../../assets/icons/online-form.svg";
+import Calendar from "../../assets/icons/calendar-date.svg";
+import Config from "../../assets/icons/config.svg";
+import Ponto from "../../assets/icons/realtime.svg";
+import Treinamento from "../../assets/icons/online-learning.svg";
+import Video from "../../assets/icons/video.svg";
+
+import "./style.scss";
 
 export default function Home() {
   return (
@@ -40,7 +41,6 @@ export default function Home() {
           <p>Configurações</p>
         </ButtonMenu>
       </div>
-    </div >
-  )
+    </div>
+  );
 }
-
