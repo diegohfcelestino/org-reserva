@@ -15,7 +15,7 @@ export default function Home() {
     <div className="home-container">
       <h1>Selecione uma opção:</h1>
       <div className="button">
-        <ButtonMenu>
+        <ButtonMenu path="/agendamento">
           <img src={Calendar} alt="Agenda" />
           <p>Agendamento</p>
         </ButtonMenu>
