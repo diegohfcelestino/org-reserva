@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { FaSignOutAlt } from "react-icons/fa";
 
 import "./navstyle.scss";
+import { NavBarContext } from "../../context/NavBarContext";
 
 const NewNav = () => {
+  const { isHome } = useContext(NavBarContext);
   const [collapse, setCollapse] = useState(false);
 
   const handleCollapse = () => {
@@ -40,7 +42,7 @@ const NewNav = () => {
           width="120"
         />
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {!isHome ? (<ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
                 className={collapse ? "nav-link text" : "nav-link"}
@@ -66,7 +68,9 @@ const NewNav = () => {
                 Cadastros
               </Link>
             </li>
-          </ul>
+          </ul>) : (
+            <div></div>
+          )}
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className={collapse ? "nav-link text" : "nav-link"} to="/">

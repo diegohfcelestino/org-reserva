@@ -4,7 +4,12 @@ import "./styles.scss";
 function ButtonMenu(props) {
   return (
     <Link to={props.path} className="btn-menu">
-      <span>{props.children}</span>
+      <button
+        onClick={props.onClick}
+      /* className="btn-menu" */
+      >
+        <span>{props.children}</span>
+      </button>
     </Link>
   );
 }

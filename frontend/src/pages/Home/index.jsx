@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import ButtonMenu from "../../components/ButtonMenu";
 
@@ -10,21 +10,24 @@ import Treinamento from "../../assets/icons/online-learning.svg";
 import Video from "../../assets/icons/video.svg";
 
 import "./style.scss";
+import { NavBarContext } from "../../context/NavBarContext";
 
 export default function Home() {
+  const { hanldeIsHome } = useContext(NavBarContext);
+
   return (
     <div className="home-container">
       <h1>Selecione uma opção:</h1>
       <div className="button">
-        <ButtonMenu path="/agendamento">
+        <ButtonMenu onClick={hanldeIsHome} path="/agendamento">
           <img src={Calendar} alt="Agenda" />
           <p>Agendamento</p>
         </ButtonMenu>
-        <ButtonMenu path="/cadastros">
+        <ButtonMenu onClick={hanldeIsHome} path="/cadastros">
           <img src={Cadastrar} alt="Cadastrar" />
           <p>Cadastros</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
+        <ButtonMenu onClick={hanldeIsHome} path="/home">
           <img src={Ponto} alt="Ponto" />
           <p>Ponto</p>
         </ButtonMenu>
@@ -32,11 +35,11 @@ export default function Home() {
           <img src={Video} alt="Reinf" />
           <p>Videos Reinf</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
+        <ButtonMenu onClick={hanldeIsHome} path="/home">
           <img src={Treinamento} alt="Treinamentos" />
           <p className="text-center">Cursos e Treinamentos</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
+        <ButtonMenu onClick={hanldeIsHome} path="/home">
           <img src={Config} alt="Configurações" />
           <p>Configurações</p>
         </ButtonMenu>
