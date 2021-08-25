@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className="footer bg-secondary">
+        <footer className="footer bg-secondary" >
             <div className="container-fluid">
                 <p className="text-light">App desenvolvido pelo time <a href="https://github.com/diegohfcelestino/org-reserva" target="_blank" rel="noreferrer">DevPadawan</a></p>
                 <p>

@@ -6,7 +6,7 @@ const Main = props => {
     return (
         <>
             <NewNav />
-            <div>
+            <div style={{ marginTop: "4rem" }}>
                 {props.children}
             </div>
             <Footer />
