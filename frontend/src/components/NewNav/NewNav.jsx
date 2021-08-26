@@ -24,7 +24,7 @@ const NewNav = () => {
   return (
     <nav
       className="navbar fixed-top navbar-expand-lg navbar-light"
-      style={{ backgroundColor: "#f5f5f5" }}
+      style={{ backgroundColor: "rgb(231, 230, 230)" }}
     >
       <div className="container-fluid">
         <button
