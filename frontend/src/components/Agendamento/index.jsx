@@ -127,7 +127,7 @@ export default function Agendamento() {
           </div>
           {tipoAg && (
             <div className="d-flex justify-content-center">
-              <button className="btn btn-primary">Verificar</button>
+              <button className="btn btn-primary">Agendar</button>
             </div>
           )}
         </form>
