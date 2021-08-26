@@ -24,7 +24,7 @@ const NewNav = () => {
   return (
     <nav
       className="navbar fixed-top navbar-expand-lg navbar-light"
-      style={{ backgroundColor: "#b9aeae" }}
+      style={{ backgroundColor: "#f5f5f5" }}
     >
       <div className="container-fluid">
         <button
@@ -47,7 +47,7 @@ const NewNav = () => {
           className="navbar-brand"
           src={Orgsystem}
           alt="Orgsystem"
-          width="120"
+          width="100"
         />
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

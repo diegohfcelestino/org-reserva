@@ -85,7 +85,7 @@ button {
 }
 
 .container {
-  p{
+  p {
     font-size: 2rem;
     display: flex;
     justify-content: center;
@@ -307,4 +307,31 @@ button {
 .cadastroContainer .selection .active {
   background: black;
   color: white;
+}
+
+//vídeos
+.col {
+  margin: 1rem 0.2rem;
+  border-style: outset;
+  border-width: thick;
+  border-radius: 20px;
+
+  h2 {
+    text-align: center;
+    color: #2b2b69;
+  }
+
+  p {
+    text-align: justify;
+    font-size: 18px;
+    color: #504d4d;
+    margin: 0.5rem;
+  }
+
+  iframe {
+    display: block;
+    margin: auto;
+    width: 25rem;
+    border-radius: 20px;
+  }
 }

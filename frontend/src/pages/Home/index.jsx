@@ -40,18 +40,6 @@ export default function Home() {
           <img src={Config} alt="Configurações" />
           <p>Configurações</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
-          <img src={Config} alt="Configurações" />
-          <p>Configurações</p>
-        </ButtonMenu>
-        <ButtonMenu path="/home">
-          <img src={Config} alt="Configurações" />
-          <p>Configurações</p>
-        </ButtonMenu>
-        <ButtonMenu path="/home">
-          <img src={Config} alt="Configurações" />
-          <p>Configurações</p>
-        </ButtonMenu>
       </div>
     </div>
   );
