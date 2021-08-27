@@ -96,7 +96,7 @@ button {
 
 .login {
   background-image: url("../img/background.png");
-  height: calc(100vh - 4.8rem);
+  height: calc(150vh - 4.8rem);
 
   .header {
     display: flex;
@@ -176,6 +176,15 @@ button {
 
       &:last-child {
         margin-bottom: 0.625rem;
+      }
+
+      a:link {
+        color: rgb(16, 16, 110);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: rgb(116, 11, 20);
       }
     }
   }

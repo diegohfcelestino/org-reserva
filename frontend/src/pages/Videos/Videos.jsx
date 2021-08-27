@@ -1,5 +1,5 @@
-
-export default function Videos() {
+const Videos = () => {
+    
     return (
         <div class="container">
             <div class="row">
@@ -53,3 +53,5 @@ export default function Videos() {
 
     )
 }
+
+export default Videos;
