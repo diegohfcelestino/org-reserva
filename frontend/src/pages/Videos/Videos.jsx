@@ -31,7 +31,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [x]</button>
                 </Modal>
                 <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
@@ -45,7 +45,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [x]</button>
                 </Modal>
                 <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
@@ -59,7 +59,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [x]</button>
                 </Modal>
                 <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
@@ -73,7 +73,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="submit" onClick={handleCloseNewModal}>Fechar [X]</button>
+                    <button  type="submit" onClick={handleCloseNewModal}>Fechar [x]</button>
                 </Modal>
                 <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
@@ -87,7 +87,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="button" onClick={handleCloseNewModal} color="red" >teste [X]</button>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [x]</button>
                 </Modal>
                 <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
@@ -101,7 +101,7 @@ const Videos = () => {
                     <div className="container">
                         <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <button  type="button" onClick={handleCloseNewModal} color="red" >teste [X]</button>
+                    <button  type="button" onClick={handleCloseNewModal} >Fechar [x]</button>
                 </Modal>
                
             </div>
