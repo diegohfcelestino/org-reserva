@@ -1,53 +1,109 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
+import Reinf from '../../assets/img/efdReinf.jfif'
+import "./style.scss";
+
+Modal.setAppElement('#root');
+
 const Videos = () => {
-    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    function handleOpenNewModal() {
+        setIsModalOpen(true);
+    }
+
+    function handleCloseNewModal() {
+        setIsModalOpen(false);
+    }
+
     return (
-        <div class="container">
-            <div class="row">
-                <div class="col">
+        <div className="container">
+            <div className="row">
+                <div className="col">
                     <h2>Quem envia a EFD-Reinf</h2>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <h2>Teste de video</h2>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                </Modal>
+                <div className="col">
+                    <h2>Quem envia a EFD-Reinf</h2>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <h2>Teste de video</h2>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                </Modal>
+                <div className="col">
+                    <h2>Quem envia a EFD-Reinf</h2>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="button" onClick={handleCloseNewModal}>Fechar [X]</button>
+                </Modal>
+                <div className="col">
+                    <h2>Quem envia a EFD-Reinf</h2>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="submit" onClick={handleCloseNewModal}>Fechar [X]</button>
+                </Modal>
+                <div className="col">
+                    <h2>Quem envia a EFD-Reinf</h2>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="button" onClick={handleCloseNewModal} color="red" >teste [X]</button>
+                </Modal>
+                <div className="col">
+                    <h2>Quem envia a EFD-Reinf</h2>
+                    <img src={Reinf} alt="reinf"/>
                     <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+                    <div className="container">
+                    <button type="button" onClick={handleOpenNewModal}>Assistir o vídeo</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-                </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-                </div>
-                <div class="col">
-                    <p>Teste de video</p>
-                    <iframe width="400" height="300" src="https://www.youtube.com/embed/i6bkELA49cc?list=PLYHoqTjX7zMrLCVjRICY7D5wEXVPo8BXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-                </div>
+                <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
+                    <div className="container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/MJuzskXrehM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button  type="button" onClick={handleCloseNewModal} color="red" >teste [X]</button>
+                </Modal>
+               
             </div>
         </div>
 
