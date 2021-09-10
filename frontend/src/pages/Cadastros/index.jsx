@@ -39,14 +39,14 @@ function Cadastros() {
             </div>
             <CarroProvider>
                 <span>
-                    {page === 'sala' && (
-                        <SalasCadastro />
+                    {page === 'carro' && (
+                        <VeiculosCadastro />
                     )}
                 </span>
             </CarroProvider>
             <span>
-                {page === 'carro' && (
-                    <VeiculosCadastro />
+                {page === 'sala' && (
+                    <SalasCadastro />
                 )}
             </span>
         </div>
