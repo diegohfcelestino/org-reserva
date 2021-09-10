@@ -32,6 +32,19 @@ export function CarroProvider({ children }) {
     }
   }
 
+  async function deleteCarro(id) {
+    const { data, error } = await supabase
+      .from('carros')
+      .delete()
+      .match({ id: id })
+
+    if (error) {
+      return alert(error)
+    } else {
+      buscaCarros()
+    }
+  }
+
   useEffect(() => {
     buscaCarros()
   }, [])
@@ -41,6 +54,7 @@ export function CarroProvider({ children }) {
       carros,
       buscaCarros,
       insertCarro,
+      deleteCarro,
     }}>
       {children}
     </CarroContext.Provider>

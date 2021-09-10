@@ -5,7 +5,7 @@ import { useCarroContext } from "../../../context/cadastros/CarrosContext";
 import "../cadastro.style.scss";
 
 const VeiculosCadastro = () => {
-  const { carros, insertCarro } = useCarroContext();
+  const { carros, insertCarro, deleteCarro } = useCarroContext();
   const [car, setCar] = useState("");
 
   function save() {
@@ -17,9 +17,13 @@ const VeiculosCadastro = () => {
     }
   }
 
-  function remove(index, s) {
-    alert(`Carro foi deletado!`);
-    setCar("");
+  function remove(id) {
+    if (!id) {
+      return alert(`Selecione um carro!`);
+    } else {
+      deleteCarro(id)
+      alert('Carro deletado!')
+    }
   }
 
   return (
@@ -83,7 +87,7 @@ const VeiculosCadastro = () => {
                     </button>
                     <button
                       className="btn btn-sm btn-outline-dark"
-                      onClick={() => remove(carro.id, car)}
+                      onClick={() => remove(carro.id)}
                     >
                       <FaRegTrashAlt />
                     </button>
