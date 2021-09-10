@@ -21,7 +21,7 @@ export function PrivateRoute({ component: Component, ...rest }) {
       render={(props) => {
         //Renderiza a pagina somente se user existir
         //Caso contrário, redireciona para a página de login
-        return user ? <Component {...props} /> : <Redirect to="/login" />
+        return user ? <Component {...props} /> : <Redirect to="/" />
       }}
     />
   )
