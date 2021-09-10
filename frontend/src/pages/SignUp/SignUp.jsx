@@ -26,7 +26,7 @@ function SignUp() {
     const { error } = await signUp({ email, password })
 
     if (error) {
-      alert('error signing in')
+      alert('error signing up')
     } else {
       // Redirect user to Dashboard
       history.push('/home')
@@ -51,7 +51,7 @@ function SignUp() {
 
             <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
               <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
-              <form onSubmit={handleSubmit} className="container">
+              <form onSubmit={e => handleSubmit(e)} className="container">
                 <div className="mb-4">
 
                   <label htmlFor="email" className="form-label">E-mail</label>
