@@ -14,8 +14,22 @@ export function CarroProvider({ children }) {
       .select("*")
       .order('id', { ascending: true })
 
-    console.log(carros)
+    // console.log(carros)
     setCarros(carros)
+  }
+
+  async function insertCarro(car) {
+    const { data, error } = await supabase
+      .from('carros')
+      .insert([
+        { name_carro: car }
+      ])
+
+    if (error) {
+      return alert(error)
+    } else {
+      buscaCarros()
+    }
   }
 
   useEffect(() => {
@@ -26,6 +40,7 @@ export function CarroProvider({ children }) {
     <CarroContext.Provider value={{
       carros,
       buscaCarros,
+      insertCarro,
     }}>
       {children}
     </CarroContext.Provider>

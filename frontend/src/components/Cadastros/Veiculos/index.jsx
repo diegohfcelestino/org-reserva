@@ -5,14 +5,16 @@ import { useCarroContext } from "../../../context/cadastros/CarrosContext";
 import "../cadastro.style.scss";
 
 const VeiculosCadastro = () => {
-  const { carros, /* buscaCarros */ } = useCarroContext();
+  const { carros, insertCarro } = useCarroContext();
   const [car, setCar] = useState("");
 
   function save() {
     if (!car) {
       return alert(`Preencha o carro!`);
+    } else {
+      insertCarro(car)
+      setCar("");
     }
-    setCar("");
   }
 
   function remove(index, s) {
