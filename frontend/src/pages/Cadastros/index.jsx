@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+
 /* import { Link } from 'react-router-dom' */
 import VeiculosCadastro from '../../components/Cadastros/Veiculos'
 import SalasCadastro from '../../components/Cadastros/Salas'
+import { CarroProvider } from '../../context/cadastros/CarrosContext'
 
-const Cadastros = () => {
+function Cadastros() {
     const [page, setPage] = useState('')
     const [salaClick, setSalaClick] = useState(false)
     const [VeiculoClick, setVeiculoClick] = useState(false)
@@ -35,10 +37,14 @@ const Cadastros = () => {
                     Carro
                 </button>
             </div>
+            <CarroProvider>
+                <span>
+                    {page === 'sala' && (
+                        <SalasCadastro />
+                    )}
+                </span>
+            </CarroProvider>
             <span>
-                {page === 'sala' && (
-                    <SalasCadastro />
-                )}
                 {page === 'carro' && (
                     <VeiculosCadastro />
                 )}
@@ -48,3 +54,5 @@ const Cadastros = () => {
 }
 
 export default Cadastros;
+
+

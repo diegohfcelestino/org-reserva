@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import ButtonMenu from "../../components/ButtonMenu";
 
@@ -10,8 +10,15 @@ import Treinamento from "../../assets/icons/online-learning.svg";
 import Video from "../../assets/icons/video.svg";
 
 import "./style.scss";
+import { useNavbarContext } from "../../context/NavBarContext";
 
 export default function Home() {
+  const { handleIsHome } = useNavbarContext();
+
+  useEffect(() => {
+    handleIsHome(true)
+  }, [handleIsHome])
+
   return (
     <div className="home-container">
       <h1>Selecione uma opção:</h1>

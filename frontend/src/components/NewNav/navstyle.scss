@@ -4,6 +4,9 @@
   font-size: 1.1rem;
   transition: color 0.3s;
 
+  border: none;
+  background: transparent;
+
   &:hover {
     // filter: grayscale() brightness(0.3);
     color: #d20023;
@@ -11,6 +14,9 @@
   &.text {
     font-size: 1.19rem;
     margin-left: 1rem;
+
+    /*     border: none;
+    background: transparent; */
   }
 }
 

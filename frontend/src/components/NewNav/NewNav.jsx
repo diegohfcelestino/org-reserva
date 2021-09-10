@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { FaSignOutAlt } from "react-icons/fa";
 
 import "./navstyle.scss";
-import { NavBarContext } from "../../context/NavBarContext";
+import { useNavbarContext } from "../../context/NavBarContext";
+import { useAuth } from '../../context/Auth'
 
 const NewNav = () => {
-  const { isHome, handleIsHome } = useContext(NavBarContext);
+  const { isHome } = useNavbarContext();
+  const { /* user, */ signOut } = useAuth()
   const [collapse, setCollapse] = useState(false);
 
-  let history = useHistory()
 
-  function handleClick(path) {
-    handleIsHome(true)
-    history.push(path)
-
+  async function handleSignOut() {
+    //encerra a sessão do usuário
+    await signOut()
   }
 
   const handleCollapse = () => {
@@ -54,17 +54,12 @@ const NewNav = () => {
             {!isHome && (
               <>
                 <li className="nav-item">
-                  <button
-                    className={collapse ? "nav-button text" : "nav-link"}
-                    aria-current="page"
-                    onClick={() => handleClick("/home")}
-                    style={{
-                      border: "none",
-                      background: "transparent"
-                    }}
+                  <Link
+                    className={collapse ? "nav-link text" : "nav-link"}
+                    to="/home"
                   >
                     Home
-                  </button>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <Link
@@ -77,7 +72,7 @@ const NewNav = () => {
                 <li className="nav-item">
                   <Link
                     className={collapse ? "nav-link text" : "nav-link"}
-                    to="/cadastros/salas"
+                    to="/cadastros"
                   >
                     Cadastros
                   </Link>
@@ -86,14 +81,18 @@ const NewNav = () => {
           </ul>
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className={collapse ? "nav-link text" : "nav-link"} to="/">
+              <Link
+                className={collapse ? "nav-link text" : "nav-link"}
+                onClick={() => handleSignOut()}
+                to="/"
+              >
                 <FaSignOutAlt /> Sair
               </Link>
             </li>
           </ul>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 

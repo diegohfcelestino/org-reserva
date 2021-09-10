@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const NavBarContext = createContext();
 
 export function NavBarProvider({ children }) {
-  const [isHome, setIsHome] = useState(true)
+  const [isHome, setIsHome] = useState(false)
 
   function handleIsHome(prop) {
     setIsHome(prop)
@@ -17,4 +17,8 @@ export function NavBarProvider({ children }) {
       {children}
     </NavBarContext.Provider>
   )
+}
+
+export function useNavbarContext() {
+  return useContext(NavBarContext)
 }

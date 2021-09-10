@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import "./agendamento.scss";
@@ -17,12 +18,7 @@ export default function Agendamento() {
           <h3 className="lead">Agendamento</h3>
           <p className="lead">{currentDate}</p>
         </div> */}
-        {!tipoAg && (
-          <p>
-            Escolha entre agendamento de sala ou veículo e verifique a
-            disponibilidade
-          </p>
-        )}
+        {!tipoAg && <p>Escolha entre agendamento de sala ou veículo e verifique a disponibilidade</p>}
         <form>
           <div className="container-fluid justify-content-center col-12 row mb-3">
             <div className="col-auto">

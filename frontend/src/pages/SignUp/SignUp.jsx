@@ -1,33 +1,34 @@
 import Footer from "../../components/Footer";
 /* import NavBar from "../../components/NavBar"; */
 import Orgsystem from '../../assets/img/logo-org-tsplus.png'
-import { useRef } from "react";
-import { useAuth } from "../../context/Auth";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { useRef, /* useState */ } from 'react'
+import { useHistory, Link } from 'react-router-dom'
+import { useAuth } from '../../context/Auth'
+// import { useState } from "react";
+// import { supabase } from "../../supabaseClient";
 
-const Login = () => {
+function SignUp() {
   const emailRef = useRef()
   const passwordRef = useRef()
 
-  const { signIn } = useAuth()
+  const { signUp } = useAuth()
 
   const history = useHistory()
 
-  async function handleLogin(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
-    //pega email e senha dos inputs
+    // Get email and password input values
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
-    //chama a função signIn do contexto
-    const { error } = await signIn({ email, password })
+    // Calls `signUp` function from the context
+    const { error } = await signUp({ email, password })
 
     if (error) {
-      alert('Error signing in')
+      alert('error signing in')
     } else {
-      //redireciona para a home
+      // Redirect user to Dashboard
       history.push('/home')
     }
   }
@@ -47,17 +48,17 @@ const Login = () => {
             </h2>
           </div>
           <div className="d-flex justify-content-center align-content-center mb-3">
+
             <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
               <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
-              <form onSubmit={handleLogin} className="container">
+              <form onSubmit={handleSubmit} className="container">
                 <div className="mb-4">
 
                   <label htmlFor="email" className="form-label">E-mail</label>
                   <input
                     type="email"
-                    className="form-control"
                     id="email"
-                    aria-describedby="emailHelp"
+                    className="form-control"
                     ref={emailRef}
                   />
                   <div id="emailHelp" className="form-text">Não compartilharemos seu e-mail com mais ninguém.</div>
@@ -66,24 +67,25 @@ const Login = () => {
                   <label htmlFor="senha" className="form-label">Senha</label>
                   <input
                     type="password"
-                    className="form-control"
                     id="senha"
+                    className="form-control"
                     ref={passwordRef}
                   />
+                  {/* <div id="emailHelp" className="form-text">Solicite a senha ao seu gestor.</div>
                 </div>
-                {/* <div className="mb-3 form-check">
+                <div className="mb-3 form-check">
                   <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                  <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label>
-                </div> */}
+                  <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label> */}
+                </div>
                 <div className="d-grid gap-2">
                   <button
                     type="submit"
                     className="btn btn-primary">
-                    Log In
+                    Sign Up
                   </button>
                 </div>
                 <div id="emailHelp" className="form-text mt-2">
-                  Already have an account? <Link to="/signUp">Sign Up</Link>
+                  Already have an account? <Link to="/">Log In</Link>
                 </div>
               </form>
             </div>
@@ -94,4 +96,4 @@ const Login = () => {
     </>
   );
 }
-export default Login;
+export default SignUp;

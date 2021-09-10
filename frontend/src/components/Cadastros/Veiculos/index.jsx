@@ -1,29 +1,23 @@
 import React, { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { useCarroContext } from "../../../context/cadastros/CarrosContext";
 
 import "../cadastro.style.scss";
 
 const VeiculosCadastro = () => {
-  const [cars, setCars] = useState([]);
+  const { carros, /* buscaCarros */ } = useCarroContext();
   const [car, setCar] = useState("");
 
   function save() {
     if (!car) {
       return alert(`Preencha o carro!`);
     }
-    var temp = cars;
-    temp.push(car);
-    setCars(temp);
     setCar("");
   }
 
   function remove(index, s) {
-    var temp = cars;
-    temp.splice(index, 1);
-    setCars(temp);
-    alert(`Carro ${s} foi deletado!`);
+    alert(`Carro foi deletado!`);
     setCar("");
-    return s;
   }
 
   return (
@@ -72,22 +66,22 @@ const VeiculosCadastro = () => {
             </tr>
           </thead>
           <tbody>
-            {cars.map((room, i) => {
+            {carros.map(carro => {
               return (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{room}</td>
+                <tr key={carro.id}>
+                  <td>{carro.id}</td>
+                  <td>{carro.name_carro}</td>
                   <td>
                     <button
                       className="btn btn-sm btn-outline-dark"
                       style={{ marginRight: "1rem" }}
-                      onClick={() => setCar(room)}
+                      onClick={() => setCar(carro.name_carro)}
                     >
                       <FaRegEdit />
                     </button>
                     <button
                       className="btn btn-sm btn-outline-dark"
-                      onClick={() => remove(i, car)}
+                      onClick={() => remove(carro.id, car)}
                     >
                       <FaRegTrashAlt />
                     </button>
