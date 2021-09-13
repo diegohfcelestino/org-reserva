@@ -7,18 +7,18 @@ import "../cadastro.style.scss";
 const VeiculosCadastro = () => {
   const { carros, insertCarro, deleteCarro, updateCarro } = useCarroContext();
   const [car, setCar] = useState("");
-  const [id, setId] = useState()
+  const [carro, setCarro] = useState({})
   const [isUpdating, setIsUpdating] = useState(false)
 
-  function handleUpdate(id, car) {
+  function handleUpdate(carro) {
     setIsUpdating(true)
-    setCar(car)
-    setId(id)
+    setCar(carro.name_carro)
+    setCarro(carro)
   }
 
   function save() {
     if (isUpdating) {
-      updateCarro(id, car)
+      updateCarro(carro)
       setCar("")
       setIsUpdating(false)
     } else {
@@ -96,7 +96,7 @@ const VeiculosCadastro = () => {
                     <button
                       className="btn btn-sm btn-outline-dark"
                       style={{ marginRight: "1rem" }}
-                      onClick={() => handleUpdate(carro.id, carro.name_carro)}
+                      onClick={() => handleUpdate(carro)}
                     >
                       <FaRegEdit />
                     </button>

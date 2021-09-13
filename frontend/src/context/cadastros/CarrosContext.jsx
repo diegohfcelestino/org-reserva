@@ -45,13 +45,14 @@ export function CarroProvider({ children }) {
     }
   }
 
-  async function updateCarro(id, name_carro) {
+  async function updateCarro(carro) {
     const { data, error } = await supabase
       .from('carros')
-      .update({ name_carro: name_carro })
-      .match({ id: id })
+      .update(carro)
+      .match({ id: carro.id })
 
     if (error) {
+      console.log(data)
       return alert('Error updating car')
     } else {
       buscaCarros()
