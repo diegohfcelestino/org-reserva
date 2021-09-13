@@ -16,8 +16,8 @@ export default function Home() {
   const { handleIsHome } = useNavbarContext();
 
   useEffect(() => {
-    handleIsHome(true)
-  }, [handleIsHome])
+    handleIsHome(true);
+  }, [handleIsHome]);
 
   return (
     <div className="home-container">
@@ -31,7 +31,7 @@ export default function Home() {
           <img src={Cadastrar} alt="Cadastrar" />
           <p>Cadastros</p>
         </ButtonMenu>
-        <ButtonMenu path="/home">
+        <ButtonMenu path="/ponto">
           <img src={Ponto} alt="Ponto" />
           <p>Ponto</p>
         </ButtonMenu>
