@@ -59,6 +59,10 @@ export default function Ponto() {
                 }}
               />
             </div>
+            <div className="col-auto">
+              <h6>Nova consulta</h6>
+              <button className="btn btn-outline-dark mb-4">Consultar</button>
+            </div>
           </div>
         </form>
       </div>

@@ -1,0 +1,49 @@
+.col {
+  margin: 1rem 0.2rem;
+  border-style: outset;
+  border-width: thick;
+  border-radius: 20px;
+  background-color: #efefef;
+
+  h2 {
+    text-align: center;
+    color: #2b2b69;
+  }
+
+  img {
+    display: block;
+    margin: auto;
+    width: 24rem;
+    height: 20rem;
+    border-radius: 1rem;
+  }
+
+  p {
+    text-align: justify;
+    font-size: 18px;
+    color: #504d4d;
+    margin: 0.5rem;
+  }
+  button {
+    display: flex;
+    margin: auto;
+    padding: 0.5rem;
+    color: #fff;
+    background-color: #2b2b69;
+    border-radius: 1rem;
+    border: 0;
+
+    transition: filter 0.3s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  iframe {
+    display: block;
+    margin: auto;
+    width: 25rem;
+    border-radius: 20px;
+  }
+}
