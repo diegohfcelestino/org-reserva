@@ -52,9 +52,11 @@ export function CarroProvider({ children }) {
       .match({ id: id })
 
     if (error) {
-      return alert(error)
+      return alert('Error updating car')
     } else {
       buscaCarros()
+      console.log(data)
+      return data
     }
   }
 
