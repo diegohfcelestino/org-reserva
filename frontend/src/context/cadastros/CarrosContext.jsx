@@ -45,6 +45,21 @@ export function CarroProvider({ children }) {
     }
   }
 
+  async function updateCarro(id, name_carro) {
+    const { data, error } = await supabase
+      .from('carros')
+      .update({ name_carro: name_carro })
+      .match({ id: id })
+
+    if (error) {
+      return alert('Error updating car')
+    } else {
+      buscaCarros()
+      console.log(data)
+      return data
+    }
+  }
+
   useEffect(() => {
     buscaCarros()
   }, [])
@@ -55,6 +70,7 @@ export function CarroProvider({ children }) {
       buscaCarros,
       insertCarro,
       deleteCarro,
+      updateCarro,
     }}>
       {children}
     </CarroContext.Provider>
