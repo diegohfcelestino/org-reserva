@@ -5,17 +5,32 @@ import { useCarroContext } from "../../../context/cadastros/CarrosContext";
 import "../cadastro.style.scss";
 
 const VeiculosCadastro = () => {
-  const { carros, insertCarro, deleteCarro } = useCarroContext();
+  const { carros, insertCarro, deleteCarro, updateCarro } = useCarroContext();
   const [car, setCar] = useState("");
+  const [id, setId] = useState()
+  const [isUpdating, setIsUpdating] = useState(false)
+
+  function handleUpdate(id, car) {
+    setIsUpdating(true)
+    setCar(car)
+    setId(id)
+  }
 
   function save() {
-    if (!car) {
-      return alert(`Preencha o carro!`);
+    if (isUpdating) {
+      updateCarro(id, car)
+      setCar("")
+      setIsUpdating(false)
     } else {
-      insertCarro(car)
-      setCar("");
+      if (!car) {
+        return alert(`Preencha o carro!`);
+      } else {
+        insertCarro(car)
+        setCar("");
+      }
     }
   }
+
 
   function remove(id) {
     if (!id) {
@@ -54,7 +69,7 @@ const VeiculosCadastro = () => {
                   onClick={() => save()}
                   className="btn btn-primary"
                 >
-                  Salvar
+                  {!isUpdating ? 'Salvar' : 'Atualizar'}
                 </button>
               </div>
             </div>
@@ -81,7 +96,7 @@ const VeiculosCadastro = () => {
                     <button
                       className="btn btn-sm btn-outline-dark"
                       style={{ marginRight: "1rem" }}
-                      onClick={() => setCar(carro.name_carro)}
+                      onClick={() => handleUpdate(carro.id, carro.name_carro)}
                     >
                       <FaRegEdit />
                     </button>
