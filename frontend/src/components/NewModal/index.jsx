@@ -16,7 +16,7 @@ const NewModal = ({ isOpen, onRequestClose, url }) => {
             <iframe
               width="100%"
               height="450"
-              src={url} //"https://www.youtube.com/embed/MJuzskXrehM"
+              src={url}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
