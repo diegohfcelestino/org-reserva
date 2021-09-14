@@ -1,43 +1,28 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import Reinf from "../../assets/img/efdReinf.jfif";
 import NewModal from "../../components/NewModal";
+import { supabase } from "../../supabaseClient";
 import "./style.scss";
 
 const Videos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [lista, setLista] = useState([
-    {
-      titulo: "Quem envia a EFD-Reinf",
-      imagem: Reinf,
-      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
-      url: "https://www.youtube.com/embed/MJuzskXrehM",
-    },
-    {
-      titulo: "Quem envia a EFD-Reinf",
-      imagem: "efdReinf.jfif",
-      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
-      url: "https://www.youtube.com/embed/MJuzskXrehM",
-    },
-    {
-      titulo: "Quem envia a EFD-Reinf",
-      imagem: "efdReinf.jfif",
-      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
-      url: "https://www.youtube.com/embed/MJuzskXrehM",
-    },
-    {
-      titulo: "Quem envia a EFD-Reinf",
-      imagem: "efdReinf.jfif",
-      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
-      url: "https://www.youtube.com/embed/MJuzskXrehM",
-    },
-    {
-      titulo: "Quem envia a EFD-Reinf",
-      imagem: "efdReinf.jfif",
-      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
-      url: "https://www.youtube.com/embed/MJuzskXrehM",
-    },
-  ]);
+  async function searchVideo() {
+    let { data: videos, error } = await supabase
+      .from('videos')
+      .select("*")
+      .order('id', { ascending: false })
+
+    // console.log(carros)
+    setLista(videos)
+  }
+
+  useEffect(() => {
+    searchVideo()
+  }, [])
+
+  const [lista, setLista] = useState([]);
 
   function handleOpenNewModal() {
     setIsModalOpen(true);
@@ -50,14 +35,14 @@ const Videos = () => {
   return (
     <div className="container">
       <div className="row">
-        {lista.map((item, index) => {
+        {lista.map((item) => {
           return (
-            <div className="col" id={index}>
-              <h2>{item.titulo}</h2>
+            <div className="col" key={item.id}/* id={index} */>
+              <h2>{item.title}</h2>
               <button type="button" onClick={handleOpenNewModal}>
-                <img src={item.imagem} alt="reinf" />
+                <img src={item.image} alt="reinf" />
               </button>
-              <p>{item.assunto}</p>
+              <p>{item.subject}</p>
               <div className="container"></div>
               <NewModal
                 isOpen={isModalOpen}

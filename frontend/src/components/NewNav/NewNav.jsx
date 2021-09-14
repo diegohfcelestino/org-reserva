@@ -76,7 +76,24 @@ const NewNav = () => {
                   >
                     Cadastros
                   </Link>
-                </li></>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={collapse ? "nav-link text" : "nav-link"}
+                    to="/videos"
+                  >
+                    Videos
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={collapse ? "nav-link text" : "nav-link"}
+                    to="/ponto"
+                  >
+                    Ponto
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
