@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import Reinf from "../../assets/img/efdReinf.jfif";
 import NewModal from "../../components/NewModal";
 import { supabase } from "../../supabaseClient";
 import "./style.scss";
@@ -59,42 +58,6 @@ const Videos = () => {
             </div>
           );
         })}
-        {/* <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div> */}
       </div>
     </div>
   );
