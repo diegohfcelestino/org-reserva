@@ -10,17 +10,17 @@ const Videos = () => {
 
   async function searchVideo() {
     let { data: videos, error } = await supabase
-      .from('videos')
+      .from("videos")
       .select("*")
-      .order('id', { ascending: false })
+      .order("id", { ascending: true });
 
     // console.log(carros)
-    setLista(videos)
+    setLista(videos);
   }
 
   useEffect(() => {
-    searchVideo()
-  }, [])
+    searchVideo();
+  }, []);
 
   const [lista, setLista] = useState([]);
 
@@ -37,7 +37,7 @@ const Videos = () => {
       <div className="row">
         {lista.map((item) => {
           return (
-            <div className="col" key={item.id}/* id={index} */>
+            <div className="col" key={item.id} /* id={index} */>
               <h2>{item.title}</h2>
               <button type="button" onClick={handleOpenNewModal}>
                 <img src={item.image} alt="reinf" />
