@@ -7,14 +7,14 @@ import "./style.scss";
 
 const Videos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [lista, setLista] = useState([]);
 
   async function searchVideo() {
-    let { data: videos, error } = await supabase
+    const { data: videos, error } = await supabase
       .from("videos")
       .select("*")
       .order("id", { ascending: true });
 
-    // console.log(carros)
     setLista(videos);
   }
 
@@ -22,7 +22,6 @@ const Videos = () => {
     searchVideo();
   }, []);
 
-  const [lista, setLista] = useState([]);
 
   function handleOpenNewModal() {
     setIsModalOpen(true);
@@ -35,19 +34,27 @@ const Videos = () => {
   return (
     <div className="container minHeight">
       <div className="row">
-        {lista.map((item) => {
+        <ul>
+          {lista.map(video => {
+            return (
+              <li key={video.id}>{video.url}</li>
+            )
+          })}
+        </ul>
+        {lista.map(video => {
           return (
-            <div className="col" key={item.id} /* id={index} */>
-              <h2>{item.title}</h2>
+            <div className="col" key={video.id}>
+              <h2>{video.title}</h2>
               <button type="button" onClick={handleOpenNewModal}>
-                <img src={item.image} alt="reinf" />
+                <img src={video.image} alt="reinf" />
               </button>
-              <p>{item.subject}</p>
+              <p>{video.subject}</p>
+              <p>{video.url}</p>
               <div className="container"></div>
               <NewModal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseNewModal}
-                url={item.url}
+                url={video.url}
               />
             </div>
           );
