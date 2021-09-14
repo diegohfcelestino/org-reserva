@@ -33,7 +33,7 @@ const Videos = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container minHeight">
       <div className="row">
         {lista.map((item) => {
           return (
