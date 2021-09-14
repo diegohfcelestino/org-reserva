@@ -33,13 +33,6 @@ const Videos = () => {
   return (
     <div className="container minHeight">
       <div className="row">
-        <ul>
-          {lista.map(video => {
-            return (
-              <li key={video.id}>{video.url}</li>
-            )
-          })}
-        </ul>
         {lista.map(video => {
           return (
             <div className="col" key={video.id}>
