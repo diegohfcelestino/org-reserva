@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import Reinf from "../../assets/img/efdReinf.jfif";
 import NewModal from "../../components/NewModal";
 import { supabase } from "../../supabaseClient";
 import "./style.scss";
@@ -9,12 +8,12 @@ const Videos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function searchVideo() {
-    let { data: videos, error } = await supabase
+    let { data: videos } = await supabase
       .from("videos")
       .select("*")
       .order("id", { ascending: true });
 
-    // console.log(carros)
+    console.log(videos);
     setLista(videos);
   }
 
@@ -37,7 +36,7 @@ const Videos = () => {
       <div className="row">
         {lista.map((item) => {
           return (
-            <div className="col" key={item.id} /* id={index} */>
+            <div className="col" key={item.id} /* id={item.id} */>
               <h2>{item.title}</h2>
               <button type="button" onClick={handleOpenNewModal}>
                 <img src={item.image} alt="reinf" />
@@ -52,42 +51,6 @@ const Videos = () => {
             </div>
           );
         })}
-        {/* <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <button type="button" onClick={handleOpenNewModal}>
-            <img src={Reinf} alt="reinf" />
-          </button>
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container"></div>
-          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
-        </div> */}
       </div>
     </div>
   );
