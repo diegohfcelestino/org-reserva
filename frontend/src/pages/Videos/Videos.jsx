@@ -1,12 +1,43 @@
 import { useState } from "react";
-import Modal from "react-modal";
 import Reinf from "../../assets/img/efdReinf.jfif";
+import NewModal from "../../components/NewModal";
 import "./style.scss";
-
-Modal.setAppElement("#root");
 
 const Videos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [lista, setLista] = useState([
+    {
+      titulo: "Quem envia a EFD-Reinf",
+      imagem: Reinf,
+      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
+      url: "https://www.youtube.com/embed/MJuzskXrehM",
+    },
+    {
+      titulo: "Quem envia a EFD-Reinf",
+      imagem: "efdReinf.jfif",
+      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
+      url: "https://www.youtube.com/embed/MJuzskXrehM",
+    },
+    {
+      titulo: "Quem envia a EFD-Reinf",
+      imagem: "efdReinf.jfif",
+      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
+      url: "https://www.youtube.com/embed/MJuzskXrehM",
+    },
+    {
+      titulo: "Quem envia a EFD-Reinf",
+      imagem: "efdReinf.jfif",
+      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
+      url: "https://www.youtube.com/embed/MJuzskXrehM",
+    },
+    {
+      titulo: "Quem envia a EFD-Reinf",
+      imagem: "efdReinf.jfif",
+      assunto: "Assuntos relacionados a quem não deve enviar o EFD-Reinf",
+      url: "https://www.youtube.com/embed/MJuzskXrehM",
+    },
+  ]);
 
   function handleOpenNewModal() {
     setIsModalOpen(true);
@@ -19,6 +50,32 @@ const Videos = () => {
   return (
     <div className="container">
       <div className="row">
+        {lista.map((item, index) => {
+          return (
+            <div className="col" id={index}>
+              <h2>{item.titulo}</h2>
+              <button type="button" onClick={handleOpenNewModal}>
+                <img src={item.imagem} alt="reinf" />
+              </button>
+              <p>{item.assunto}</p>
+              <div className="container"></div>
+              <NewModal
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseNewModal}
+                url={item.url}
+              />
+            </div>
+          );
+        })}
+        {/* <div className="col">
+          <h2>Quem envia a EFD-Reinf</h2>
+          <button type="button" onClick={handleOpenNewModal}>
+            <img src={Reinf} alt="reinf" />
+          </button>
+          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+          <div className="container"></div>
+          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
+        </div>
         <div className="col">
           <h2>Quem envia a EFD-Reinf</h2>
           <button type="button" onClick={handleOpenNewModal}>
@@ -26,153 +83,26 @@ const Videos = () => {
           </button>
           <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
           <div className="container"></div>
+          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
         </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="button" onClick={handleCloseNewModal}>
-            Fechar [x]
-          </button>
-        </Modal>
         <div className="col">
           <h2>Quem envia a EFD-Reinf</h2>
-          <img src={Reinf} alt="reinf" />
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container">
-            <button type="button" onClick={handleOpenNewModal}>
-              Assistir o vídeo
-            </button>
-          </div>
-        </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="button" onClick={handleCloseNewModal}>
-            Fechar [x]
+          <button type="button" onClick={handleOpenNewModal}>
+            <img src={Reinf} alt="reinf" />
           </button>
-        </Modal>
+          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
+          <div className="container"></div>
+          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
+        </div>
         <div className="col">
           <h2>Quem envia a EFD-Reinf</h2>
-          <img src={Reinf} alt="reinf" />
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container">
-            <button type="button" onClick={handleOpenNewModal}>
-              Assistir o vídeo
-            </button>
-          </div>
-        </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="button" onClick={handleCloseNewModal}>
-            Fechar [x]
+          <button type="button" onClick={handleOpenNewModal}>
+            <img src={Reinf} alt="reinf" />
           </button>
-        </Modal>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <img src={Reinf} alt="reinf" />
           <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container">
-            <button type="button" onClick={handleOpenNewModal}>
-              Assistir o vídeo
-            </button>
-          </div>
-        </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="submit" onClick={handleCloseNewModal}>
-            Fechar [x]
-          </button>
-        </Modal>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <img src={Reinf} alt="reinf" />
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container">
-            <button type="button" onClick={handleOpenNewModal}>
-              Assistir o vídeo
-            </button>
-          </div>
-        </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="button" onClick={handleCloseNewModal}>
-            Fechar [x]
-          </button>
-        </Modal>
-        <div className="col">
-          <h2>Quem envia a EFD-Reinf</h2>
-          <img src={Reinf} alt="reinf" />
-          <p>Assuntos relacionados a quem não deve enviar o EFD-Reinf</p>
-          <div className="container">
-            <button type="button" onClick={handleOpenNewModal}>
-              Assistir o vídeo
-            </button>
-          </div>
-        </div>
-        <Modal isOpen={isModalOpen} overlayClassName="react-modal-overlay">
-          <div className="container">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/MJuzskXrehM"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <button type="button" onClick={handleCloseNewModal}>
-            Fechar [x]
-          </button>
-        </Modal>
+          <div className="container"></div>
+          <NewModal isOpen={isModalOpen} onRequestClose={handleCloseNewModal} />
+        </div> */}
       </div>
     </div>
   );
