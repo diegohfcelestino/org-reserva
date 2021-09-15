@@ -1,29 +1,45 @@
 import React, { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { useSalaContext } from "../../../context/cadastros/SalasContext";
 
 import "../cadastro.style.scss";
 
 const SalasCadastro = () => {
-  const [rooms, setRooms] = useState([]);
-  const [sala, setSala] = useState("");
+  const { salas, insertSala, deleteSala, updateSala } = useSalaContext()
+  const [nameRoom, setNameRoom] = useState("");
+  const [room, setRoom] = useState({})
+  const [isUpdating, setIsUpdating] = useState(false)
 
-  function save() {
-    if (!sala) {
-      return alert(`Preencha a sala!`);
-    }
-    var temp = rooms;
-    temp.push(sala);
-    setRooms(temp);
-    setSala("");
+  function handleUpdate(room) {
+    setIsUpdating(true)
+    setNameRoom(room.name_sala)
+    setRoom(room)
+    console.log(room)
   }
 
-  function remove(index, s) {
-    var temp = rooms;
-    temp.splice(index, 1);
-    setRooms(temp);
-    alert(`Sala ${s} foi deletada!`);
-    setSala("");
-    return s;
+  function save() {
+    if (!nameRoom) {
+      return alert(`Preencha a sala!`);
+    } else {
+      insertSala(nameRoom)
+      setNameRoom("");
+    }
+  }
+
+  function update() {
+    updateSala(room)
+    setNameRoom("")
+    setIsUpdating(false)
+  }
+
+
+  function remove(id) {
+    if (!id) {
+      return alert(`Selecione uma sala!`);
+    } else {
+      deleteSala(id)
+      alert('Room deleted!')
+    }
   }
 
   return (
@@ -42,20 +58,30 @@ const SalasCadastro = () => {
                 <input
                   type="text"
                   className="form-control"
-                  id="sala"
-                  name="sala"
-                  value={sala}
-                  onChange={(e) => setSala(e.target.value)}
+                  id="car"
+                  name="car"
+                  value={nameRoom}
+                  onChange={e => setNameRoom(e.target.value)}
                 />
               </div>
               <div className="col-1">
-                <button
-                  type="button"
-                  onClick={() => save()}
-                  className="btn btn-primary"
-                >
-                  Salvar
-                </button>
+                {!isUpdating ? (
+                  <button
+                    type="button"
+                    onClick={() => save()}
+                    className="btn btn-primary"
+                  >
+                    Salvar{/* {!isUpdating ? 'Salvar' : 'Atualizar'} */}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => update()}
+                    className="btn btn-primary"
+                  >
+                    Atualizar{/* {!isUpdating ? 'Salvar' : 'Atualizar'} */}
+                  </button>
+                )}
               </div>
             </div>
           </form>
@@ -72,22 +98,22 @@ const SalasCadastro = () => {
             </tr>
           </thead>
           <tbody>
-            {rooms.map((room, i) => {
+            {salas.map(room => {
               return (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{room}</td>
+                <tr key={room.id}>
+                  <td>{room.id}</td>
+                  <td>{room.name_sala}</td>
                   <td>
                     <button
                       className="btn btn-sm btn-outline-dark"
                       style={{ marginRight: "1rem" }}
-                      onClick={() => setSala(room)}
+                      onClick={() => handleUpdate(room)}
                     >
                       <FaRegEdit />
                     </button>
                     <button
                       className="btn btn-sm btn-outline-dark"
-                      onClick={() => remove(i, room)}
+                      onClick={() => remove(room.id)}
                     >
                       <FaRegTrashAlt />
                     </button>

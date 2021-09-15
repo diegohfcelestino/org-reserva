@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import VeiculosCadastro from '../../components/Cadastros/Veiculos'
 import SalasCadastro from '../../components/Cadastros/Salas'
 import { CarroProvider } from '../../context/cadastros/CarrosContext'
+import { SalaProvider } from '../../context/cadastros/SalasContext'
 
 function Cadastros() {
     const [page, setPage] = useState('')
@@ -44,11 +45,13 @@ function Cadastros() {
                     )}
                 </span>
             </CarroProvider>
-            <span>
-                {page === 'sala' && (
-                    <SalasCadastro />
-                )}
-            </span>
+            <SalaProvider>
+                <span>
+                    {page === 'sala' && (
+                        <SalasCadastro />
+                    )}
+                </span>
+            </SalaProvider>
         </div>
     )
 }
