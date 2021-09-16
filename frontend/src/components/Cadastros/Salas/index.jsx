@@ -27,7 +27,9 @@ const SalasCadastro = () => {
   }
 
   function update() {
-    updateSala(room)
+    const sala = { ...room }
+    sala.name_sala = nameRoom
+    updateSala(sala)
     setNameRoom("")
     setIsUpdating(false)
   }
