@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
-import { useItems } from "../../../context/cadastros/ItemsContext";
+// import { useItems } from "../../../context/cadastros/ItemsContext";
 import { useSalaContext } from "../../../context/cadastros/SalasContext";
 
 import "../cadastro.style.scss";

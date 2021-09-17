@@ -13,8 +13,8 @@ const DataTable = ({ data }) => {
                         <th>Hora Inicial</th>
                         <th>Hora Final</th>
                         <th>Funcionário</th>
-                        <th>ID Item</th>
-                        <th>ID Tipo</th>
+                        <th>Item</th>
+                        <th>Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,9 +33,9 @@ const DataTable = ({ data }) => {
                                 <td>{agendamento.dt_fim}</td>
                                 <td>{agendamento.hr_inicio}</td>
                                 <td>{agendamento.hr_final}</td>
-                                <td>{agendamento.id_user}</td>
-                                <td>{agendamento.id_item}</td>
-                                <td>{agendamento.id_tipo}</td>
+                                <td>{agendamento.profiles.email}</td>
+                                <td>{agendamento.items.description}</td>
+                                <td>{agendamento.tipos_item.name}</td>
                             </tr>
                         )
                     })

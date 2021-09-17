@@ -43,6 +43,8 @@ export default function HomeAgendamentos() {
         </button>
       </div>
 
+      {/* {JSON.stringify(agendamentos)} */}
+
       {!showAgendar ? (
         <div className="row px-3">
           <div className="col-sm-6">

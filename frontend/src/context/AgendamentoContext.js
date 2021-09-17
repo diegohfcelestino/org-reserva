@@ -28,7 +28,12 @@ export function AgendamentoProvider({ children }) {
   const getAgendamentos = async () => {
     const { data: agendamentos, error } = await supabase
       .from('agendamentos')
-      .select('*')
+      .select(`
+        *,
+        items(description),
+        tipos_item(name),
+        profiles(email)
+      `)
 
     setAgendamentos(agendamentos)
   }
