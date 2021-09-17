@@ -28,16 +28,17 @@ export function ItemsProvider({ children }) {
     }
   }
 
-  async function getItemsByTipo(idTipo) {
+  /* async function getItemsByTipo(idTipo) {
     const { data: items, error } = await supabase
       .from('items')
       .select("*")
       .match({ id_tipo: idTipo })
-      .order('id', { ascending: true })
+      .order('description', { ascending: true })
 
     // console.log(items)
-    setItems(items)
-  }
+    // setItems(items)
+    return items
+  } */
 
   async function insertItem(item) {
     const { data, error } = await supabase
@@ -81,6 +82,10 @@ export function ItemsProvider({ children }) {
 
   useEffect(() => {
     getItems()
+  }, [items])
+
+  useEffect(() => {
+    getItems()
   }, [])
 
   return (
@@ -89,14 +94,13 @@ export function ItemsProvider({ children }) {
       insertItem,
       deleteItem,
       updateItem,
-      getItems,
-      getItemsByTipo
+      getItems
     }}>
       {children}
     </ItemContext.Provider>
   )
 }
 
-export function useItemContext() {
+export function useItems() {
   return useContext(ItemContext)
 }

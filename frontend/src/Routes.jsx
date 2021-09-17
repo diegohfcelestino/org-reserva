@@ -2,7 +2,9 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 /* import SalasCadastro from "./components/Cadastros/Salas";
  */ import Main from "./components/Main";
+import { AgendamentoProvider } from "./context/AgendamentoContext";
 import { AuthProvider, useAuth } from "./context/Auth";
+import { ItemsProvider } from "./context/cadastros/ItemsContext";
 import { NavBarProvider } from "./context/NavBarContext";
 import HomeAgendamentos from "./pages/Agendamentos/HomeAgendamentos";
 import Cadastros from "./pages/Cadastros";
@@ -37,12 +39,12 @@ const Routes = () => {
           <NavBarProvider>
             <Main>
               <PrivateRoute exact path="/home" component={Home} />
-              <PrivateRoute exact path="/cadastros" component={Cadastros} />
-              <PrivateRoute
-                exact
-                path="/agendamento"
-                component={HomeAgendamentos}
-              />
+              <ItemsProvider>
+                <PrivateRoute exact path="/cadastros" component={Cadastros} />
+                <AgendamentoProvider>
+                  <PrivateRoute exact path="/agendamento" component={HomeAgendamentos} />
+                </AgendamentoProvider>
+              </ItemsProvider>
               <PrivateRoute exact path="/ponto" component={Ponto} />
               <PrivateRoute exact path="/videos" component={Videos} />
             </Main>

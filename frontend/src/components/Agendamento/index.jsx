@@ -1,15 +1,24 @@
 
 import { useState } from "react";
+import { useAgendamento } from "../../context/AgendamentoContext";
+import { useItems } from "../../context/cadastros/ItemsContext";
 
 import "./agendamento.scss";
 
-const tipos = [
-  { id: "s", desc: "Sala" },
-  { id: "v", desc: "Veículo" },
-];
-
 export default function Agendamento() {
-  const [tipoAg, setTipoAg] = useState("");
+  const {
+    tiposAg,
+    selectedTipo,
+    setSelectedTipo,
+    selectedItem,
+    setSelectedItem,
+  } = useAgendamento()
+  const { items } = useItems()
+
+  const veiculos = items.filter(el => el.id_tipo === 2)
+  const salas = items.filter(el => el.id_tipo === 1)
+
+
 
   return (
     <div className="container-fluid mt-3 mb-3">
@@ -18,7 +27,7 @@ export default function Agendamento() {
           <h3 className="lead">Agendamento</h3>
           <p className="lead">{currentDate}</p>
         </div> */}
-        {!tipoAg && <p>Escolha entre agendamento de sala ou veículo e verifique a disponibilidade</p>}
+        {!selectedTipo && <p>Escolha entre agendamento de sala ou veículo e verifique a disponibilidade</p>}
         <form>
           <div className="container-fluid justify-content-center col-12 row mb-3">
             <div className="col-auto">
@@ -28,20 +37,20 @@ export default function Agendamento() {
               <select
                 name="tipo"
                 className="form-select"
-                value={tipoAg}
-                onChange={(e) => setTipoAg(e.target.value)}
+                value={tiposAg.id}
+                onChange={e => setSelectedTipo(e.target.value)}
               >
                 <option value="">Selecione</option>
-                {tipos.map((tp, i) => {
+                {tiposAg.map((tp) => {
                   return (
-                    <option key={i} value={tp.id}>
-                      {tp.desc}
+                    <option key={tp.id} value={tp.id}>
+                      {tp.name}
                     </option>
                   );
                 })}
               </select>
             </div>
-            {tipoAg === "v" && (
+            {selectedTipo === '2' && (
               <>
                 <div className="col-auto">
                   <label htmlFor="data_inicio" className="form-label">
@@ -79,16 +88,25 @@ export default function Agendamento() {
                   <label htmlFor="veiculo" className="form-label">
                     Veículo
                   </label>
-                  <select name="veiculo" className="form-select">
+                  <select
+                    className="form-select"
+                    name="veiculo"
+                    value={selectedItem.id}
+                    onChange={e => setSelectedItem(e.target.value)}
+                  >
                     <option>Selecione</option>
-                    <option>Ford Fiesta - FXN</option>
-                    <option>Ford Fiesta - FYT</option>
-                    <option>Ford Ka</option>
+                    {veiculos.map(veiculo => {
+                      return (
+                        <option key={veiculo.id} value={veiculo.id}>
+                          {veiculo.description}
+                        </option>
+                      )
+                    })}
                   </select>
                 </div>
               </>
             )}
-            {tipoAg === "s" && (
+            {selectedTipo === '1' && (
               <>
                 <div className="col-auto">
                   <label htmlFor="data" className="form-label">
@@ -116,16 +134,26 @@ export default function Agendamento() {
                   <label htmlFor="sala" className="form-label">
                     Sala
                   </label>
-                  <select name="sala" className="form-select">
-                    <option>Selecione</option>
-                    <option>Sala Menor</option>
-                    <option>Sala Maior</option>
+                  <select
+                    className="form-select"
+                    name="veiculo"
+                    value={selectedItem.id}
+                    onChange={e => setSelectedItem(e.target.value)}
+                  >
+                    <option value="">Selecione</option>
+                    {salas.map(sala => {
+                      return (
+                        <option key={sala.id} value={sala.id}>
+                          {sala.description}
+                        </option>
+                      )
+                    })}
                   </select>
                 </div>
               </>
             )}
           </div>
-          {tipoAg && (
+          {selectedTipo && (
             <div className="d-flex justify-content-center">
               <button className="btn btn-primary">Agendar</button>
             </div>

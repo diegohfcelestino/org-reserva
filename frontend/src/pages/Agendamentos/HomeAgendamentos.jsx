@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 
+// import { useAgendamento } from '../../context/AgendamentoContext';
+
 import BarChart from '../../components/BarChart';
 import DonutChart from '../../components/DonutChart';
 import DataTable from '../../components/DataTable';
 import Agendamento from '../../components/Agendamento'
 
 export default function HomeAgendamentos() {
+
   const [showAgendar, setShowAgendar] = useState(true)
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
