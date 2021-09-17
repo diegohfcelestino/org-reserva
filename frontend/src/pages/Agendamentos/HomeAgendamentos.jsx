@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 
@@ -8,23 +8,33 @@ import BarChart from '../../components/BarChart';
 import DonutChart from '../../components/DonutChart';
 import DataTable from '../../components/DataTable';
 import Agendamento from '../../components/Agendamento'
+import { useAuth } from '../../context/Auth';
+import { useAgendamento } from '../../context/AgendamentoContext';
 
 export default function HomeAgendamentos() {
 
   const [showAgendar, setShowAgendar] = useState(true)
+  const { user } = useAuth()
+  const { agendamentos, getAgendamentos } = useAgendamento()
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
 
+  useEffect(() => {
+    getAgendamentos()
+  }, [getAgendamentos])
+
   function handleAgendar() {
     setShowAgendar(!showAgendar)
   }
+
   return (
     <div className="container">
       <h1 className="text-primary py-3">Agendamentos</h1>
       <div className="d-flex align-items-center navbar p-3 mb-3">
         <h6 className="text-dark lead">{currentDate}</h6>
+        <h6>{user.email}</h6>
         <button
           className="btn btn-outline-dark"
           onClick={handleAgendar}
@@ -52,7 +62,7 @@ export default function HomeAgendamentos() {
         <h3 className="text-primary">Agendamentos Realizados</h3>
       </div>
 
-      <DataTable />
+      <DataTable data={agendamentos} />
     </div>
 
   )

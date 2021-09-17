@@ -46,7 +46,7 @@ export function ItemsProvider({ children }) {
       .insert(item)
 
     if (error) {
-      return alert(error)
+      return alert('Error inserting item!')
     } else {
       getItems()
     }
@@ -79,10 +79,6 @@ export function ItemsProvider({ children }) {
       return data
     }
   }
-
-  useEffect(() => {
-    getItems()
-  }, [items])
 
   useEffect(() => {
     getItems()

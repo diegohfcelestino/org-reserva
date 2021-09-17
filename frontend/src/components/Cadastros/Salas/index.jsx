@@ -11,7 +11,7 @@ const SalasCadastro = () => {
   const [room, setRoom] = useState({})
   const [isUpdating, setIsUpdating] = useState(false)
 
-  const { insertItems } = useItems()
+  // const { insertItems } = useItems()
 
   function handleUpdate(room) {
     setIsUpdating(true)

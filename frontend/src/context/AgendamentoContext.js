@@ -11,8 +11,9 @@ export function useAgendamento() {
 
 export function AgendamentoProvider({ children }) {
   const [tiposAg, setTiposAg] = useState([])
-  const [selectedTipo, setSelectedTipo] = useState([])
-  const [selectedItem, setSelectedItem] = useState({})
+  const [selectedTipo, setSelectedTipo] = useState()
+  const [selectedItem, setSelectedItem] = useState()
+  const [agendamentos, setAgendamentos] = useState([])
 
   const { items } = useItems()
 
@@ -24,29 +25,40 @@ export function AgendamentoProvider({ children }) {
     setTiposAg(tipos_item)
   }
 
+  const getAgendamentos = async () => {
+    const { data: agendamentos, error } = await supabase
+      .from('agendamentos')
+      .select('*')
 
-  /* function filterItemsByTipo() {
-    const newItems = items.filter(el => el.id_tipo === selectedTipo.id)
-    setFilteredItems(newItems)
-  } */
+    setAgendamentos(agendamentos)
+  }
 
-  /*  useEffect(() => {
-     function filterItemsByTipo() {
-       const newItems = items.filter(el => el.id_tipo === selectedTipo.id)
-       setFilteredItems(newItems)
-     }
-     filterItemsByTipo()
-   }, [selectedTipo, items]) */
+  async function insertAgendamento(agendamento) {
+    const { data, error } = await supabase
+      .from('agendamentos')
+      .insert([agendamento])
+
+    if (error) {
+      return alert('Erro ao agendar!')
+    } else {
+      getAgendamentos()
+    }
+  }
 
   useEffect(() => {
     searchTiposAg()
+    getAgendamentos()
   }, [])
+
   const value = {
     tiposAg,
     selectedTipo,
     setSelectedTipo,
     selectedItem,
-    setSelectedItem
+    setSelectedItem,
+    insertAgendamento,
+    agendamentos,
+    getAgendamentos
   }
   return (
     <AgendamentoContext.Provider value={value}>
