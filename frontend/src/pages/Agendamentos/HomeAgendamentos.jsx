@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 
@@ -15,15 +15,11 @@ export default function HomeAgendamentos() {
 
   const [showAgendar, setShowAgendar] = useState(true)
   const { user } = useAuth()
-  const { agendamentos, getAgendamentos } = useAgendamento()
+  const { agendamentos } = useAgendamento()
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
-
-  useEffect(() => {
-    getAgendamentos()
-  }, [getAgendamentos])
 
   function handleAgendar() {
     setShowAgendar(!showAgendar)

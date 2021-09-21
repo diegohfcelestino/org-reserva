@@ -22,6 +22,8 @@ function SignUp() {
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
+
+
     // Calls `signUp` function from the context
     const { error } = await signUp({ email, password })
 

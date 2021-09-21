@@ -26,21 +26,25 @@ const DataTable = ({ data }) => {
                         <td>Veiculo 3</td>
                         <td>Sim</td> */}
 
-                    {data.map(agendamento => {
-                        return (
-                            <tr key={agendamento.id}>
-                                <td>{agendamento.dt_inicio}</td>
-                                <td>{agendamento.dt_fim}</td>
-                                <td>{agendamento.hr_inicio}</td>
-                                <td>{agendamento.hr_final}</td>
-                                <td>{agendamento.profiles.email}</td>
-                                <td>{agendamento.items.description}</td>
-                                <td>{agendamento.tipos_item.name}</td>
-                            </tr>
-                        )
-                    })
-
-                    }
+                    {!data ? (
+                        <tr>
+                            <td>Nada a exibir</td>
+                        </tr>
+                    ) : (
+                        data.map(agendamento => {
+                            return (
+                                <tr key={agendamento.id}>
+                                    <td>{agendamento.dt_inicio}</td>
+                                    <td>{agendamento.dt_fim}</td>
+                                    <td>{agendamento.hr_inicio}</td>
+                                    <td>{agendamento.hr_final}</td>
+                                    <td>{agendamento.profiles.email}</td>
+                                    <td>{agendamento.items.description}</td>
+                                    <td>{agendamento.tipos_item.name}</td>
+                                </tr>
+                            )
+                        })
+                    )}
                     {/* </tr> */}
                 </tbody>
             </table>
