@@ -17,6 +17,15 @@ export function AgendamentoProvider({ children }) {
 
   // const { items } = useItems()
 
+  const dataMask = value => {
+    const data = value.toString()
+    const dia = data.slice(8, 10)
+    const mes = data.slice(5, 7)
+    const ano = data.slice(0, 4)
+    const dataCompleta = dia + '/' + mes + '/' + ano
+    return dataCompleta
+  }
+
   const searchTiposAg = async () => {
     const { data: tipos_item, error } = await supabase
       .from('tipos_item')
@@ -48,6 +57,7 @@ export function AgendamentoProvider({ children }) {
         profiles(email)
       `)
       .filter('id_tipo', 'eq', tipo)
+    console.log(agendamentos)
     setAgendamentos(agendamentos)
   }
 
@@ -65,7 +75,7 @@ export function AgendamentoProvider({ children }) {
 
   useEffect(() => {
     searchTiposAg()
-    // getAgendamentos()
+    getAgendamentos()
   }, [])
 
   const value = {
@@ -78,7 +88,8 @@ export function AgendamentoProvider({ children }) {
     agendamentos,
     getAgendamentos,
     setAgendamentos,
-    getAgendamentosByTipo
+    getAgendamentosByTipo,
+    dataMask
   }
   return (
     <AgendamentoContext.Provider value={value}>

@@ -1,20 +1,37 @@
 import React from 'react'
+import { useAgendamento } from '../../context/AgendamentoContext';
 
 import './styles.scss'
 
 const DataTable = ({ data }) => {
+    const { dataMask, selectedTipo } = useAgendamento()
+    const itemRow = () => {
+        if (selectedTipo === '2') {
+            return (
+                <th>Veículo</th>
+            )
+        } else if (selectedTipo === '1') {
+            return (
+                <th>Sala</th>
+            )
+        } else {
+            return (
+                <th>Sala/Veículo</th>
+            )
+        }
+    }
     return (
         <div className="table-responsive rolagem">
             <table className="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Data Inicio</th>
-                        <th>Data Fim</th>
+                        {(selectedTipo === '2' || !selectedTipo) ? <th>Data Inicio</th> : <th>Data</th>}
+                        {(selectedTipo === '2' || !selectedTipo) && <th>Data Fim</th>}
                         <th>Hora Inicial</th>
                         <th>Hora Final</th>
-                        <th>Funcionário</th>
-                        <th>Item</th>
-                        <th>Tipo</th>
+                        <th>Responsável</th>
+                        {itemRow()}
+                        {!selectedTipo && <th>Tipo</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -34,13 +51,13 @@ const DataTable = ({ data }) => {
                         data.map(agendamento => {
                             return (
                                 <tr key={agendamento.id}>
-                                    <td>{agendamento.dt_inicio}</td>
-                                    <td>{agendamento.dt_fim}</td>
+                                    <td>{dataMask(agendamento.dt_inicio)}</td>
+                                    {selectedTipo === '2' && <td>{dataMask(agendamento.dt_fim)}</td>}
                                     <td>{agendamento.hr_inicio}</td>
                                     <td>{agendamento.hr_final}</td>
                                     <td>{agendamento.profiles.email}</td>
                                     <td>{agendamento.items.description}</td>
-                                    <td>{agendamento.tipos_item.name}</td>
+                                    {!selectedTipo && <td>{agendamento.tipos_item.name}</td>}
                                 </tr>
                             )
                         })

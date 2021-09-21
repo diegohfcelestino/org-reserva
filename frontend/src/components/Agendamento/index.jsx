@@ -175,6 +175,26 @@ export default function Agendamento() {
             {selectedTipo === '1' && (
               <>
                 <div className="col-auto">
+                  <label htmlFor="sala" className="form-label">
+                    Sala
+                  </label>
+                  <select
+                    className="form-select"
+                    name="veiculo"
+                    value={selectedItem.id}
+                    onChange={e => setSelectedItem(e.target.value)}
+                  >
+                    <option value="">Selecione</option>
+                    {items.filter(el => el.id_tipo === parseInt(selectedTipo)).map(sala => {
+                      return (
+                        <option key={sala.id} value={sala.id}>
+                          {sala.description}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </div>
+                <div className="col-auto">
                   <label htmlFor="data" className="form-label">
                     Data
                   </label>
@@ -201,26 +221,6 @@ export default function Agendamento() {
                     className="form-control"
                     ref={hrFimRef}
                   />
-                </div>
-                <div className="col-auto">
-                  <label htmlFor="sala" className="form-label">
-                    Sala
-                  </label>
-                  <select
-                    className="form-select"
-                    name="veiculo"
-                    value={selectedItem.id}
-                    onChange={e => setSelectedItem(e.target.value)}
-                  >
-                    <option value="">Selecione</option>
-                    {items.filter(el => el.id_tipo === parseInt(selectedTipo)).map(sala => {
-                      return (
-                        <option key={sala.id} value={sala.id}>
-                          {sala.description}
-                        </option>
-                      )
-                    })}
-                  </select>
                 </div>
               </>
             )}
