@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, /* useState */ } from "react";
 import { useNavbarContext } from "../../context/NavBarContext";
 import { useAuth } from "../../context/Auth";
 
@@ -16,25 +16,23 @@ import { supabase } from "../../supabaseClient";
 
 export default function Home() {
   const { handleIsHome } = useNavbarContext();
-  const { user } = useAuth()
+  const { isAdmin, setIsAdmin, user } = useAuth()
 
   useEffect(() => {
     async function getUser() {
-      // const { data: users, error } = await supabase
-      //   .from('auth.users')
-      //   .select('*')
-      //   .match({ id: user.id })
+      const { data: profile, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .match({ id: user.id })
 
-      // if (error) {
-      //   console.log('Erro')
-      // } else {
-      //   console.log(users)
-      // }
-      const users = supabase.auth.user()
-      console.log(users)
+      if (error) {
+        console.log('Erro')
+      } else {
+        setIsAdmin(profile[0].isAdmin)
+      }
     }
     getUser()
-  }, [user])
+  }, [isAdmin, setIsAdmin, user])
 
   useEffect(() => {
     handleIsHome(true);
@@ -48,7 +46,7 @@ export default function Home() {
           <img src={Calendar} alt="Agenda" />
           <p>Agendamento</p>
         </ButtonMenu>
-        {user.is_super_admin ?? (
+        {isAdmin && (
           <ButtonMenu path="/cadastros">
             <img src={Cadastrar} alt="Cadastrar" />
             <p>Cadastros</p>

@@ -31,7 +31,6 @@ const DataTable = ({ data }) => {
                         <th>Hora Final</th>
                         <th>Responsável</th>
                         {itemRow()}
-                        {!selectedTipo && <th>Tipo</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -52,12 +51,11 @@ const DataTable = ({ data }) => {
                             return (
                                 <tr key={agendamento.id}>
                                     <td>{dataMask(agendamento.dt_inicio)}</td>
-                                    {selectedTipo === '2' && <td>{dataMask(agendamento.dt_fim)}</td>}
+                                    {(selectedTipo === '2' || !selectedTipo) && <td>{dataMask(agendamento.dt_fim)}</td>}
                                     <td>{agendamento.hr_inicio}</td>
                                     <td>{agendamento.hr_final}</td>
                                     <td>{agendamento.profiles.email}</td>
                                     <td>{agendamento.items.description}</td>
-                                    {!selectedTipo && <td>{agendamento.tipos_item.name}</td>}
                                 </tr>
                             )
                         })

@@ -9,7 +9,7 @@ import { useAuth } from '../../context/Auth'
 
 const NewNav = () => {
   const { isHome } = useNavbarContext();
-  const { /* user, */ signOut } = useAuth()
+  const { /* user, */ signOut, isAdmin } = useAuth()
   const [collapse, setCollapse] = useState(false);
 
 
@@ -69,14 +69,16 @@ const NewNav = () => {
                     Agendamento
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    className={collapse ? "nav-link text" : "nav-link"}
-                    to="/cadastros"
-                  >
-                    Cadastros
-                  </Link>
-                </li>
+                {isAdmin &&
+                  <li className="nav-item">
+                    <Link
+                      className={collapse ? "nav-link text" : "nav-link"}
+                      to="/cadastros"
+                    >
+                      Cadastros
+                    </Link>
+                  </li>
+                }
                 <li className="nav-item">
                   <Link
                     className={collapse ? "nav-link text" : "nav-link"}
