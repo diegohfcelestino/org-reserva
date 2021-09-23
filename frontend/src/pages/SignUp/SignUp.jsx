@@ -54,8 +54,8 @@ function SignUp() {
             <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
               <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
               <form onSubmit={e => handleSubmit(e)} className="container">
+                <p className="lead">Sign Up</p>
                 <div className="mb-4">
-
                   <label htmlFor="email" className="form-label">E-mail</label>
                   <input
                     type="email"

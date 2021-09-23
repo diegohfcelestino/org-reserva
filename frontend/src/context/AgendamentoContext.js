@@ -54,7 +54,7 @@ export function AgendamentoProvider({ children }) {
         *,
         items(description),
         tipos_item(name),
-        profiles(email)
+        profiles(email, name)
       `)
       .filter('id_tipo', 'eq', tipo)
     console.log(agendamentos)

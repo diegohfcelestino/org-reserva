@@ -10,10 +10,9 @@ export default function Ponto() {
   let lastDay = new Date(y, m + 1, 0);
 
   firstDay = format(firstDay, "yyyy-MM-dd");
-
   lastDay = format(lastDay, "yyyy-MM-dd");
-  const [dataInicial, setDataInicial] = useState(firstDay);
 
+  const [dataInicial, setDataInicial] = useState(firstDay);
   const [dataFinal, setDataFinal] = useState(lastDay);
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
