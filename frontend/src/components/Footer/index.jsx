@@ -17,7 +17,6 @@ export default Footer;
  */
 
 import React, { useCallback } from "react";
-import "./footer.scss";
 
 export default function Footer() {
   const date = useCallback(() => {
