@@ -41,17 +41,6 @@ export default function Agendamento() {
 
   const handleSelect = async e => {
     setSelectedTipo(e.target.value)
-    /* const { data: agendamentos, error } = await supabase
-      .from('agendamentos')
-      .select(`
-        *,
-        items(description),
-        tipos_item(name),
-        profiles(email)
-      `)
-      .filter('id_tipo', 'eq', e.target.value) */
-
-    /* setAgendamentos(agendamentos) */
     getAgendamentosByTipo(e.target.value)
   }
 
