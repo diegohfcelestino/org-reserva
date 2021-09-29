@@ -54,7 +54,7 @@ const DataTable = ({ data }) => {
                                     {(selectedTipo === '2' || !selectedTipo) && <td>{dateMask(agendamento.dt_fim)}</td>}
                                     <td>{agendamento.hr_inicio}</td>
                                     <td>{agendamento.hr_final}</td>
-                                    <td>{agendamento.profiles.email}</td>
+                                    <td>{agendamento.profiles.name}</td>
                                     <td>{agendamento.items.description}</td>
                                 </tr>
                             )

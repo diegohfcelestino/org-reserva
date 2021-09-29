@@ -57,7 +57,6 @@ export function AgendamentoProvider({ children }) {
         profiles(email, name)
       `)
       .filter('id_tipo', 'eq', tipo)
-    console.log(agendamentos)
     setAgendamentos(agendamentos)
   }
 
@@ -71,6 +70,22 @@ export function AgendamentoProvider({ children }) {
     } else {
       getAgendamentosByTipo(parseInt(selectedTipo))
     }
+  }
+
+  async function checkDate(date) {
+    const { data, error } = await supabase
+      .from('agendamentos')
+      .select(`
+        *,
+        items(description),
+        tipos_item(name),
+        profiles(email, name)
+      `)
+      .filter('id_tipo', 'eq', 1)
+      .eq('id_item', selectedItem)
+    const salas = data.filter(sala => sala.dt_inicio === date)
+
+    setAgendamentos(salas)
   }
 
   useEffect(() => {
@@ -89,7 +104,8 @@ export function AgendamentoProvider({ children }) {
     getAgendamentos,
     setAgendamentos,
     getAgendamentosByTipo,
-    dateMask
+    dateMask,
+    checkDate
   }
   return (
     <AgendamentoContext.Provider value={value}>

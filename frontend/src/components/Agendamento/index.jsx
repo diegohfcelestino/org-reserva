@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-
-
 import { useRef, useState } from "react";
 import { useAgendamento } from "../../context/AgendamentoContext";
 import { useAuth } from "../../context/Auth";
 import { useItems } from "../../context/cadastros/ItemsContext";
-import { supabase } from "../../supabaseClient";
+// import { supabase } from "../../supabaseClient";
+import { format } from "date-fns";
+import ptBr from "date-fns/locale/pt-BR";
 
 import "./agendamento.scss";
 
@@ -18,7 +18,8 @@ export default function Agendamento() {
     setSelectedItem,
     insertAgendamento,
     // setAgendamentos
-    getAgendamentosByTipo
+    getAgendamentosByTipo,
+    checkDate
   } = useAgendamento()
 
   const { user } = useAuth()
@@ -28,6 +29,8 @@ export default function Agendamento() {
   const dtFimRef = useRef(new Date())
   const hrInicioRef = useRef()
   const hrFimRef = useRef()
+
+  const [dtFim, setDtFim] = useState(format(new Date(), 'yyyy-MM-dd'))
 
   const [agendamento, setAgendamento] = useState({
     dt_inicio: Date(),
@@ -54,20 +57,20 @@ export default function Agendamento() {
       ag.id_tipo = parseInt(selectedTipo)
       ag.id_item = parseInt(selectedItem)
       ag.id_user = user.id
+      insertAgendamento(ag)
       setAgendamento(ag)
-      insertAgendamento(agendamento)
     }
     if (selectedTipo === '1') {
       const ag = { ...agendamento }
-      ag.dt_inicio = dtFimRef.current.value
-      ag.dt_fim = dtFimRef.current.value
+      ag.dt_inicio = dtFim/* dtFimRef.current.value */
+      ag.dt_fim = dtFim/* dtFimRef.current.value */
       ag.hr_final = hrFimRef.current.value
       ag.hr_inicio = hrInicioRef.current.value
       ag.id_tipo = parseInt(selectedTipo)
       ag.id_item = parseInt(selectedItem)
       ag.id_user = user.id
       setAgendamento(ag)
-      insertAgendamento(agendamento)
+      insertAgendamento(ag)
     }
   }
 
@@ -187,7 +190,14 @@ export default function Agendamento() {
                   <label htmlFor="data" className="form-label">
                     Data
                   </label>
-                  <input type="date" name="data_fim" ref={dtFimRef} className="form-control" />
+                  <input
+                    type="date" name="data_fim"/*  ref={dtFimRef} */ className="form-control"
+                    value={dtFim}
+                    onChange={e => {
+                      setDtFim(e.target.value)
+                      checkDate(e.target.value)
+                    }}
+                  />
                 </div>
                 <div className="col-auto">
                   <label htmlFor="hora_inicio" ref={hrInicioRef} className="form-label">
