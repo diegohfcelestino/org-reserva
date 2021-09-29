@@ -17,12 +17,12 @@ export function AgendamentoProvider({ children }) {
 
   // const { items } = useItems()
 
-  const dataMask = value => {
+  const dateMask = value => {
     const data = value.toString()
-    const dia = data.slice(8, 10)
-    const mes = data.slice(5, 7)
-    const ano = data.slice(0, 4)
-    const dataCompleta = dia + '/' + mes + '/' + ano
+    const day = data.slice(8, 10)
+    const month = data.slice(5, 7)
+    const year = data.slice(0, 4)
+    const dataCompleta = day + '/' + month + '/' + year
     return dataCompleta
   }
 
@@ -89,7 +89,7 @@ export function AgendamentoProvider({ children }) {
     getAgendamentos,
     setAgendamentos,
     getAgendamentosByTipo,
-    dataMask
+    dateMask
   }
   return (
     <AgendamentoContext.Provider value={value}>

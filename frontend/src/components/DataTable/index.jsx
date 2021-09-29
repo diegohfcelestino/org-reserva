@@ -4,7 +4,7 @@ import { useAgendamento } from '../../context/AgendamentoContext';
 import './styles.scss'
 
 const DataTable = ({ data }) => {
-    const { dataMask, selectedTipo } = useAgendamento()
+    const { dateMask, selectedTipo } = useAgendamento()
     const itemRow = () => {
         if (selectedTipo === '2') {
             return (
@@ -50,8 +50,8 @@ const DataTable = ({ data }) => {
                         data.map(agendamento => {
                             return (
                                 <tr key={agendamento.id}>
-                                    <td>{dataMask(agendamento.dt_inicio)}</td>
-                                    {(selectedTipo === '2' || !selectedTipo) && <td>{dataMask(agendamento.dt_fim)}</td>}
+                                    <td>{dateMask(agendamento.dt_inicio)}</td>
+                                    {(selectedTipo === '2' || !selectedTipo) && <td>{dateMask(agendamento.dt_fim)}</td>}
                                     <td>{agendamento.hr_inicio}</td>
                                     <td>{agendamento.hr_final}</td>
                                     <td>{agendamento.profiles.email}</td>
