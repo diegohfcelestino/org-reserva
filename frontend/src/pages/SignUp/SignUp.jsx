@@ -4,13 +4,16 @@ import { Link, useHistory } from "react-router-dom";
 /* import NavBar from "../../components/NavBar"; */
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { useAuth } from "../../context/Auth";
+import { supabase } from "../../supabaseClient";
 // import { useState } from "react";
 // import { supabase } from "../../supabaseClient";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
+  const nameRef = useRef('')
+  const cpfRef = useRef('')
 
   const { signUp } = useAuth();
 
@@ -24,13 +27,30 @@ function SignUp() {
     const password = passwordRef.current.value;
 
     // Calls `signUp` function from the context
-    const { error } = await signUp({ email, password });
+    const { user, error } = await signUp({ email, password });
+
 
     if (error) {
       alert("error signing up");
     } else {
-      // Redirect user to Dashboard
-      history.push("/home");
+      if (!nameRef || !cpfRef) {
+        alert("Favor preencher todos os dados!")
+      } else {
+        const { error } = await supabase
+          .from('profiles')
+          .update({
+            name: nameRef.current.value,
+            cpf: cpfRef.current.value
+          })
+          .match({ id: user.id })
+        if (error) {
+          alert(`Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`)
+          history.push("/home");
+        } else {
+          // Redirect user to Dashboard
+          history.push("/home");
+        }
+      }
     }
   }
 
@@ -49,6 +69,28 @@ function SignUp() {
               <form onSubmit={handleSubmit} className="container">
                 <h6>Informe seu usuário e senha para acessar</h6>
                 <div className="mb-4  loginInputGroup">
+                  {/* <FiUser className="loginIcon" size="25px" color="#555555" /> */}
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    aria-describedby="nomeHelp"
+                    ref={nameRef}
+                    placeholder="Nome"
+                  />
+                </div>
+                <div className="mb-4  loginInputGroup">
+                  {/* <FiUser className="loginIcon" size="25px" color="#555555" /> */}
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cpf"
+                    aria-describedby="cpfHelp"
+                    ref={cpfRef}
+                    placeholder="CPF"
+                  />
+                </div>
+                <div className="mb-4  loginInputGroup">
                   <FiUser className="loginIcon" size="25px" color="#555555" />
                   <input
                     type="email"
@@ -56,7 +98,7 @@ function SignUp() {
                     id="email"
                     aria-describedby="emailHelp"
                     ref={emailRef}
-                    placeholder="Usuário"
+                    placeholder="E-mail"
                   />
                 </div>
                 <div className="mb-3 loginInputGroup">
