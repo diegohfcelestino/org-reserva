@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 
 const Footer = () => {
     return (
@@ -14,3 +14,45 @@ const Footer = () => {
 }
 
 export default Footer;
+ */
+
+import React, { useCallback } from "react";
+import "./footer.scss";
+
+export default function Footer() {
+  const date = useCallback(() => {
+    const dayList = [
+      "domingo",
+      "segunda-feira",
+      "terça-feira",
+      "quarta-feira",
+      "quinta-feira",
+      "sexta-feira",
+    ];
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const date = new Date();
+    const dateFull = date.toLocaleDateString("pt-br", options);
+    const dayWeek = date.getDay();
+    const day = dayList[dayWeek];
+    return `${day}, ${dateFull}`;
+  }, []);
+
+  return (
+    <div className="footerContainer">
+      <p className="footerText">
+        App desenvolvido pelo time{" "}
+        <a
+          href="https://github.com/diegohfcelestino/org-reserva"
+          target="_blank"
+          rel="noreferrer"
+        >
+          DevPadawan
+        </a>
+      </p>
+
+      <div className="footerText text-muted" title={date()}>
+        {date()}
+      </div>
+    </div>
+  );
+}

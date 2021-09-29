@@ -161,31 +161,34 @@ button {
   flex: 1 0 auto;
 }
 
-.footer {
-  position: relative;
-  text-align: center;
-  padding: 0;
-  height: 4.8rem;
+.footerContainer {
+  bottom: 0;
+  padding: 1rem;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #b7b2b2;
+  z-index: 6;
 
-  div {
-    margin-top: 1rem;
+  .footerText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 100px;
 
-    p {
-      margin-bottom: 0;
-      padding: 0;
+    &:last-child {
+      margin-bottom: 0.625rem;
+    }
 
-      &:last-child {
-        margin-bottom: 0.625rem;
-      }
+    a:link {
+      color: rgb(16, 16, 110);
+      text-decoration: none;
+    }
 
-      a:link {
-        color: rgb(16, 16, 110);
-        text-decoration: none;
-      }
-
-      a:hover {
-        color: rgb(116, 11, 20);
-      }
+    a:hover {
+      color: rgb(116, 11, 20);
     }
   }
 }
