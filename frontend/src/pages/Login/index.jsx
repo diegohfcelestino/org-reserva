@@ -47,7 +47,7 @@ const Login = () => {
             >
               <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
               <form onSubmit={handleLogin} className="container">
-                <h5>Teste</h5>
+                <h6>Informe seu usuário e senha para acessar</h6>
                 <div className="mb-4  loginInputGroup">
                   <FiUser className="loginIcon" size="25px" color="#555555" />
                   <input
@@ -94,7 +94,9 @@ const Login = () => {
                   </button>
                 </div>
                 <div id="emailHelp" className="form-text mt-2 container">
-                  Para ter acesso clique <Link to="/signUp">aqui</Link>.
+                  <h5>
+                    Para ter acesso clique <Link to="/signUp">aqui</Link>.
+                  </h5>
                 </div>
               </form>
             </div>
