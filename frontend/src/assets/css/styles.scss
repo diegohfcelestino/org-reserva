@@ -96,7 +96,7 @@ button {
 
 .login {
   background-image: url("../img/background.png");
-  height: calc(150vh - 4.8rem);
+  height: 100%;
 
   .header {
     display: flex;
@@ -120,12 +120,13 @@ button {
 
   .login-form {
     /* margin-top: 12.75rem; */
-    background-color: rgba(244, 236, 252, 0.5);
-    border-radius: 5px;
-    padding: 2rem;
+    background-color: rgba(245, 242, 248, 0.789);
+    border-radius: 15px;
+    padding: 3rem;
     margin: 0;
-    margin-top: 5rem;
-    width: 25rem;
+    margin-top: 4rem;
+    width: 29rem;
+    height: 32rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,8 +137,37 @@ button {
 
     img {
       width: 12rem;
-      padding: 2rem 0;
+      padding: 1rem 0;
     }
+  }
+  .loginIcon {
+    width: 30px !important;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  .loginInputGroup {
+    width: 280px !important;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 20px 0px 40px 0px !important;
+    margin-bottom: 40px !important;
+
+    .show-password {
+      width: 40px;
+      height: 30px;
+      padding: 0px !important;
+      border-radius: 0px 8px 8px 0px !important;
+      background-color: var(--color-primary) !important;
+      border: 1px solid var(--color-primary) !important;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .loginButtonGroup {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -169,7 +199,7 @@ button {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-color: #b7b2b2;
+  background-color: rgb(231, 230, 230);
   z-index: 6;
 
   .footerText {

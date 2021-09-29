@@ -1,37 +1,36 @@
-import Footer from "../../components/Footer";
+import { useRef, useState } from "react";
+import { FiEye, FiEyeOff, FiLock, FiUser } from "react-icons/fi";
+import { Link, useHistory } from "react-router-dom";
 /* import NavBar from "../../components/NavBar"; */
-import Orgsystem from '../../assets/img/logo-org-tsplus.png'
-import { useRef, /* useState */ } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useAuth } from '../../context/Auth'
+import Orgsystem from "../../assets/img/logo-org-tsplus.png";
+import { useAuth } from "../../context/Auth";
 // import { useState } from "react";
 // import { supabase } from "../../supabaseClient";
 
 function SignUp() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const [showPassword, setShowPassword] = useState(false);
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-  const { signUp } = useAuth()
+  const { signUp } = useAuth();
 
-  const history = useHistory()
+  const history = useHistory();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     // Get email and password input values
-    const email = emailRef.current.value
-    const password = passwordRef.current.value
-
-
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     // Calls `signUp` function from the context
-    const { error } = await signUp({ email, password })
+    const { error } = await signUp({ email, password });
 
     if (error) {
-      alert('error signing up')
+      alert("error signing up");
     } else {
       // Redirect user to Dashboard
-      history.push('/home')
+      history.push("/home");
     }
   }
 
@@ -39,62 +38,69 @@ function SignUp() {
     <>
       {/* <NavBar showButton={false} /> */}
       <div className="login">
-        <div className="header">
-
-        </div>
+        <div className="header"></div>
 
         <div className="container">
-          <div className="title">
-            <h2>
-              Agendamento de salas e veículos
-            </h2>
-          </div>
           <div className="d-flex justify-content-center align-content-center mb-3">
-
-            <div className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */>
+            <div
+              className="row login-form" /* style={{ margin: 0, marginTop: 50, width: "40%" }} */
+            >
               <img src={Orgsystem} alt="Orgsystem" /* width="120" */ />
-              <form onSubmit={e => handleSubmit(e)} className="container">
-                <p className="lead">Sign Up</p>
-                <div className="mb-4">
-                  <label htmlFor="email" className="form-label">E-mail</label>
+              <form onSubmit={handleSubmit} className="container">
+                <h5>Teste</h5>
+                <div className="mb-4  loginInputGroup">
+                  <FiUser className="loginIcon" size="25px" color="#555555" />
                   <input
                     type="email"
+                    className="form-control"
                     id="email"
-                    className="form-control"
+                    aria-describedby="emailHelp"
                     ref={emailRef}
+                    placeholder="Usuário"
                   />
-                  <div id="emailHelp" className="form-text">Não compartilharemos seu e-mail com mais ninguém.</div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="senha" className="form-label">Senha</label>
+                <div className="mb-3 loginInputGroup">
+                  <FiLock className="loginIcon" size="25px" color="#555555" />
                   <input
-                    type="password"
-                    id="senha"
+                    type={showPassword ? "text" : "password"}
                     className="form-control"
+                    id="senha"
                     ref={passwordRef}
+                    placeholder="Senha"
                   />
-                  {/* <div id="emailHelp" className="form-text">Solicite a senha ao seu gestor.</div>
-                </div>
-                <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                  <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label> */}
-                </div>
-                <div className="d-grid gap-2">
                   <button
-                    type="submit"
-                    className="btn btn-primary">
-                    Sign Up
+                    type="button"
+                    color="blue"
+                    className="show-password"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? (
+                      <FiEyeOff size="14pt" />
+                    ) : (
+                      <FiEye size="14pt" />
+                    )}
                   </button>
                 </div>
-                <div id="emailHelp" className="form-text mt-2">
-                  Already have an account? <Link to="/">Log In</Link>
+                {/* <div className="mb-3 form-check">
+                  <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                  <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label>
+                </div> */}
+                <div className="loginButtonGroup">
+                  <button type="submit" className="btn btn-primary">
+                    Cadastrar
+                  </button>
+                </div>
+                <div id="emailHelp" className="form-text mt-2 container">
+                  Para entrar clique <Link to="/">aqui</Link>.
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
