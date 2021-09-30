@@ -1,19 +1,38 @@
 import { useRef, useState } from "react";
-import { FiEye, FiEyeOff, FiLock, FiUser } from "react-icons/fi";
+import {
+  FiAtSign,
+  FiFileText,
+  FiEye,
+  FiEyeOff,
+  FiLock,
+  FiUser,
+} from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 /* import NavBar from "../../components/NavBar"; */
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { useAuth } from "../../context/Auth";
 import { supabase } from "../../supabaseClient";
+import MaskedInput from "./MaskedInput";
 // import { useState } from "react";
 // import { supabase } from "../../supabaseClient";
 
 function SignUp() {
+  const initialValues = {
+    cpf: "",
+  };
+  const [values, setValues] = useState(initialValues);
+  function handleChange(event) {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  }
+
   const [showPassword, setShowPassword] = useState(false);
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
-  const nameRef = useRef('')
-  const cpfRef = useRef('')
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const nameRef = useRef("");
+  const cpfRef = useRef("");
 
   const { signUp } = useAuth();
 
@@ -29,22 +48,23 @@ function SignUp() {
     // Calls `signUp` function from the context
     const { user, error } = await signUp({ email, password });
 
-
     if (error) {
       alert("error signing up");
     } else {
       if (!nameRef || !cpfRef) {
-        alert("Favor preencher todos os dados!")
+        alert("Favor preencher todos os dados!");
       } else {
         const { error } = await supabase
-          .from('profiles')
+          .from("profiles")
           .update({
             name: nameRef.current.value,
-            cpf: cpfRef.current.value
+            cpf: cpfRef.current.value,
           })
-          .match({ id: user.id })
+          .match({ id: user.id });
         if (error) {
-          alert(`Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`)
+          alert(
+            `Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`
+          );
           history.push("/home");
         } else {
           // Redirect user to Dashboard
@@ -69,7 +89,7 @@ function SignUp() {
               <form onSubmit={handleSubmit} className="container">
                 <h6>Informe seu usuário e senha para acessar</h6>
                 <div className="mb-4  loginInputGroup">
-                  {/* <FiUser className="loginIcon" size="25px" color="#555555" /> */}
+                  <FiUser className="loginIcon" size="25px" color="#555555" />
                   <input
                     type="text"
                     className="form-control"
@@ -80,18 +100,34 @@ function SignUp() {
                   />
                 </div>
                 <div className="mb-4  loginInputGroup">
-                  {/* <FiUser className="loginIcon" size="25px" color="#555555" /> */}
-                  <input
+                  <FiFileText
+                    className="loginIcon"
+                    size="25px"
+                    color="#555555"
+                  />
+
+                  <MaskedInput
+                    name="cpf"
+                    mask="999.999.999-99"
+                    value={values.cpf}
+                    onChange={handleChange}
                     type="text"
-                    className="form-control"
                     id="cpf"
                     aria-describedby="cpfHelp"
                     ref={cpfRef}
                     placeholder="CPF"
                   />
+                  {/* <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setValues(initialValues);
+                    }}
+                  >
+                    Limpar
+                  </button> */}
                 </div>
                 <div className="mb-4  loginInputGroup">
-                  <FiUser className="loginIcon" size="25px" color="#555555" />
+                  <FiAtSign className="loginIcon" size="25px" color="#555555" />
                   <input
                     type="email"
                     className="form-control"
