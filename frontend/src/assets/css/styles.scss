@@ -134,7 +134,7 @@ h6 {
     margin: 0;
     margin-top: 4rem;
     width: 29rem;
-    height: 32rem;
+    height: 40rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,6 +155,9 @@ h6 {
   }
   .loginInputGroup {
     width: 280px !important;
+    height: 30px;
+
+    padding: 0px !important;
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
@@ -163,7 +166,7 @@ h6 {
 
     .show-password {
       width: 40px;
-      height: 30px;
+      height: 34px;
       padding: 0px !important;
       border-radius: 0px 8px 8px 0px !important;
       background-color: var(--color-primary) !important;
@@ -173,6 +176,17 @@ h6 {
       align-items: center;
     }
   }
+
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
   .loginButtonGroup {
     display: flex;
     justify-content: center;
