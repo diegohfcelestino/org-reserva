@@ -41,7 +41,7 @@ export function AgendamentoProvider({ children }) {
         *,
         items(description),
         tipos_item(name),
-        profiles(email)
+        profiles(name)
       `)
 
     setAgendamentos(agendamentos)

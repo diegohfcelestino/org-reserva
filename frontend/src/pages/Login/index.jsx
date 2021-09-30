@@ -28,7 +28,6 @@ const Login = () => {
     if (error) {
       alert("Error signing in");
     } else {
-      //redireciona para a home
       history.push("/home");
     }
   }

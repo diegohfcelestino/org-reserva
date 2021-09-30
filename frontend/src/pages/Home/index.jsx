@@ -1,38 +1,19 @@
-import React, { useEffect, /* useState */ } from "react";
-import { useNavbarContext } from "../../context/NavBarContext";
-import { useAuth } from "../../context/Auth";
-
-import ButtonMenu from "../../components/ButtonMenu";
-
-import Cadastrar from "../../assets/icons/online-form.svg";
+import React, { useEffect } from "react";
 import Calendar from "../../assets/icons/calendar-date.svg";
 import Config from "../../assets/icons/config.svg";
-import Ponto from "../../assets/icons/realtime.svg";
+import Cadastrar from "../../assets/icons/online-form.svg";
 import Treinamento from "../../assets/icons/online-learning.svg";
+import Ponto from "../../assets/icons/realtime.svg";
 import Video from "../../assets/icons/video.svg";
-
+import ButtonMenu from "../../components/ButtonMenu";
+import { useAuth } from "../../context/Auth";
+import { useNavbarContext } from "../../context/NavBarContext";
 import "./style.scss";
-import { supabase } from "../../supabaseClient";
 
 export default function Home() {
   const { handleIsHome } = useNavbarContext();
-  const { isAdmin, setIsAdmin, user } = useAuth()
-
-  useEffect(() => {
-    async function getUser() {
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .match({ id: user.id })
-
-      if (error) {
-        console.log('Erro')
-      } else {
-        setIsAdmin(profile[0].isAdmin)
-      }
-    }
-    getUser()
-  }, [isAdmin, setIsAdmin, user])
+  const { user } = useAuth()
+  const isAdmin = user.user_metadata.isAdmin
 
   useEffect(() => {
     handleIsHome(true);

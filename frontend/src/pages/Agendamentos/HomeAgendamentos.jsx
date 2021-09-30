@@ -12,7 +12,6 @@ import { useAuth } from '../../context/Auth';
 import { useAgendamento } from '../../context/AgendamentoContext';
 
 export default function HomeAgendamentos() {
-
   const [showAgendar, setShowAgendar] = useState(true)
   const { user } = useAuth()
   const { agendamentos } = useAgendamento()

@@ -17,8 +17,11 @@ export default Footer;
  */
 
 import React, { useCallback } from "react";
+import { useAuth } from "../../context/Auth";
 
 export default function Footer() {
+  const { user } = useAuth()
+  const data = user.user_metadata
   const date = useCallback(() => {
     const dayList = [
       "domingo",
@@ -38,7 +41,7 @@ export default function Footer() {
 
   return (
     <div className="footerContainer">
-      <p className="footerText">
+      <p className="footerText  text-muted">
         App desenvolvido pelo time{" "}
         <a
           href="https://github.com/diegohfcelestino/org-reserva"
@@ -48,7 +51,7 @@ export default function Footer() {
           DevPadawan
         </a>
       </p>
-
+      <p className="footerText">Usuário: {data.name}</p>
       <div className="footerText text-muted" title={date()}>
         {date()}
       </div>

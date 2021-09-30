@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useRef, useState } from "react";
 import { FiEye, FiEyeOff, FiLock, FiUser } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
@@ -36,13 +37,16 @@ function SignUp() {
       if (!nameRef || !cpfRef) {
         alert("Favor preencher todos os dados!")
       } else {
-        const { error } = await supabase
+        const { user, error } = await supabase.auth.update({
+          data: { name: nameRef.current.value, cpf: cpfRef.current.value, isAdmin: false }
+        })
+        /* const { error } = await supabase
           .from('profiles')
           .update({
             name: nameRef.current.value,
             cpf: cpfRef.current.value
           })
-          .match({ id: user.id })
+          .match({ id: user.id }) */
         if (error) {
           alert(`Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`)
           history.push("/home");
