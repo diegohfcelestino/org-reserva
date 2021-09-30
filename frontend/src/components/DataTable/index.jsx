@@ -34,14 +34,6 @@ const DataTable = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/*<tr>
-                         <td>22/06/2021</td>
-                        <td>9h30min</td>
-                        <td>15h30min</td>
-                        <td>João da Silva</td>
-                        <td>Veiculo 3</td>
-                        <td>Sim</td> */}
-
                     {!data ? (
                         <tr>
                             <td>Nada a exibir</td>

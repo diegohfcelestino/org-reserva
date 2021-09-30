@@ -9,10 +9,12 @@ import SalasCadastro from '../../components/Cadastros/Salas'
 import Admin from '../../assets/icons/administrator-developer.svg'
 
 function Cadastros() {
-    const { isAdmin } = useAuth()
+    const { user } = useAuth()
     const [page, setPage] = useState('')
     const [salaClick, setSalaClick] = useState(false)
     const [VeiculoClick, setVeiculoClick] = useState(false)
+
+    const isAdmin = user.user_metadata.isAdmin
 
     function setSala() {
         setSalaClick(true)
@@ -69,12 +71,13 @@ function Cadastros() {
                         padding: '10rem',
                     }}
                 >
+                    <h1>Ooops... Você não tem acesso a essa área!</h1>
                     <img
                         style={{ width: '8rem', height: '8rem' }}
                         src={Admin}
                         alt="Administrador"
                     />
-                    <h1 className="lead mt-3">Entre em contato com o administrador do sistema.</h1>
+                    <h1 className="lead mt-3">Entre em contato com o administrador.</h1>
                 </div>
             )
             }

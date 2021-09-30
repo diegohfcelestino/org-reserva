@@ -9,10 +9,10 @@ import { useAuth } from '../../context/Auth'
 
 const NewNav = () => {
   const { isHome } = useNavbarContext();
-  const { /* user, */ signOut, isAdmin } = useAuth()
+  const { user, signOut } = useAuth()
   const [collapse, setCollapse] = useState(false);
 
-
+  const isAdmin = user.user_metadata.isAdmin
   async function handleSignOut() {
     //encerra a sessão do usuário
     await signOut()

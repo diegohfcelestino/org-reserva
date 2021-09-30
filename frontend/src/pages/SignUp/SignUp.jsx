@@ -9,13 +9,10 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
-/* import NavBar from "../../components/NavBar"; */
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { useAuth } from "../../context/Auth";
 import { supabase } from "../../supabaseClient";
 import MaskedInput from "./MaskedInput";
-// import { useState } from "react";
-// import { supabase } from "../../supabaseClient";
 
 function SignUp() {
   const initialValues = {
