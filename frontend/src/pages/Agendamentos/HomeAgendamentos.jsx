@@ -31,8 +31,7 @@ export default function HomeAgendamentos() {
     <div className="container">
       <h1 className="text-primary py-3">Agendamentos</h1>
       <div className="d-flex align-items-center navbar p-3 mb-3">
-        <h6 className="text-dark lead">{currentDate}</h6>
-        <h6>Usuário: {user.user_metadata.name}</h6>
+        <h5 className="text-dark text-muted">{currentDate}</h5>
         <button
           className="btn btn-outline-dark"
           onClick={handleAgendar}

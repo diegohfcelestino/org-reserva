@@ -78,7 +78,7 @@ export default function Agendamento() {
   return (
     <div className="container-fluid mt-3 mb-3">
       <div className="container-fluid">
-        {!selectedTipo && <p>Escolha entre agendamento de sala ou veículo e verifique a disponibilidade</p>}
+        {!selectedTipo && <h5 className="lead text-center">Escolha o tipo de agendamento abaixo.</h5>}
         <form>
           <div className="container-fluid justify-content-center col-12 row mb-3">
             <div className="col-auto">
