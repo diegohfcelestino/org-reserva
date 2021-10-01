@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../context/Auth'
-
-import { CarroProvider } from '../../context/cadastros/CarrosContext'
-import { SalaProvider } from '../../context/cadastros/SalasContext'
-/* import { Link } from 'react-router-dom' */
-import VeiculosCadastro from '../../components/Cadastros/Veiculos'
-import SalasCadastro from '../../components/Cadastros/Salas'
 import Admin from '../../assets/icons/administrator-developer.svg'
+import ItemsCadastro from '../../components/Cadastros/Items'
+import { useAuth } from '../../context/Auth'
+import { useItems } from '../../context/cadastros/ItemsContext'
+
 
 function Cadastros() {
     const { user } = useAuth()
-    const [page, setPage] = useState('')
+    const { idTipo, setIdTipo } = useItems()
     const [salaClick, setSalaClick] = useState(false)
     const [VeiculoClick, setVeiculoClick] = useState(false)
 
@@ -19,12 +16,12 @@ function Cadastros() {
     function setSala() {
         setSalaClick(true)
         setVeiculoClick(false)
-        setPage('sala')
+        setIdTipo(1)
     }
     function setCarro() {
         setSalaClick(false)
         setVeiculoClick(true)
-        setPage('carro')
+        setIdTipo(2)
     }
 
 
@@ -45,20 +42,11 @@ function Cadastros() {
                             Carro
                         </button>
                     </div>
-                    <CarroProvider>
+                    {idTipo !== 0 &&
                         <span>
-                            {page === 'carro' && (
-                                <VeiculosCadastro />
-                            )}
+                            <ItemsCadastro />
                         </span>
-                    </CarroProvider>
-                    <SalaProvider>
-                        <span>
-                            {page === 'sala' && (
-                                <SalasCadastro />
-                            )}
-                        </span>
-                    </SalaProvider>
+                    }
                 </>
             ) : (
                 <div
@@ -72,6 +60,7 @@ function Cadastros() {
                     }}
                 >
                     <h1>Ooops... Você não tem acesso a essa área!</h1>
+                    <br />
                     <img
                         style={{ width: '8rem', height: '8rem' }}
                         src={Admin}

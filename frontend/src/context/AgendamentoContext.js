@@ -10,12 +10,9 @@ export function useAgendamento() {
 }
 
 export function AgendamentoProvider({ children }) {
-  const [tiposAg, setTiposAg] = useState([])
   const [selectedTipo, setSelectedTipo] = useState()
   const [selectedItem, setSelectedItem] = useState('')
   const [agendamentos, setAgendamentos] = useState([])
-
-  // const { items } = useItems()
 
   const dateMask = value => {
     const data = value.toString()
@@ -24,14 +21,6 @@ export function AgendamentoProvider({ children }) {
     const year = data.slice(0, 4)
     const dataCompleta = day + '/' + month + '/' + year
     return dataCompleta
-  }
-
-  const searchTiposAg = async () => {
-    const { data: tipos_item, error } = await supabase
-      .from('tipos_item')
-      .select('*')
-
-    setTiposAg(tipos_item)
   }
 
   const getAgendamentos = async () => {
@@ -43,7 +32,6 @@ export function AgendamentoProvider({ children }) {
         tipos_item(name),
         profiles(name)
       `)
-
     setAgendamentos(agendamentos)
   }
 
@@ -89,12 +77,10 @@ export function AgendamentoProvider({ children }) {
   }
 
   useEffect(() => {
-    searchTiposAg()
     getAgendamentos()
   }, [])
 
   const value = {
-    tiposAg,
     selectedTipo,
     setSelectedTipo,
     selectedItem,

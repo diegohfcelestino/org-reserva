@@ -11,7 +11,6 @@ import "./agendamento.scss";
 
 export default function Agendamento() {
   const {
-    tiposAg,
     selectedTipo,
     setSelectedTipo,
     selectedItem,
@@ -21,6 +20,7 @@ export default function Agendamento() {
     getAgendamentosByTipo,
     checkDate
   } = useAgendamento()
+  const { tiposAg } = useItems()
 
   const { user } = useAuth()
   const { items } = useItems()

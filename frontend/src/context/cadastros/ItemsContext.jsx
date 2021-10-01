@@ -5,40 +5,25 @@ import { supabase } from "../../supabaseClient";
 export const ItemContext = createContext();
 
 export function ItemsProvider({ children }) {
+  const [tiposAg, setTiposAg] = useState([])
   const [items, setItems] = useState([])
+  const [idTipo, setIdTipo] = useState(0)
 
-  async function getItems(id = null) {
-    if (id) {
-      const { data: items, error } = await supabase
-        .from('items')
-        .select("*")
-        .match({ id: id })
-        .order('id', { ascending: true })
 
-      // console.log(items)
-      setItems(items)
-    } else {
-      const { data: items, error } = await supabase
-        .from('items')
-        .select("*")
-        .order('id', { ascending: true })
+  const searchTiposAg = async () => {
+    const { data: tipos_item, error } = await supabase
+      .from('tipos_item')
+      .select('*')
 
-      // console.log(items)
-      setItems(items)
-    }
+    setTiposAg(tipos_item)
   }
 
-  /* async function getItemsByTipo(idTipo) {
+  const getItems = async () => {
     const { data: items, error } = await supabase
       .from('items')
-      .select("*")
-      .match({ id_tipo: idTipo })
-      .order('description', { ascending: true })
-
-    // console.log(items)
-    // setItems(items)
-    return items
-  } */
+      .select('*')
+    setItems(items)
+  }
 
   async function insertItem(item) {
     const { data, error } = await supabase
@@ -49,6 +34,7 @@ export function ItemsProvider({ children }) {
       return alert('Error inserting item!')
     } else {
       getItems()
+      return data
     }
   }
 
@@ -67,12 +53,11 @@ export function ItemsProvider({ children }) {
 
   async function updateItem(item) {
     const { data, error } = await supabase
-      .from('item')
+      .from('items')
       .update(item)
       .match({ id: item.id })
 
     if (error) {
-      console.log(data)
       return alert('Error updating item')
     } else {
       getItems()
@@ -81,6 +66,7 @@ export function ItemsProvider({ children }) {
   }
 
   useEffect(() => {
+    searchTiposAg()
     getItems()
   }, [])
 
@@ -90,7 +76,10 @@ export function ItemsProvider({ children }) {
       insertItem,
       deleteItem,
       updateItem,
-      getItems
+      getItems,
+      idTipo,
+      setIdTipo,
+      tiposAg
     }}>
       {children}
     </ItemContext.Provider>
