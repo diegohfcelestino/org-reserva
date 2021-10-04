@@ -30,7 +30,7 @@ export default function Agendamento() {
   const hrInicioRef = useRef()
   const hrFimRef = useRef()
 
-  const [dtFim, setDtFim] = useState(format(new Date(), 'yyyy-MM-dd'))
+  const [dtFim, setDtFim] = useState()
 
   const [agendamento, setAgendamento] = useState({
     dt_inicio: Date(),

@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
-
-// import { useAgendamento } from '../../context/AgendamentoContext';
-
+import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
-import DonutChart from '../../components/DonutChart';
 import DataTable from '../../components/DataTable';
-import Agendamento from '../../components/Agendamento'
-import { useAuth } from '../../context/Auth';
+import DonutChart from '../../components/DonutChart';
 import { useAgendamento } from '../../context/AgendamentoContext';
+import { useAuth } from '../../context/Auth';
+// import { Calendar } from '../../components/Calendar';
+
+
 
 export default function HomeAgendamentos() {
   const [showAgendar, setShowAgendar] = useState(true)
+  // const [openCalendar, setOpenCalendar] = useState(false)
   const { user } = useAuth()
   const { agendamentos } = useAgendamento()
 
   const domain = user.email.includes('@orgsystem.com.br')
+
 
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
@@ -26,6 +28,7 @@ export default function HomeAgendamentos() {
   function handleAgendar() {
     setShowAgendar(!showAgendar)
   }
+
 
   return (
     <div className="container">
@@ -38,9 +41,13 @@ export default function HomeAgendamentos() {
         >
           {showAgendar ? "Exibir gráficos de uso" : "Realizar Agendamento"}
         </button>
+        {/* <button
+          className="btn btn-outline-dark"
+          onClick={e => setOpenCalendar(!openCalendar)}
+        >
+          Calendário
+        </button> */}
       </div>
-
-      {/* {JSON.stringify(agendamentos)} */}
 
       {!showAgendar ? (
         <div className="row px-3">
@@ -57,6 +64,8 @@ export default function HomeAgendamentos() {
         <Agendamento />
       }
 
+      {/* {openCalendar && <Calendar />} */}
+
       <div className="py-3">
         <h3 className="text-primary">Agendamentos Realizados</h3>
       </div>
@@ -68,4 +77,3 @@ export default function HomeAgendamentos() {
 
   )
 }
-

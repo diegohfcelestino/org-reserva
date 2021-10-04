@@ -42,6 +42,8 @@ function SignUp() {
     // Get email and password input values
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    const name = nameRef.current.value;
+    const cpf = cpfRef.current.value;
 
     // Calls `signUp` function from the context
     const { user, error } = await signUp({ email, password });
@@ -53,7 +55,7 @@ function SignUp() {
         alert("Favor preencher todos os dados!");
       } else {
         const { user, error } = await supabase.auth.update({
-          data: { name: nameRef.current.value, cpf: cpfRef.current.value, isAdmin: false }
+          data: { name: name, cpf: cpf, isAdmin: false }
         })
         if (error) {
           alert(

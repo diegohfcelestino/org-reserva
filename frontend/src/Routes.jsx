@@ -1,7 +1,5 @@
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
-/* import SalasCadastro from "./components/Cadastros/Salas";
- */ import Main from "./components/Main";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import Main from "./components/Main";
 import { AgendamentoProvider } from "./context/AgendamentoContext";
 import { AuthProvider, useAuth } from "./context/Auth";
 import { ItemsProvider } from "./context/cadastros/ItemsContext";
@@ -12,8 +10,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Ponto from "./pages/Ponto";
 import SignUp from "./pages/SignUp/SignUp";
-// import Auth from "./pages/Login/Auth";
 import Videos from "./pages/Videos/Videos";
+
 
 export function PrivateRoute({ component: Component, ...rest }) {
   const { user } = useAuth();

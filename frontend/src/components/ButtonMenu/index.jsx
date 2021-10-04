@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { NavBarContext } from "../../context/NavBarContext";
+import { useNavbarContext } from "../../context/NavBarContext";
 import "./styles.scss";
 
 function ButtonMenu(props) {
-  const { handleIsHome } = useContext(NavBarContext)
+  const { handleIsHome } = useNavbarContext()
   let history = useHistory()
 
   function handleClick(path) {
