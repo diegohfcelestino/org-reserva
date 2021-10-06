@@ -3,11 +3,8 @@ import { useRef, useState } from "react";
 import { useAgendamento } from "../../context/AgendamentoContext";
 import { useAuth } from "../../context/Auth";
 import { useItems } from "../../context/cadastros/ItemsContext";
-// import { supabase } from "../../supabaseClient";
-import { format } from "date-fns";
-import ptBr from "date-fns/locale/pt-BR";
-
 import "./agendamento.scss";
+
 
 export default function Agendamento() {
   const {
@@ -18,6 +15,7 @@ export default function Agendamento() {
     insertAgendamento,
     // setAgendamentos
     getAgendamentosByTipo,
+    getAgendamentosByTipoData,
     checkDate
   } = useAgendamento()
   const { tiposAg } = useItems()
@@ -44,7 +42,7 @@ export default function Agendamento() {
 
   const handleSelect = async e => {
     setSelectedTipo(e.target.value)
-    getAgendamentosByTipo(e.target.value)
+    // getAgendamentosByTipo(e.target.value)
   }
 
   function saveAgendamento() {
@@ -231,6 +229,11 @@ export default function Agendamento() {
                   e.preventDefault()
                   saveAgendamento()
                 }}>Agendar</button>
+              <button type="button" className="btn btn-primary"
+                onClick={e => {
+                  e.preventDefault()
+                  getAgendamentosByTipoData(selectedTipo, dtInicioRef)
+                }}>Buscar</button>
             </div>
           )}
         </form>

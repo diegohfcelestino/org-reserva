@@ -43,7 +43,10 @@ const DataTable = ({ data }) => {
                             return (
                                 <tr key={agendamento.id}>
                                     <td>{dateMask(agendamento.dt_inicio)}</td>
-                                    {(selectedTipo === '2' || !selectedTipo) && <td>{dateMask(agendamento.dt_fim)}</td>}
+                                    {
+                                        (selectedTipo === '2' || !selectedTipo) &&
+                                        <td>{dateMask(agendamento.dt_fim)}</td>
+                                    }
                                     <td>{agendamento.hr_inicio}</td>
                                     <td>{agendamento.hr_final}</td>
                                     <td>{agendamento.profiles.name}</td>
