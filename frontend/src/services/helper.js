@@ -25,7 +25,7 @@ export function handleError(method, error) {
       break;
     case 401:
       sessionStorage.clear();
-      history.replace("/login");
+      history.replace("/");
       break;
     case 404:
       throw Error(`${method} (${status}) - Nenhum registro encontrado!`);
@@ -65,7 +65,7 @@ export function handleErrorForm(method, error) {
       break;
     case 401:
       sessionStorage.clear();
-      history.replace("/login");
+      history.replace("/");
       break;
     case 404:
       message = "Nenhum registro encontrado!";

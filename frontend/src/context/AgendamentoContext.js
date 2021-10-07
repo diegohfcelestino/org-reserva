@@ -1,29 +1,29 @@
 /* eslint-disable no-unused-vars */
-import { format } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
-import React, { useContext, useState, useEffect, useCallback } from 'react'
-import { supabase } from '../supabaseClient'
+import { format } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import React, { useContext, useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
 // import { useItems } from './cadastros/ItemsContext'
 
-const AgendamentoContext = React.createContext()
+const AgendamentoContext = React.createContext();
 
 export function useAgendamento() {
-  return useContext(AgendamentoContext)
+  return useContext(AgendamentoContext);
 }
 
 export function AgendamentoProvider({ children }) {
-  const [selectedTipo, setSelectedTipo] = useState()
-  const [selectedItem, setSelectedItem] = useState('')
-  const [agendamentos, setAgendamentos] = useState([])
+  const [selectedTipo, setSelectedTipo] = useState();
+  const [selectedItem, setSelectedItem] = useState("");
+  const [agendamentos, setAgendamentos] = useState([]);
 
-  const dateMask = value => {
-    const data = value.toString()
-    const day = data.slice(8, 10)
-    const month = data.slice(5, 7)
-    const year = data.slice(0, 4)
-    const dataCompleta = day + '/' + month + '/' + year
-    return dataCompleta
-  }
+  const dateMask = (value) => {
+    const data = value.toString();
+    const day = data.slice(8, 10);
+    const month = data.slice(5, 7);
+    const year = data.slice(0, 4);
+    const dataCompleta = day + "/" + month + "/" + year;
+    return dataCompleta;
+  };
 
   /* function jsToSqlDate(jsDate) {
     
@@ -52,76 +52,81 @@ export function AgendamentoProvider({ children }) {
   }
 
   const getAgendamentos = async () => {
-    const { data: agendamentos, error } = await supabase
-      .from('agendamentos')
+    const { data: agendamentos, error } = await supabase.from("agendamentos")
       .select(`
         *,
         items(description),
         tipos_item(name),
         profiles(name)
-      `)
-    setAgendamentos(agendamentos)
-    console.log(agendamentos)
-  }
+      `);
+    setAgendamentos(agendamentos);
+    console.log(agendamentos);
+  };
 
   const getAgendamentosByTipo = async (tipo) => {
     const { data: agendamentos, error } = await supabase
-      .from('agendamentos')
-      .select(`
+      .from("agendamentos")
+      .select(
+        `
         *,
         items(description),
         tipos_item(name),
         profiles(email, name)
-      `)
-      .filter('id_tipo', 'eq', tipo)
-    setAgendamentos(agendamentos)
-  }
+      `
+      )
+      .filter("id_tipo", "eq", tipo);
+    setAgendamentos(agendamentos);
+  };
 
   const getAgendamentosByTipoData = async (tipo, data) => {
     const { data: agendamentos, error } = await supabase
-      .from('agendamentos')
-      .select(`
+      .from("agendamentos")
+      .select(
+        `
         *,
         items(description),
         tipos_item(name),
         profiles(email, name)
-      `)
-      .match({ id_tipo: tipo, dt_inicio: data })
-    setAgendamentos(agendamentos)
-    console.log(agendamentos)
-  }
+      `
+      )
+      .match({ id_tipo: tipo, dt_inicio: data });
+    setAgendamentos(agendamentos);
+    console.log(agendamentos);
+  };
 
   async function insertAgendamento(agendamento) {
     const { data, error } = await supabase
-      .from('agendamentos')
-      .insert([agendamento])
+      .from("agendamentos")
+      .insert([agendamento]);
 
     if (error) {
-      return alert('Erro ao agendar!')
+      return alert("Erro ao agendar!");
     } else {
-      getAgendamentosByTipo(parseInt(selectedTipo))
+      getAgendamentosByTipo(parseInt(selectedTipo));
     }
   }
 
   async function checkDate(date) {
     const { data, error } = await supabase
-      .from('agendamentos')
-      .select(`
+      .from("agendamentos")
+      .select(
+        `
         *,
         items(description),
         tipos_item(name),
         profiles(email, name)
-      `)
-      .filter('id_tipo', 'eq', 1)
-      .eq('id_item', selectedItem)
-    const salas = data.filter(sala => sala.dt_inicio === date)
+      `
+      )
+      .filter("id_tipo", "eq", 1)
+      .eq("id_item", selectedItem);
+    const salas = data.filter((sala) => sala.dt_inicio === date);
 
-    setAgendamentos(salas)
+    setAgendamentos(salas);
   }
 
   useEffect(() => {
-    getAgendamentos()
-  }, [])
+    getAgendamentos();
+  }, []);
 
   const value = {
     selectedTipo,
@@ -136,11 +141,11 @@ export function AgendamentoProvider({ children }) {
     getAgendamentosByTipoData,
     dateMask,
     checkDate,
-    sqlToJsDate
-  }
+    sqlToJsDate,
+  };
   return (
     <AgendamentoContext.Provider value={value}>
       {children}
     </AgendamentoContext.Provider>
-  )
+  );
 }

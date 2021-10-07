@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
+//import { handleLoad } from "./pontoService";
 
 export default function Ponto() {
   let date = new Date(),
@@ -18,6 +19,12 @@ export default function Ponto() {
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
+
+  /* const [pontos, setPontos] = useState([]);
+
+  useEffect(() => {
+    handleLoad();
+  }, []); */
 
   return (
     <div className="container">
