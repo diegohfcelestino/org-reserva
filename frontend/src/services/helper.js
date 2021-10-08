@@ -172,6 +172,7 @@ export function formatDateISO(data) {
   });
   return dateIso;
 }
+
 export function dateMask(value) {
   const data = value.toString();
   const day = data.slice(8, 10);

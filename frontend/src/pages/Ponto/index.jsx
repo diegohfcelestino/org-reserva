@@ -3,7 +3,6 @@ import ptBr from "date-fns/locale/pt-BR";
 import React, { useEffect, useState } from "react";
 import { dateMask } from "../../services/helper";
 import { handleLoad } from "./pontoService";
-//import { handleLoad } from "./pontoService";
 
 export default function Ponto() {
   let date = new Date(),
@@ -27,7 +26,6 @@ export default function Ponto() {
     async function getData() {
       const data = await handleLoad();
       setData(data.data);
-      console.log("data", data);
     }
     getData();
   }, []);
