@@ -16,6 +16,15 @@ export function AgendamentoProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
 
+  const dateMask = (value) => {
+    const data = value.toString();
+    const day = data.slice(8, 10);
+    const month = data.slice(5, 7);
+    const year = data.slice(0, 4);
+    const dataCompleta = day + "/" + month + "/" + year;
+    return dataCompleta;
+  };
+
   /* function jsToSqlDate(jsDate) {
     
   }
@@ -128,6 +137,7 @@ export function AgendamentoProvider({ children }) {
     setAgendamentos,
     getAgendamentosByTipo,
     getAgendamentosByTipoData,
+    dateMask,
     checkDate,
     sqlToJsDate,
   };
