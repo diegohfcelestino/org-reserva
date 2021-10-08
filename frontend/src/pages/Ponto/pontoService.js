@@ -59,7 +59,9 @@ export function handleLoad() {
     skip: 0,
     take: 30,
   };
-  const url = `PoCartao/GetPorCpf?${qs.stringify(params)}`;
+  const url = `https://osponto.azurewebsites.net/api/v1/PoCartao/GetPorCpf?${qs.stringify(
+    params
+  )}`;
 
   return api
     .get(url)
