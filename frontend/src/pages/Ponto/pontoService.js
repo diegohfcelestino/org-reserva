@@ -1,7 +1,7 @@
 import qs from "qs";
 import { useAuth } from "../../context/Auth";
 import api from "../../services/api";
-import { handleError, handleParams } from "../../services/helper";
+import { handleError } from "../../services/helper";
 import { supabase } from "../../supabaseClient";
 
 export function handleLoadById(loadOptions) {
@@ -50,21 +50,21 @@ export function handleInsert(values) {
     .catch((err) => handleError("Erro ao incluir", err));
 }
 
-export function handleLoad(loadOptions) {
-  const session = supabase.auth.session()
-  const user = session.user
-  const data = user.user_metadata
-  //const auth = JSON.parse(sessionStorage.getItem(useAuth));
+export function handleLoad() {
+  const session = supabase.auth.session();
+  const user = session.user;
+  const data = user.user_metadata;
   const params = {
-    cpf: data.cpf
+    cpf: data.cpf,
+    skip: 0,
+    take: 30,
   };
-  const newParams = handleParams(params, loadOptions);
-  const url = `PoCartao/GetPorCpf?${qs.stringify(newParams)}`;
+  const url = `PoCartao/GetPorCpf?${qs.stringify(params)}`;
 
-  return api.get(url)
+  return api
+    .get(url)
     .then((res) => {
       const { data, totalCount } = res.data;
-      console.log("data", data, totalCount);
       return {
         data,
         totalCount,

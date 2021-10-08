@@ -172,3 +172,11 @@ export function formatDateISO(data) {
   });
   return dateIso;
 }
+export function dateMask(value) {
+  const data = value.toString();
+  const day = data.slice(8, 10);
+  const month = data.slice(5, 7);
+  const year = data.slice(0, 4);
+  const dataCompleta = day + "/" + month + "/" + year;
+  return dataCompleta;
+}

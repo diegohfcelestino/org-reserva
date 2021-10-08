@@ -16,15 +16,6 @@ export function AgendamentoProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
 
-  const dateMask = (value) => {
-    const data = value.toString();
-    const day = data.slice(8, 10);
-    const month = data.slice(5, 7);
-    const year = data.slice(0, 4);
-    const dataCompleta = day + "/" + month + "/" + year;
-    return dataCompleta;
-  };
-
   /* function jsToSqlDate(jsDate) {
     
   }
@@ -60,7 +51,6 @@ export function AgendamentoProvider({ children }) {
         profiles(name)
       `);
     setAgendamentos(agendamentos);
-    console.log(agendamentos);
   };
 
   const getAgendamentosByTipo = async (tipo) => {
@@ -91,7 +81,6 @@ export function AgendamentoProvider({ children }) {
       )
       .match({ id_tipo: tipo, dt_inicio: data });
     setAgendamentos(agendamentos);
-    console.log(agendamentos);
   };
 
   async function insertAgendamento(agendamento) {
@@ -139,7 +128,6 @@ export function AgendamentoProvider({ children }) {
     setAgendamentos,
     getAgendamentosByTipo,
     getAgendamentosByTipoData,
-    dateMask,
     checkDate,
     sqlToJsDate,
   };

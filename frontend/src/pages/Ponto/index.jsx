@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 import React, { useEffect, useState } from "react";
+import { dateMask } from "../../services/helper";
 import { handleLoad } from "./pontoService";
 //import { handleLoad } from "./pontoService";
 
@@ -16,20 +17,19 @@ export default function Ponto() {
 
   const [dataInicial, setDataInicial] = useState(firstDay);
   const [dataFinal, setDataFinal] = useState(lastDay);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
 
-  /* const [pontos, setPontos] = useState([]);*/
-
   useEffect(() => {
-
-    const data = handleLoad({ skip: 0, take: 10 })
-    console.log('res', data)
-    setData(data)
-
+    async function getData() {
+      const data = await handleLoad();
+      setData(data.data);
+      console.log("data", data);
+    }
+    getData();
   }, []);
 
   return (
@@ -38,7 +38,7 @@ export default function Ponto() {
       <div className="d-flex align-items-center navbar p-4 mb-4">
         <h6 className="text-dark lead">{currentDate}</h6>
         <h2>José Da Silva Souza</h2>
-        <h6>Numero da folha</h6>
+        <h6>Numero PIS</h6>
       </div>
       <div className="container-fluid">
         <form>
@@ -77,8 +77,6 @@ export default function Ponto() {
             </div>
           </div>
         </form>
-
-        {JSON.stringify(data)}
       </div>
       <div className="table-responsive rolagem">
         <table className="table table-striped table-sm">
@@ -91,169 +89,24 @@ export default function Ponto() {
               <th>Saída 2</th>
               <th>Entrada 3</th>
               <th>Saída 3</th>
-              <th>Entrada 4</th>
-              <th>Saída 4</th>
               <th>Total de horas</th>
-              <th>Diferença</th>
+              <th>Horas Acumuladas</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>01/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>02/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>03/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>04/09/2021</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>05/09/2021</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>06/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>07/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>08/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>09/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>10/09/2021</td>
-              <td>08:00</td>
-              <td>12:00</td>
-              <td>13:00</td>
-              <td>17:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>08:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>11/09/2021</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-            </tr>
-            <tr>
-              <td>12/09/2021</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-              <td>00:00</td>
-            </tr>
+            {data.map((obj) => (
+              <tr>
+                <td>{dateMask(obj.data)}</td>
+                <td>{obj.periodo1In}</td>
+                <td>{obj.periodo1Out}</td>
+                <td>{obj.periodo2In}</td>
+                <td>{obj.periodo2Out}</td>
+                <td>{obj.extrasIn}</td>
+                <td>{obj.extrasOut}</td>
+                <td>Calcular</td>
+                <td>Calcular</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
