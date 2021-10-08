@@ -16,7 +16,7 @@ export function handleError(method, error) {
       typeof errorMessage[0] === "object"
         ? errorMessage[0][0]
         : // eslint-disable-next-line no-useless-escape
-          errorMessage.join(",").replace(/\,/, ", ");
+        errorMessage.join(",").replace(/\,/, ", ");
   }
 
   switch (status) {
@@ -56,7 +56,7 @@ export function handleErrorForm(method, error) {
       typeof errorMessage[0] === "object"
         ? errorMessage[0][0]
         : // eslint-disable-next-line no-useless-escape
-          errorMessage.join(",").replace(/\,/, ", ");
+        errorMessage.join(",").replace(/\,/, ", ");
   }
 
   switch (status) {
@@ -172,3 +172,12 @@ export function formatDateISO(data) {
   });
   return dateIso;
 }
+
+export function dateMask(value) {
+  const data = value.toString();
+  const day = data.slice(8, 10);
+  const month = data.slice(5, 7);
+  const year = data.slice(0, 4);
+  const dataCompleta = day + "/" + month + "/" + year;
+  return dataCompleta;
+};

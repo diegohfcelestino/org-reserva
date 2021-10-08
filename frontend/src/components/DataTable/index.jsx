@@ -1,10 +1,11 @@
 import React from 'react'
 import { useAgendamento } from '../../context/AgendamentoContext';
+import { dateMask } from '../../services/helper';
 
 import './styles.scss'
 
 const DataTable = ({ data }) => {
-    const { dateMask, selectedTipo } = useAgendamento()
+    const { selectedTipo } = useAgendamento()
     const itemRow = () => {
         if (selectedTipo === '2') {
             return (

@@ -27,7 +27,7 @@ export default function Ponto() {
   useEffect(() => {
     async function getData() {
       const data = await handleLoad({ skip: 0, take: 10 })
-      setData(data)
+      setData(data.data)
     }
     getData()
   }, []);
