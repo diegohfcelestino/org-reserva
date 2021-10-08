@@ -2,6 +2,7 @@ import qs from "qs";
 import { useAuth } from "../../context/Auth";
 import api from "../../services/api";
 import { handleError, handleParams } from "../../services/helper";
+import { supabase } from "../../supabaseClient";
 
 export function handleLoadById(loadOptions) {
   const auth = JSON.parse(sessionStorage.getItem(useAuth));
@@ -50,15 +51,17 @@ export function handleInsert(values) {
 }
 
 export function handleLoad(loadOptions) {
-  const auth = JSON.parse(sessionStorage.getItem(useAuth));
+  const session = supabase.auth.session()
+  const user = session.user
+  const data = user.user_metadata
+  //const auth = JSON.parse(sessionStorage.getItem(useAuth));
   const params = {
-    cpf: auth.cpf,
+    cpf: data.cpf
   };
   const newParams = handleParams(params, loadOptions);
   const url = `PoCartao/GetPorCpf?${qs.stringify(newParams)}`;
 
-  return api
-    .get(url)
+  return api.get(url)
     .then((res) => {
       const { data, totalCount } = res.data;
       console.log("data", data, totalCount);

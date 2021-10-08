@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import { format } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
+import React, { useEffect, useState } from "react";
+import { handleLoad } from "./pontoService";
 //import { handleLoad } from "./pontoService";
 
 export default function Ponto() {
@@ -15,16 +16,21 @@ export default function Ponto() {
 
   const [dataInicial, setDataInicial] = useState(firstDay);
   const [dataFinal, setDataFinal] = useState(lastDay);
+  const [data, setData] = useState([])
 
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
 
-  /* const [pontos, setPontos] = useState([]);
+  /* const [pontos, setPontos] = useState([]);*/
 
   useEffect(() => {
-    handleLoad();
-  }, []); */
+
+    const data = handleLoad({ skip: 0, take: 10 })
+    console.log('res', data)
+    setData(data)
+
+  }, []);
 
   return (
     <div className="container">
@@ -71,6 +77,8 @@ export default function Ponto() {
             </div>
           </div>
         </form>
+
+        {JSON.stringify(data)}
       </div>
       <div className="table-responsive rolagem">
         <table className="table table-striped table-sm">
