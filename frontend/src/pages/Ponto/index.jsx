@@ -25,11 +25,11 @@ export default function Ponto() {
   /* const [pontos, setPontos] = useState([]);*/
 
   useEffect(() => {
-
-    const data = handleLoad({ skip: 0, take: 10 })
-    console.log('res', data)
-    setData(data)
-
+    async function getData() {
+      const data = await handleLoad({ skip: 0, take: 10 })
+      setData(data)
+    }
+    getData()
   }, []);
 
   return (
