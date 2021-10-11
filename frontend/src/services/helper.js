@@ -16,7 +16,7 @@ export function handleError(method, error) {
       typeof errorMessage[0] === "object"
         ? errorMessage[0][0]
         : // eslint-disable-next-line no-useless-escape
-          errorMessage.join(",").replace(/\,/, ", ");
+        errorMessage.join(",").replace(/\,/, ", ");
   }
 
   switch (status) {
@@ -56,7 +56,7 @@ export function handleErrorForm(method, error) {
       typeof errorMessage[0] === "object"
         ? errorMessage[0][0]
         : // eslint-disable-next-line no-useless-escape
-          errorMessage.join(",").replace(/\,/, ", ");
+        errorMessage.join(",").replace(/\,/, ", ");
   }
 
   switch (status) {
@@ -147,8 +147,8 @@ export function filterNonNull(obj) {
 export function formatDate(data) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
   const date = new Date(data);
-  const dateFormated = date.toLocaleDateString("pt-br", options);
-  return dateFormated;
+  const dateFormatted = date.toLocaleDateString("pt-br", options);
+  return dateFormatted;
 }
 
 export function formatDateISO(data) {
@@ -161,9 +161,9 @@ export function formatDateISO(data) {
     second: "numeric",
   };
   const date = new Date(data);
-  const dateFormated = date.toLocaleDateString("pt-BR", options);
+  const dateFormatted = date.toLocaleDateString("pt-BR", options);
   let dateIso = "";
-  dateFormated.split(" ").map((item) => {
+  dateFormatted.split(" ").map((item) => {
     if (/\//gi.test(item)) {
       dateIso = `${item.split("/").reverse().join("-")}T`;
     }
