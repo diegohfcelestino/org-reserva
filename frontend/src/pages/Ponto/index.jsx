@@ -41,10 +41,18 @@ export default function Ponto() {
 
   return (
     <div className="container">
-      <h1>Folha de Ponto</h1>
+      <h1 /* className="text-primary py-3" */
+        style={{
+          fontSize: '3rem',
+          fontFamily: "Ubuntu Condensed, sans-serif",
+          fontWeight: '700',
+          marginTop: '0.8rem',
+          color: '#2b2b69'
+        }}
+      >Folha de Ponto</h1>
       <div className="d-flex align-items-center navbar p-4 mb-4">
         <h6 className="text-dark lead">{currentDate}</h6>
-        <h2>{data.length === 0 ? 'Carregando...' : data[0].nome}</h2>
+        <h3>{data.length === 0 ? 'Carregando...' : data[0].nome}</h3>
         <h6>Numero PIS: {data.length === 0 ? 'Carregando...' : data[0].pispasep}</h6>
       </div>
       <div className="container-fluid">
@@ -117,6 +125,6 @@ export default function Ponto() {
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   );
 }

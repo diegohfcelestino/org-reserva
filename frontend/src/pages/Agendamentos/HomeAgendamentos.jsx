@@ -32,7 +32,15 @@ export default function HomeAgendamentos() {
 
   return (
     <div className="container">
-      <h1 className="text-primary py-3">Agendamentos</h1>
+      <h1 /* className="text-primary py-3" */
+        style={{
+          fontSize: '3rem',
+          fontFamily: "Ubuntu Condensed, sans-serif",
+          fontWeight: '700',
+          marginTop: '0.8rem',
+          color: '#2b2b69'
+        }}
+      >Agendamentos</h1>
       <div className="d-flex align-items-center navbar p-3 mb-3">
         <h5 className="text-dark text-muted">{currentDate}</h5>
         <button
@@ -70,9 +78,7 @@ export default function HomeAgendamentos() {
         <h3 className="text-primary">Agendamentos Realizados</h3>
       </div>
 
-      <DataTable data={
-        domain ? agendamentos : ''
-      } />
+      <DataTable data={domain ? agendamentos : ''} />
     </div>
 
   )
