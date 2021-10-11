@@ -17,7 +17,6 @@ export default function Ponto() {
   const [dataInicial, setDataInicial] = useState(firstDay);
   const [dataFinal, setDataFinal] = useState(lastDay);
   const [data, setData] = useState([]);
-
   const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
     locale: ptBr,
   });
@@ -25,7 +24,17 @@ export default function Ponto() {
   useEffect(() => {
     async function getData() {
       const data = await handleLoad();
+      data.data.sort((a, b) => {
+        if (a.data > b.data) {
+          return 1;
+        }
+        if (a.data < b.data) {
+          return -1;
+        }
+        return 0;
+      })
       setData(data.data);
+      console.log(data.data)
     }
     getData();
   }, []);
@@ -35,8 +44,8 @@ export default function Ponto() {
       <h1>Folha de Ponto</h1>
       <div className="d-flex align-items-center navbar p-4 mb-4">
         <h6 className="text-dark lead">{currentDate}</h6>
-        <h2>José Da Silva Souza</h2>
-        <h6>Numero PIS</h6>
+        <h2>{data.length === 0 ? 'Carregando...' : data[0].nome}</h2>
+        <h6>Numero PIS: {data.length === 0 ? 'Carregando...' : data[0].pispasep}</h6>
       </div>
       <div className="container-fluid">
         <form>
@@ -92,8 +101,8 @@ export default function Ponto() {
             </tr>
           </thead>
           <tbody>
-            {data.map((obj) => (
-              <tr>
+            {data.map((obj, i) => (
+              <tr key={i}>
                 <td>{dateMask(obj.data)}</td>
                 <td>{obj.periodo1In}</td>
                 <td>{obj.periodo1Out}</td>
