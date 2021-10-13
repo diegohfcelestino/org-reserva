@@ -51,7 +51,6 @@ export default function Ponto() {
         }}
       >Folha de Ponto</h1>
       <div className="d-flex align-items-center navbar p-4 mb-4">
-        <h6 className="text-dark lead">{currentDate}</h6>
         <h3>{data.length === 0 ? 'Carregando...' : data[0].nome}</h3>
         <h6>Numero PIS: {data.length === 0 ? 'Carregando...' : data[0].pispasep}</h6>
       </div>
