@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { format } from "date-fns";
-import ptBr from "date-fns/locale/pt-BR";
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
 import DataTable from '../../components/DataTable';
@@ -19,12 +17,6 @@ export default function HomeAgendamentos() {
 
   const domain = user.email.includes('@orgsystem.com.br')
 
-
-
-  const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
-    locale: ptBr,
-  });
-
   function handleAgendar() {
     setShowAgendar(!showAgendar)
   }
@@ -32,17 +24,16 @@ export default function HomeAgendamentos() {
 
   return (
     <div className="container">
-      <h1 /* className="text-primary py-3" */
-        style={{
-          fontSize: '3rem',
-          fontFamily: "Ubuntu Condensed, sans-serif",
-          fontWeight: '700',
-          marginTop: '0.8rem',
-          color: '#2b2b69'
-        }}
-      >Agendamentos</h1>
       <div className="d-flex align-items-center navbar p-3 mb-3">
-        <h5 className="text-dark text-muted">{currentDate}</h5>
+        <h1 /* className="text-primary py-3" */
+          style={{
+            fontSize: '3rem',
+            fontFamily: "Ubuntu Condensed, sans-serif",
+            fontWeight: '700',
+            marginTop: '0.8rem',
+            color: '#2b2b69'
+          }}
+        >Agendamentos</h1>
         <button
           className="btn btn-outline-dark"
           onClick={handleAgendar}

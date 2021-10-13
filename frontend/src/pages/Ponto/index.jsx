@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import ptBr from "date-fns/locale/pt-BR";
 import React, { useEffect, useState } from "react";
 import { dateMask } from "../../services/helper";
 import { handleLoad } from "./pontoService";
@@ -17,9 +16,7 @@ export default function Ponto() {
   const [dataInicial, setDataInicial] = useState(firstDay);
   const [dataFinal, setDataFinal] = useState(lastDay);
   const [data, setData] = useState([]);
-  const currentDate = format(new Date(), "eeee, dd/MM/yyyy", {
-    locale: ptBr,
-  });
+
 
   useEffect(() => {
     async function getData() {
