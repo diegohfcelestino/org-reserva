@@ -34,6 +34,7 @@ const BarChart = ({ categories, series }) => {
                 series={mockData.series}
                 type="bar"
                 height="200"
+                width="100%"
             />
         </>
     );

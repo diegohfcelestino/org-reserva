@@ -1,9 +1,7 @@
-import { hoursToMinutes } from 'date-fns';
 import { useState } from 'react';
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
 import DataTable from '../../components/DataTable';
-import DonutChart from '../../components/DonutChart';
 import { useAgendamento } from '../../context/AgendamentoContext';
 import { useAuth } from '../../context/Auth';
 import { supabase } from '../../supabaseClient';
@@ -43,16 +41,16 @@ export default function HomeAgendamentos() {
       `)
     let total_horas = 0
     for (let i = 0; i < items.length; i++) {
-      const salas = agendamentos.filter(s => s.id_item === items[i].id)
-      //console.log(salas)
-      if (salas.length > 0) {
-        for (let i = 0; i < salas.length; i++) {
-          const horas = calculaHoras(salas[i].hr_final, salas[i].hr_inicio)
+      const agendadosPorItem = agendamentos.filter(s => s.id_item === items[i].id)
+      //console.log(agendadosPorItem)
+      if (agendadosPorItem.length > 0) {
+        for (let i = 0; i < agendadosPorItem.length; i++) {
+          const horas = calculaHoras(agendadosPorItem[i].hr_final, agendadosPorItem[i].hr_inicio)
           total_horas += horas
-          /* const data = salas[i].dt_inicio + ' ' + salas[i].hr_inicio
+          /* const data = agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio
           console.log(data)
           console.log(hoursToMinutes(data)) */
-          // console.log(salas[i].dt_fim)
+          // console.log(agendadosPorItem[i].dt_fim)
         }
         const newData = totalHoras
         newData.push({
@@ -61,6 +59,7 @@ export default function HomeAgendamentos() {
           duration: renderHora(total_horas)
         })
         setTotalHoras(newData)
+
         total_horas = 0
       }
     }
@@ -106,13 +105,9 @@ export default function HomeAgendamentos() {
 
       {!showAgendar ? (
         <div className="row px-3">
-          <div className="col-sm-6">
-            <h5 className="text-center test-secondary">Uso dos veiculos (%)</h5>
+          <div /* className="col-sm-6" */>
+            <h5 className="text-center test-secondary">Gráfico de uso (horas)</h5>
             <BarChart categories={categories} series={series} />
-          </div>
-          <div className="col-sm-6">
-            <h5 className="text-center test-secondary">Uso das Salas (%)</h5>
-            <DonutChart />
           </div>
         </div>
       ) :
