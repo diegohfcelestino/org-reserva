@@ -15,8 +15,7 @@ export function AgendamentoProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
 
-  const [totalHorasSalas, setTotalHorasSalas] = useState([])
-  const [totalHorasVeiculos, setTotalHorasVeiculos] = useState([])
+  const [totalHoras, setTotalHoras] = useState([])
 
   function calculaHoras(hr1, hr2) {
     const h1 = hr1.split(':')
@@ -129,51 +128,7 @@ export function AgendamentoProvider({ children }) {
     setAgendamentos(salas);
   }
 
-  useEffect(() => {
-    const getTotalHoras = async () => {
-      const { data: agendamentos, error } = await supabase
-        .from("agendamentos")
-        .select(`
-        *,
-        items(description)
-      `)
-      //TOTAL DE HORAS DAS SALAS
-      const salas = agendamentos.filter(s => s.id_tipo === 1)
-      // console.log(salas)
-      let total_horas_salas = 0
-      /* for (let item of salas) {
 
-      } */
-      for (let i = 0; i < salas.length; i++) {
-        const horas = calculaHoras(salas[i].hr_final, salas[i].hr_inicio)
-        total_horas_salas += horas
-        setTotalHorasSalas([...totalHorasSalas, {
-          id: salas[i].id,
-          id_item: salas[i].id_item,
-          sala: salas[i].items.description,
-          duration: horas
-        }])
-      }
-      const duracaoSalas = renderHora(total_horas_salas)
-      setTotalHorasSalas([...totalHorasSalas, { duracaoTotal: duracaoSalas }])
-      console.log('salas: ' + duracaoSalas)
-
-
-      //TOTAL DE HORAS DOS VEICULOS
-      const veiculos = agendamentos.filter(v => v.id_tipo === 2)
-      let total_horas_veiculos = 0
-      for (let i = 0; i < veiculos.length; i++) {
-        const horas = calculaHoras(veiculos[i].hr_final, veiculos[i].hr_inicio)
-        total_horas_veiculos += horas
-      }
-      const duracaoVeiculos = renderHora(total_horas_veiculos)
-      setTotalHorasVeiculos(duracaoVeiculos)
-      console.log('veiculos: ' + duracaoVeiculos)
-
-    };
-    getTotalHoras()
-    // console.log(totalHorasSalas)
-  }, [totalHorasSalas])
 
   useEffect(() => {
     getAgendamentos();
@@ -193,8 +148,9 @@ export function AgendamentoProvider({ children }) {
     dateMask,
     checkDate,
     sqlToJsDate,
-    totalHorasSalas,
-    totalHorasVeiculos
+    totalHoras,
+    calculaHoras,
+    renderHora
   };
   return (
     <AgendamentoContext.Provider value={value}>

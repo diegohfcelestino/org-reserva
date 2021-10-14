@@ -1,11 +1,9 @@
 import React from 'react';
 import Chart from "react-apexcharts";
-import { useAgendamento } from '../../context/AgendamentoContext.js'
 
 
 
-const BarChart = () => {
-    const { totalHorasSalas, totalHorasVeiculos } = useAgendamento()
+const BarChart = ({ categories, series }) => {
 
     const options = {
         plotOptions: {
@@ -17,19 +15,20 @@ const BarChart = () => {
 
     const mockData = {
         labels: {
-            categories: ['Veiculo 1', 'Veiculo 2', 'Vericulo 3', 'Veiculo 4']
+            categories
+            /* ['Veiculo 1', 'Veiculo 2', 'Veiculo 3', 'Veiculo 4'] */
         },
         series: [
             {
-                name: "% Uso",
-                data: [43.6, 67.1, 67.7, 45.6]
+                name: "Tempo Uso",
+                data: series/* [43.6, 67.1, 67.7, 45.6] */
             }
         ]
     };
 
     return (
         <>
-            {JSON.stringify(totalHorasSalas)}
+            {JSON.stringify(series)}
             <Chart
                 options={{ ...options, xaxis: mockData.labels }}
                 series={mockData.series}
