@@ -102,7 +102,7 @@ export default function HomeAgendamentos() {
         }
 
         const tt = soma / 60
-        newSeriesDonut.push(parseFloat(tt.toPrecision(2)))
+        newSeriesDonut.push(parseFloat(tt.toPrecision(3)))
       }
     }
     setSeriesDonut(newSeriesDonut)
