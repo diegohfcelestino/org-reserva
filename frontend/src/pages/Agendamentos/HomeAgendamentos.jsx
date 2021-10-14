@@ -1,3 +1,4 @@
+import { hoursToMinutes } from 'date-fns';
 import { useState } from 'react';
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
@@ -48,6 +49,10 @@ export default function HomeAgendamentos() {
         for (let i = 0; i < salas.length; i++) {
           const horas = calculaHoras(salas[i].hr_final, salas[i].hr_inicio)
           total_horas += horas
+          /* const data = salas[i].dt_inicio + ' ' + salas[i].hr_inicio
+          console.log(data)
+          console.log(hoursToMinutes(data)) */
+          // console.log(salas[i].dt_fim)
         }
         const newData = totalHoras
         newData.push({
@@ -68,8 +73,6 @@ export default function HomeAgendamentos() {
     }
     setCategories(desc)
     setSeries(perc)
-    console.log(series)
-    console.log(totalHoras)
   }
 
   return (

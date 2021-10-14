@@ -15,8 +15,6 @@ export function AgendamentoProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
 
-  const [totalHoras, setTotalHoras] = useState([])
-
   function calculaHoras(hr1, hr2) {
     const h1 = hr1.split(':')
     let hora1 = parseInt(hoursToMinutes(h1[0])) + parseInt(h1[1])
@@ -148,7 +146,6 @@ export function AgendamentoProvider({ children }) {
     dateMask,
     checkDate,
     sqlToJsDate,
-    totalHoras,
     calculaHoras,
     renderHora
   };
