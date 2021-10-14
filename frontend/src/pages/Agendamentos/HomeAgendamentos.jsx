@@ -1,20 +1,28 @@
+import { formatDistanceStrict, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
 import DataTable from '../../components/DataTable';
+import DonutChart from '../../components/DonutChart';
 import { useAgendamento } from '../../context/AgendamentoContext';
 import { useAuth } from '../../context/Auth';
 import { supabase } from '../../supabaseClient';
 
 
 
+
 export default function HomeAgendamentos() {
   const [showAgendar, setShowAgendar] = useState(true)
   const { user } = useAuth()
-  const { calculaHoras, agendamentos, renderHora } = useAgendamento()
+  const { agendamentos, renderHora } = useAgendamento()
   const [totalHoras, setTotalHoras] = useState([])
   const [categories, setCategories] = useState([])
   const [series, setSeries] = useState([])
+
+  const [seriesDonut, setSeriesDonut] = useState([])
+  const [labels, setLabels] = useState([])
+  //const [tipo, setTipo] = useState(0)
 
   const domain = user.email.includes('@orgsystem.com.br')
 
@@ -37,28 +45,35 @@ export default function HomeAgendamentos() {
       .from("agendamentos")
       .select(`
         *,
-        items(description)
+        items(description),
+        tipos_item(name)
       `)
     let total_horas = 0
     for (let i = 0; i < items.length; i++) {
       const agendadosPorItem = agendamentos.filter(s => s.id_item === items[i].id)
-      //console.log(agendadosPorItem)
       if (agendadosPorItem.length > 0) {
         for (let i = 0; i < agendadosPorItem.length; i++) {
-          const horas = calculaHoras(agendadosPorItem[i].hr_final, agendadosPorItem[i].hr_inicio)
+          const horas = parseInt(formatDistanceStrict(
+            parseISO(agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio),
+            parseISO(agendadosPorItem[i].dt_fim + ' ' + agendadosPorItem[i].hr_final),
+            {
+              addSuffix: false,
+              unit: "minute",
+              roundingMethod: 'round',
+              locale: pt
+            }))
           total_horas += horas
-          /* const data = agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio
-          console.log(data)
-          console.log(hoursToMinutes(data)) */
-          // console.log(agendadosPorItem[i].dt_fim)
         }
         const newData = totalHoras
         newData.push({
           id_item: items[i].id,
           description: items[i].description,
-          duration: renderHora(total_horas)
+          id_tipo: agendadosPorItem[0].id_tipo,
+          tipo_name: agendadosPorItem[0].tipos_item.name,
+          duration: total_horas
         })
         setTotalHoras(newData)
+
 
         total_horas = 0
       }
@@ -68,10 +83,30 @@ export default function HomeAgendamentos() {
       perc = []
     for (let i = 0; i < totalHoras.length; i++) {
       desc.push(totalHoras[i].description)
-      perc.push(totalHoras[i].duration)
+      perc.push(renderHora(totalHoras[i].duration))
     }
     setCategories(desc)
     setSeries(perc)
+
+    const newSeriesDonut = [],
+      newLabels = []
+    let tipo = 0
+    for (let i of totalHoras) {
+      if (i.id_tipo !== tipo) {
+        tipo = i.id_tipo
+        newLabels.push(i.tipo_name)
+        const dataSeries = totalHoras.filter(s => s.id_tipo === i.id_tipo)
+        let soma = 0
+        for (let i = 0; i < dataSeries.length; i++) {
+          soma += dataSeries[i].duration
+        }
+
+        const tt = soma / 60
+        newSeriesDonut.push(parseFloat(tt.toPrecision(2)))
+      }
+    }
+    setSeriesDonut(newSeriesDonut)
+    setLabels(newLabels)
   }
 
   return (
@@ -105,10 +140,18 @@ export default function HomeAgendamentos() {
 
       {!showAgendar ? (
         <div className="row px-3">
-          <div /* className="col-sm-6" */>
-            <h5 className="text-center test-secondary">Gráfico de uso (horas)</h5>
-            <BarChart categories={categories} series={series} />
-          </div>
+          {totalHoras.length === 0 ? 'Carregando...' : (
+            <>
+              <div className="col-sm-6">
+                <h5 className="text-center test-secondary">Gráfico de uso (horas)</h5>
+                <BarChart categories={categories} series={series} />
+              </div>
+              <div className="col-sm-6">
+                <h5 className="text-center test-secondary">Gráfico de uso (horas)</h5>
+                <DonutChart labels={labels} seriesDonut={seriesDonut} />
+              </div>
+            </>
+          )}
         </div>
       ) :
         <Agendamento />

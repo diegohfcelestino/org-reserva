@@ -27,16 +27,13 @@ const BarChart = ({ categories, series }) => {
     };
 
     return (
-        <>
-            {JSON.stringify(series)}
-            <Chart
-                options={{ ...options, xaxis: mockData.labels }}
-                series={mockData.series}
-                type="bar"
-                height="200"
-                width="100%"
-            />
-        </>
+        <Chart
+            options={{ ...options, xaxis: mockData.labels }}
+            series={mockData.series}
+            type="bar"
+            height="200"
+            width="100%"
+        />
     );
 }
 

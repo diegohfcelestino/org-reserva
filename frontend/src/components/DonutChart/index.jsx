@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import Chart from "react-apexcharts";
 
-const DonutChart = () => {
+const DonutChart = ({ labels, seriesDonut }) => {
+
 
     const mockData = {
-        series: [60, 90],
-        labels: ['Sala Maior', 'Sala Menor']
+        series: seriesDonut/* [60, 90] */,
+        labels: labels/* ['Sala Maior', 'Sala Menor'] */
     }
 
     const options = {
