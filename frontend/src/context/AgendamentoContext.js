@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { format } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
-import React, { useContext, useState, useEffect } from "react";
+import { hoursToMinutes } from "date-fns";
+import React, { useContext, useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 // import { useItems } from './cadastros/ItemsContext'
 
@@ -15,6 +14,31 @@ export function AgendamentoProvider({ children }) {
   const [selectedTipo, setSelectedTipo] = useState();
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
+
+  const [totalHorasSalas, setTotalHorasSalas] = useState([])
+  const [totalHorasVeiculos, setTotalHorasVeiculos] = useState([])
+
+  function calculaHoras(hr1, hr2) {
+    const h1 = hr1.split(':')
+    let hora1 = parseInt(hoursToMinutes(h1[0])) + parseInt(h1[1])
+
+    const h2 = hr2.split(':')
+    const hora2 = parseInt(hoursToMinutes(h2[0])) + parseInt(h2[1])
+    hora1 -= hora2
+
+    return hora1
+  }
+
+  function renderHora(hr) {
+    var newHr = hr / 60
+    const hora = Math.trunc(newHr)
+    const minutos = Math.round((newHr - hora) * 60)
+    if (minutos < 10) {
+      return hora + ":" + 0 + minutos
+    } else {
+      return hora + ":" + minutos
+    }
+  }
 
   const dateMask = (value) => {
     const data = value.toString();
@@ -106,6 +130,52 @@ export function AgendamentoProvider({ children }) {
   }
 
   useEffect(() => {
+    const getTotalHoras = async () => {
+      const { data: agendamentos, error } = await supabase
+        .from("agendamentos")
+        .select(`
+        *,
+        items(description)
+      `)
+      //TOTAL DE HORAS DAS SALAS
+      const salas = agendamentos.filter(s => s.id_tipo === 1)
+      // console.log(salas)
+      let total_horas_salas = 0
+      /* for (let item of salas) {
+
+      } */
+      for (let i = 0; i < salas.length; i++) {
+        const horas = calculaHoras(salas[i].hr_final, salas[i].hr_inicio)
+        total_horas_salas += horas
+        setTotalHorasSalas([...totalHorasSalas, {
+          id: salas[i].id,
+          id_item: salas[i].id_item,
+          sala: salas[i].items.description,
+          duration: horas
+        }])
+      }
+      const duracaoSalas = renderHora(total_horas_salas)
+      setTotalHorasSalas([...totalHorasSalas, { duracaoTotal: duracaoSalas }])
+      console.log('salas: ' + duracaoSalas)
+
+
+      //TOTAL DE HORAS DOS VEICULOS
+      const veiculos = agendamentos.filter(v => v.id_tipo === 2)
+      let total_horas_veiculos = 0
+      for (let i = 0; i < veiculos.length; i++) {
+        const horas = calculaHoras(veiculos[i].hr_final, veiculos[i].hr_inicio)
+        total_horas_veiculos += horas
+      }
+      const duracaoVeiculos = renderHora(total_horas_veiculos)
+      setTotalHorasVeiculos(duracaoVeiculos)
+      console.log('veiculos: ' + duracaoVeiculos)
+
+    };
+    getTotalHoras()
+    // console.log(totalHorasSalas)
+  }, [totalHorasSalas])
+
+  useEffect(() => {
     getAgendamentos();
   }, []);
 
@@ -123,6 +193,8 @@ export function AgendamentoProvider({ children }) {
     dateMask,
     checkDate,
     sqlToJsDate,
+    totalHorasSalas,
+    totalHorasVeiculos
   };
   return (
     <AgendamentoContext.Provider value={value}>

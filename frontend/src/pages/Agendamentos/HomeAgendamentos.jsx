@@ -5,13 +5,11 @@ import DataTable from '../../components/DataTable';
 import DonutChart from '../../components/DonutChart';
 import { useAgendamento } from '../../context/AgendamentoContext';
 import { useAuth } from '../../context/Auth';
-// import { Calendar } from '../../components/Calendar';
 
 
 
 export default function HomeAgendamentos() {
   const [showAgendar, setShowAgendar] = useState(true)
-  // const [openCalendar, setOpenCalendar] = useState(false)
   const { user } = useAuth()
   const { agendamentos } = useAgendamento()
 
@@ -52,7 +50,7 @@ export default function HomeAgendamentos() {
         <div className="row px-3">
           <div className="col-sm-6">
             <h5 className="text-center test-secondary">Uso dos veiculos (%)</h5>
-            <BarChart />
+            <BarChart agendamentos={agendamentos} />
           </div>
           <div className="col-sm-6">
             <h5 className="text-center test-secondary">Uso das Salas (%)</h5>

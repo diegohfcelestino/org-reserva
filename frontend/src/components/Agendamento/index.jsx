@@ -42,7 +42,7 @@ export default function Agendamento() {
 
   const handleSelect = async e => {
     setSelectedTipo(e.target.value)
-    // getAgendamentosByTipo(e.target.value)
+    getAgendamentosByTipo(e.target.value)
   }
 
   function saveAgendamento() {
