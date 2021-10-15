@@ -1,5 +1,4 @@
-import { formatDistanceStrict, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
+import { differenceInMinutes, parseISO } from 'date-fns';
 import { useState } from 'react';
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
@@ -9,8 +8,7 @@ import { useAgendamento } from '../../context/AgendamentoContext';
 import { useAuth } from '../../context/Auth';
 import { supabase } from '../../supabaseClient';
 
-
-
+import Spinner from '../../assets/img/icons8-spinner.gif'
 
 export default function HomeAgendamentos() {
   const [showAgendar, setShowAgendar] = useState(true)
@@ -48,20 +46,16 @@ export default function HomeAgendamentos() {
         items(description),
         tipos_item(name)
       `)
+    //Agrupa por item e soma a quantidade de horas, tendo como parâmetro a data e hora de inicio e fim
     let total_horas = 0
     for (let i = 0; i < items.length; i++) {
       const agendadosPorItem = agendamentos.filter(s => s.id_item === items[i].id)
       if (agendadosPorItem.length > 0) {
         for (let i = 0; i < agendadosPorItem.length; i++) {
-          const horas = parseInt(formatDistanceStrict(
-            parseISO(agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio),
+          const horas = differenceInMinutes(
             parseISO(agendadosPorItem[i].dt_fim + ' ' + agendadosPorItem[i].hr_final),
-            {
-              addSuffix: false,
-              unit: "minute",
-              roundingMethod: 'round',
-              locale: pt
-            }))
+            parseISO(agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio),
+          )
           total_horas += horas
         }
         const newData = totalHoras
@@ -73,23 +67,19 @@ export default function HomeAgendamentos() {
           duration: total_horas
         })
         setTotalHoras(newData)
-
-
         total_horas = 0
       }
     }
-
-    const desc = [],
-      perc = []
+    //Separa em novos arrays as categorias e quantidades para exibir no gráfico
+    const categories = [], series = []
     for (let i = 0; i < totalHoras.length; i++) {
-      desc.push(totalHoras[i].description)
-      perc.push(renderHora(totalHoras[i].duration))
+      categories.push(totalHoras[i].description)
+      series.push(renderHora(totalHoras[i].duration))
     }
-    setCategories(desc)
-    setSeries(perc)
-
-    const newSeriesDonut = [],
-      newLabels = []
+    setCategories(categories)
+    setSeries(series)
+    //agrupa as quantidades por tipo para o gráfico de donut
+    const newSeriesDonut = [], newLabels = []
     let tipo = 0
     for (let i of totalHoras) {
       if (i.id_tipo !== tipo) {
@@ -140,7 +130,17 @@ export default function HomeAgendamentos() {
 
       {!showAgendar ? (
         <div className="row px-3">
-          {totalHoras.length === 0 ? 'Carregando...' : (
+          {totalHoras.length === 0 ? (
+            <div>
+              <h3 style={{ fontFamily: 'Ubuntu Condensed', fontWeight: '500' }}>
+                <img src={Spinner} alt="spinner" style={{
+                  width: '3.125rem',
+                  height: '3.125rem',
+                  objectFit: 'fill'
+                }} /> Carregando...
+              </h3>
+            </div>
+          ) : (
             <>
               <div className="col-sm-6">
                 <h5 className="text-center test-secondary">Gráfico de uso (horas)</h5>
