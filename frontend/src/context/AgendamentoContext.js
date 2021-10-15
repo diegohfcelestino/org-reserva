@@ -77,7 +77,8 @@ export function AgendamentoProvider({ children }) {
         profiles(email, name)
       `
       )
-      .filter("id_tipo", "eq", tipo);
+      .filter("id_tipo", "eq", tipo)
+      .order("dt_inicio", { ascending: false });
     setAgendamentos(agendamentos);
   };
 

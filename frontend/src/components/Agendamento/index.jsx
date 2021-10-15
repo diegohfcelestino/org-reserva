@@ -14,6 +14,7 @@ export default function Agendamento() {
     setSelectedItem,
     insertAgendamento,
     // setAgendamentos
+    getAgendamentos,
     getAgendamentosByTipo,
     getAgendamentosByTipoData,
     checkDate
@@ -42,7 +43,7 @@ export default function Agendamento() {
 
   const handleSelect = async e => {
     setSelectedTipo(e.target.value)
-    getAgendamentosByTipo(e.target.value)
+    !e.target.value ? getAgendamentos() : getAgendamentosByTipo(e.target.value)
   }
 
   function saveAgendamento() {
@@ -133,17 +134,6 @@ export default function Agendamento() {
                   />
                 </div>
                 <div className="col-auto">
-                  <label htmlFor="data_fim" className="form-label">
-                    Data Fim
-                  </label>
-                  <input
-                    type="date"
-                    name="data_fim"
-                    className="form-control"
-                    ref={dtFimRef}
-                  />
-                </div>
-                <div className="col-auto">
                   <label htmlFor="hora_inicio" className="form-label" >
                     Hora Inicio
                   </label>
@@ -152,6 +142,17 @@ export default function Agendamento() {
                     name="hora_inicio"
                     className="form-control"
                     ref={hrInicioRef}
+                  />
+                </div>
+                <div className="col-auto">
+                  <label htmlFor="data_fim" className="form-label">
+                    Data Fim
+                  </label>
+                  <input
+                    type="date"
+                    name="data_fim"
+                    className="form-control"
+                    ref={dtFimRef}
                   />
                 </div>
                 <div className="col-auto">
@@ -229,11 +230,6 @@ export default function Agendamento() {
                   e.preventDefault()
                   saveAgendamento()
                 }}>Agendar</button>
-              <button type="button" className="btn btn-primary"
-                onClick={e => {
-                  e.preventDefault()
-                  getAgendamentosByTipoData(selectedTipo, dtInicioRef)
-                }}>Buscar</button>
             </div>
           )}
         </form>
