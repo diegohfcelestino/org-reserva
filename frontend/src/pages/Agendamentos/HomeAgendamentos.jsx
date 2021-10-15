@@ -15,13 +15,16 @@ export default function HomeAgendamentos() {
   const { user } = useAuth()
   const { agendamentos, renderHora } = useAgendamento()
   const [totalHoras, setTotalHoras] = useState([])
+
+  //Dados para transmitir ao gráfico de barras
   const [categories, setCategories] = useState([])
   const [series, setSeries] = useState([])
 
+  //Dados para transmitir ao gráfico de Donut
   const [seriesDonut, setSeriesDonut] = useState([])
   const [labels, setLabels] = useState([])
-  //const [tipo, setTipo] = useState(0)
 
+  //verifica se o usuário tem permissão de leitura
   const domain = user.email.includes('@orgsystem.com.br')
 
   function handleAgendarOff() {
@@ -51,10 +54,10 @@ export default function HomeAgendamentos() {
     for (let i = 0; i < items.length; i++) {
       const agendadosPorItem = agendamentos.filter(s => s.id_item === items[i].id)
       if (agendadosPorItem.length > 0) {
-        for (let i = 0; i < agendadosPorItem.length; i++) {
+        for (const agendamento of agendadosPorItem) {
           const horas = differenceInMinutes(
-            parseISO(agendadosPorItem[i].dt_fim + ' ' + agendadosPorItem[i].hr_final),
-            parseISO(agendadosPorItem[i].dt_inicio + ' ' + agendadosPorItem[i].hr_inicio),
+            parseISO(agendamento.dt_fim + ' ' + agendamento.hr_final),
+            parseISO(agendamento.dt_inicio + ' ' + agendamento.hr_inicio),
           )
           total_horas += horas
         }
@@ -72,9 +75,9 @@ export default function HomeAgendamentos() {
     }
     //Separa em novos arrays as categorias e quantidades para exibir no gráfico
     const categories = [], series = []
-    for (let i = 0; i < totalHoras.length; i++) {
-      categories.push(totalHoras[i].description)
-      series.push(renderHora(totalHoras[i].duration))
+    for (const item of totalHoras) {
+      categories.push(item.description)
+      series.push(renderHora(item.duration))
     }
     setCategories(categories)
     setSeries(series)
@@ -87,9 +90,9 @@ export default function HomeAgendamentos() {
         newLabels.push(i.tipo_name)
         const dataSeries = totalHoras.filter(s => s.id_tipo === i.id_tipo)
         let soma = 0
-        for (let i = 0; i < dataSeries.length; i++) {
-          soma += dataSeries[i].duration
-        }
+        dataSeries.forEach(element => {
+          soma += element.duration
+        });
 
         const tt = soma / 60
         newSeriesDonut.push(parseFloat(tt.toPrecision(3)))
