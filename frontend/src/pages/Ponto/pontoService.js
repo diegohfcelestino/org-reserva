@@ -50,14 +50,14 @@ export function handleInsert(values) {
     .catch((err) => handleError("Erro ao incluir", err));
 }
 
-export function handleLoad() {
+export function handleLoad(dataInicial, dataFinal) {
   const session = supabase.auth.session();
   const user = session.user;
   const data = user.user_metadata;
   const params = {
     cpf: data.cpf,
     skip: 0,
-    take: 30,
+    take: 10000,
   };
   const url = `${process.env.REACT_APP_API}PoCartao/GetPorCpf?${qs.stringify(
     params
@@ -67,8 +67,21 @@ export function handleLoad() {
     .get(url)
     .then((res) => {
       const { data, totalCount } = res.data;
+      data.sort((a, b) => {
+        if (a.data > b.data) {
+          return 1;
+        }
+        if (a.data < b.data) {
+          return -1;
+        }
+        return 0;
+      })
+      console.log('data:', data)
+      console.log('totalCount:', totalCount)
+      const dataFiltered = data.filter(d => d.data >= dataInicial && d.data <= dataFinal)
       return {
         data,
+        dataFiltered,
         totalCount,
       };
     })

@@ -17,11 +17,16 @@ export default function Ponto() {
   const [dataFinal, setDataFinal] = useState(lastDay);
   const [data, setData] = useState([]);
 
+  function limparPesquisa() {
+    setDataInicial(firstDay)
+    setDataFinal(lastDay)
+  }
+
 
   useEffect(() => {
     async function getData() {
-      const data = await handleLoad();
-      data.data.sort((a, b) => {
+      const { dataFiltered } = await handleLoad(dataInicial, dataFinal);
+      /* data.data.sort((a, b) => {
         if (a.data > b.data) {
           return 1;
         }
@@ -30,11 +35,12 @@ export default function Ponto() {
         }
         return 0;
       })
-      setData(data.data);
-      console.log(data.data)
+      const dataFiltered = data.data.filter(d => d.data >= dataInicial && d.data <= dataFinal) */
+      setData(dataFiltered);
+      console.log("dataFiltrada: ", dataFiltered)
     }
     getData();
-  }, []);
+  }, [dataFinal, dataInicial]);
 
   return (
     <div className="container">
@@ -83,8 +89,16 @@ export default function Ponto() {
               />
             </div>
             <div className="col-auto">
-              <h6>Nova consulta</h6>
-              <button className="btn btn-outline-dark mb-4">Consultar</button>
+              <h6>Pesquisa</h6>
+              <button
+                className="btn btn-outline-dark mb-4"
+                onClick={e => {
+                  e.preventDefault()
+                  limparPesquisa()
+                }}
+              >
+                Mês atual
+              </button>
             </div>
           </div>
         </form>
