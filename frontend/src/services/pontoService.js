@@ -1,8 +1,8 @@
 import qs from "qs";
-import { useAuth } from "../../context/Auth";
-import api from "../../services/api";
-import { handleError } from "../../services/helper";
-import { supabase } from "../../supabaseClient";
+import { useAuth } from "../context/Auth";
+import api from "./api";
+import { handleError } from "./helper";
+import { supabase } from "../supabaseClient";
 
 export function handleLoadById(loadOptions) {
   const auth = JSON.parse(sessionStorage.getItem(useAuth));

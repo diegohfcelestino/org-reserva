@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { dateMask } from "../../services/helper";
-import { handleLoad } from "./pontoService";
+import { handleLoad } from "../../services/pontoService";
 
 export default function Ponto() {
   let date = new Date(),
@@ -26,18 +26,7 @@ export default function Ponto() {
   useEffect(() => {
     async function getData() {
       const { dataFiltered } = await handleLoad(dataInicial, dataFinal);
-      /* data.data.sort((a, b) => {
-        if (a.data > b.data) {
-          return 1;
-        }
-        if (a.data < b.data) {
-          return -1;
-        }
-        return 0;
-      })
-      const dataFiltered = data.data.filter(d => d.data >= dataInicial && d.data <= dataFinal) */
       setData(dataFiltered);
-      console.log("dataFiltrada: ", dataFiltered)
     }
     getData();
   }, [dataFinal, dataInicial]);
