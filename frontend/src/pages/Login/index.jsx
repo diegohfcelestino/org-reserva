@@ -62,7 +62,7 @@ const Login = () => {
                   <FiLock className="loginIcon" size="25px" color="#555555" />
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="form-control"
+                    className="form-control form-border"
                     id="senha"
                     ref={passwordRef}
                     placeholder="Senha"

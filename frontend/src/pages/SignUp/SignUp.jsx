@@ -55,8 +55,8 @@ function SignUp() {
         alert("Favor preencher todos os dados!");
       } else {
         const { user, error } = await supabase.auth.update({
-          data: { name: name, cpf: cpf, isAdmin: false }
-        })
+          data: { name: name, cpf: cpf, isAdmin: false },
+        });
         if (error) {
           alert(
             `Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`
@@ -137,7 +137,7 @@ function SignUp() {
                   <FiLock className="loginIcon" size="25px" color="#555555" />
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="form-control"
+                    className="form-control form-border"
                     id="senha"
                     ref={passwordRef}
                     placeholder="Senha"
