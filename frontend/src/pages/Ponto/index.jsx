@@ -32,12 +32,12 @@ export default function Ponto() {
 
 
   function handleHora(obj) {
-    if (obj.periodo1Out && obj.periodo1In && obj.periodo2Out && obj.periodo2In) {
-      const h1 = calculaHoras(obj.periodo1Out, obj.periodo1In)
-      const h2 = calculaHoras(obj.periodo2Out, obj.periodo2In)
-      return renderHora(h1 + h2)
+    if (!obj.periodo1Out || !obj.periodo1In || !obj.periodo2Out || !obj.periodo2In) {
+      return '-----'
     }
-    return '-----'
+    const h1 = calculaHoras(obj.periodo1Out, obj.periodo1In)
+    const h2 = calculaHoras(obj.periodo2Out, obj.periodo2In)
+    return renderHora(h1 + h2)
   }
 
   return (
@@ -121,10 +121,10 @@ export default function Ponto() {
             {data.map((obj, i) => (
               <tr key={i}>
                 <td>{dateMask(obj.data)}</td>
-                <td>{obj.periodo1In}</td>
-                <td>{obj.periodo1Out}</td>
-                <td>{obj.periodo2In}</td>
-                <td>{obj.periodo2Out}</td>
+                <td>{obj.periodo1In ? obj.periodo1In : (obj.tipo2 === 'FERIADO' ? 'FERIADO' : '-----')}</td>
+                <td>{obj.periodo1Out ? obj.periodo1Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
+                <td>{obj.periodo2In ? obj.periodo2In : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
+                <td>{obj.periodo2Out ? obj.periodo2Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
                 <td>{obj.extrasIn}</td>
                 <td>{obj.extrasOut}</td>
                 <td>

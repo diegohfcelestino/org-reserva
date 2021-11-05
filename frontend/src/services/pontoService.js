@@ -79,6 +79,7 @@ export function handleLoad(dataInicial, dataFinal) {
         return 0;
       })
       const dataFiltered = data.filter(d => parseISO(d.data) >= parseISO(dataInicial) && parseISO(d.data) <= parseISO(dataFinal))
+      console.log('dataFiltered', dataFiltered)
       return {
         data,
         dataFiltered,
