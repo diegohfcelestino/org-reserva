@@ -1,19 +1,20 @@
 import { differenceInMinutes, parseISO } from 'date-fns';
 import { useState } from 'react';
+import Spinner from '../../assets/img/icons8-spinner.gif';
 import Agendamento from '../../components/Agendamento';
 import BarChart from '../../components/BarChart';
 import DataTable from '../../components/DataTable';
 import DonutChart from '../../components/DonutChart';
 import { useAgendamento } from '../../context/AgendamentoContext';
 import { useAuth } from '../../context/Auth';
+import { renderHora } from '../../services/helper';
 import { supabase } from '../../supabaseClient';
 
-import Spinner from '../../assets/img/icons8-spinner.gif'
 
 export default function HomeAgendamentos() {
   const [showAgendar, setShowAgendar] = useState(true)
   const { user } = useAuth()
-  const { agendamentos, renderHora } = useAgendamento()
+  const { agendamentos } = useAgendamento()
   const [totalHoras, setTotalHoras] = useState([])
 
   //Dados para transmitir ao gráfico de barras

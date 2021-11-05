@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { dateMask } from "../../services/helper";
+import { calculaHoras, dateMask, renderHora } from "../../services/helper";
 import { handleLoad } from "../../services/pontoService";
 
 export default function Ponto() {
@@ -22,7 +22,6 @@ export default function Ponto() {
     setDataFinal(lastDay)
   }
 
-
   useEffect(() => {
     async function getData() {
       const { dataFiltered } = await handleLoad(dataInicial, dataFinal);
@@ -30,6 +29,16 @@ export default function Ponto() {
     }
     getData();
   }, [dataFinal, dataInicial]);
+
+
+  function handleHora(obj) {
+    if (obj.periodo1Out && obj.periodo1In && obj.periodo2Out && obj.periodo2In) {
+      const h1 = calculaHoras(obj.periodo1Out, obj.periodo1In)
+      const h2 = calculaHoras(obj.periodo2Out, obj.periodo2In)
+      return renderHora(h1 + h2)
+    }
+    return '-----'
+  }
 
   return (
     <div className="container">
@@ -76,6 +85,7 @@ export default function Ponto() {
                   setDataFinal(target.value);
                 }}
               />
+
             </div>
             <div className="col-auto">
               <h6>Pesquisa</h6>
@@ -117,7 +127,11 @@ export default function Ponto() {
                 <td>{obj.periodo2Out}</td>
                 <td>{obj.extrasIn}</td>
                 <td>{obj.extrasOut}</td>
-                <td>Calcular</td>
+                <td>
+                  {
+                    handleHora(obj)
+                  }
+                </td>
                 <td>Calcular</td>
               </tr>
             ))}

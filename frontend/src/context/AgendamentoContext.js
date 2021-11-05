@@ -15,28 +15,6 @@ export function AgendamentoProvider({ children }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
 
-  function calculaHoras(hr1, hr2) {
-    const h1 = hr1.split(':')
-    let hora1 = parseInt(hoursToMinutes(h1[0])) + parseInt(h1[1])
-
-    const h2 = hr2.split(':')
-    const hora2 = parseInt(hoursToMinutes(h2[0])) + parseInt(h2[1])
-    hora1 -= hora2
-
-    return hora1
-  }
-
-  function renderHora(hr) {
-    var newHr = hr / 60
-    const hora = Math.trunc(newHr)
-    const minutos = Math.round((newHr - hora) * 60)
-    if (minutos < 10) {
-      return hora + ":" + 0 + minutos
-    } else {
-      return hora + ":" + minutos
-    }
-  }
-
   const dateMask = (value) => {
     const data = value.toString();
     const day = data.slice(8, 10);
@@ -147,8 +125,6 @@ export function AgendamentoProvider({ children }) {
     dateMask,
     checkDate,
     sqlToJsDate,
-    calculaHoras,
-    renderHora
   };
   return (
     <AgendamentoContext.Provider value={value}>

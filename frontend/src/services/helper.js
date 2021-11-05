@@ -1,3 +1,4 @@
+import { hoursToMinutes } from "date-fns";
 import { createBrowserHistory } from "history";
 let history = createBrowserHistory();
 
@@ -180,4 +181,26 @@ export function dateMask(value) {
   const year = data.slice(0, 4);
   const dataCompleta = day + "/" + month + "/" + year;
   return dataCompleta;
+}
+
+export function calculaHoras(hr1, hr2) {
+  const h1 = hr1.split(':')
+  let hora1 = parseInt(hoursToMinutes(h1[0])) + parseInt(h1[1])
+
+  const h2 = hr2.split(':')
+  const hora2 = parseInt(hoursToMinutes(h2[0])) + parseInt(h2[1])
+  hora1 -= hora2
+
+  return hora1
+}
+
+export function renderHora(hr) {
+  var newHr = hr / 60
+  const hora = Math.trunc(newHr)
+  const minutos = Math.round((newHr - hora) * 60)
+  if (minutos < 10) {
+    return hora + ":" + 0 + minutos
+  } else {
+    return hora + ":" + minutos
+  }
 }

@@ -1,8 +1,10 @@
+import { parseISO } from "date-fns/esm";
 import qs from "qs";
 import { useAuth } from "../context/Auth";
+import { supabase } from "../supabaseClient";
 import api from "./api";
 import { handleError } from "./helper";
-import { supabase } from "../supabaseClient";
+
 
 export function handleLoadById(loadOptions) {
   const auth = JSON.parse(sessionStorage.getItem(useAuth));
@@ -76,9 +78,7 @@ export function handleLoad(dataInicial, dataFinal) {
         }
         return 0;
       })
-      console.log('data:', data)
-      console.log('totalCount:', totalCount)
-      const dataFiltered = data.filter(d => d.data >= dataInicial && d.data <= dataFinal)
+      const dataFiltered = data.filter(d => parseISO(d.data) >= parseISO(dataInicial) && parseISO(d.data) <= parseISO(dataFinal))
       return {
         data,
         dataFiltered,
