@@ -105,6 +105,7 @@ h6 {
 .login {
   background-image: url("../img/background.png");
   height: 100%;
+  background-size: 100%;
 
   .header {
     display: flex;
@@ -166,7 +167,7 @@ h6 {
 
     .show-password {
       width: 40px;
-      height: 34px;
+      height: 42px;
       padding: 0px !important;
       border-radius: 0px 8px 8px 0px !important;
       background-color: var(--color-primary) !important;
@@ -174,13 +175,19 @@ h6 {
       display: flex !important;
       justify-content: center;
       align-items: center;
+
+      @media (max-width: 1366px) {
+        height: 110%;
+      }
+    }
+    .form-border {
+      border-radius: 5px 0 0 5px;
     }
 
     input {
       border-radius: 5px 0 0 5px;
     }
   }
-
   input {
     display: block;
     box-sizing: border-box;
