@@ -1,0 +1,43 @@
+.tabs {
+  font-family: "Ubuntu Condensed", sans-serif;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 1vh;
+}
+
+h3 {
+  padding: 1rem;
+}
+
+.tab-buttons {
+  margin-bottom: 1.9rem;
+  /* background: #42b3f4; */
+  width: 100%;
+
+  button {
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-size: 1.25rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    color: #333;
+    font-weight: 700;
+    transition: all ease-in-out 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .active_tab {
+    border-bottom: 0.2rem solid #87a6b8;
+    color: black;
+    font-weight: 700;
+  }
+}
+.tab-content {
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 0 5rem;
+  margin-bottom: 5rem;
+  text-align: start;
+}

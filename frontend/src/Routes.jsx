@@ -3,9 +3,12 @@ import Main from "./components/Main";
 import { AgendamentoProvider } from "./context/AgendamentoContext";
 import { AuthProvider, useAuth } from "./context/Auth";
 import { ItemsProvider } from "./context/cadastros/ItemsContext";
+import { CursoProvider } from "./context/cadastros/CursosContext";
 import { NavBarProvider } from "./context/NavBarContext";
 import HomeAgendamentos from "./pages/Agendamentos/HomeAgendamentos";
-import Cadastros from "./pages/Cadastros";
+import HomeCadastros from "./pages/Cadastros/HomeCadastros";
+import CadastrosItems from "./pages/Cadastros/CadastroItem";
+import HomeCursos from "./pages/Cursos/HomeCursos";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Ponto from "./pages/Ponto";
@@ -38,13 +41,19 @@ const Routes = () => {
             <Main>
               <PrivateRoute exact path="/home" component={Home} />
               <ItemsProvider>
-                <PrivateRoute exact path="/cadastros" component={Cadastros} />
+                <PrivateRoute exact path="/cadastros" component={HomeCadastros} />
+                <PrivateRoute exact path="/cadastros-itens" component={CadastrosItems} />
                 <AgendamentoProvider>
                   <PrivateRoute exact path="/agendamento" component={HomeAgendamentos} />
                 </AgendamentoProvider>
               </ItemsProvider>
               <PrivateRoute exact path="/ponto" component={Ponto} />
-              <PrivateRoute exact path="/videos" component={Videos} />
+              <CursoProvider>
+                {/* <VideosProvider> */}
+                <PrivateRoute exact path="/videos" component={Videos} />
+                <PrivateRoute exact path="/cursos" component={HomeCursos} />
+                {/* </VideosProvider> */}
+              </CursoProvider>
             </Main>
           </NavBarProvider>
         </Switch>

@@ -6,9 +6,11 @@ import { FaSignOutAlt } from "react-icons/fa";
 import "./navstyle.scss";
 import { useNavbarContext } from "../../context/NavBarContext";
 import { useAuth } from '../../context/Auth'
+// import { useCursos } from "../../context/CursosContext";
 
 const NewNav = () => {
   const { isHome } = useNavbarContext();
+  // const { clearTipo } = useCursos()
   const { user, signOut } = useAuth()
   const [collapse, setCollapse] = useState(false);
 
@@ -82,9 +84,9 @@ const NewNav = () => {
                 <li className="nav-item">
                   <Link
                     className={collapse ? "nav-link text" : "nav-link"}
-                    to="/videos"
+                    to="/cursos"
                   >
-                    Videos
+                    Cursos e Treinamentos
                   </Link>
                 </li>
                 <li className="nav-item">

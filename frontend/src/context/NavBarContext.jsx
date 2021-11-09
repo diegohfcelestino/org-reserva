@@ -12,7 +12,7 @@ export function NavBarProvider({ children }) {
     <NavBarContext.Provider value={{
       isHome,
       handleIsHome,
-      setIsHome
+      setIsHome,
     }}>
       {children}
     </NavBarContext.Provider>

@@ -105,7 +105,7 @@ export default function Ponto() {
       <div className="table-responsive rolagem">
         <table className="table table-striped table-sm">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>Data</th>
               <th>Entrada 1</th>
               <th>Saída 1</th>
@@ -113,13 +113,13 @@ export default function Ponto() {
               <th>Saída 2</th>
               <th>Entrada 3</th>
               <th>Saída 3</th>
-              <th>Total de horas</th>
-              <th>Horas Acumuladas</th>
+              <th >Total de horas</th>
+              {/* <th>Horas Acumuladas</th> */}
             </tr>
           </thead>
           <tbody>
             {data.map((obj, i) => (
-              <tr key={i}>
+              <tr key={i} className="text-center">
                 <td>{dateMask(obj.data)}</td>
                 <td>{obj.periodo1In ? obj.periodo1In : (obj.tipo2 === 'FERIADO' ? 'FERIADO' : '-----')}</td>
                 <td>{obj.periodo1Out ? obj.periodo1Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
@@ -127,12 +127,8 @@ export default function Ponto() {
                 <td>{obj.periodo2Out ? obj.periodo2Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
                 <td>{obj.extrasIn}</td>
                 <td>{obj.extrasOut}</td>
-                <td>
-                  {
-                    handleHora(obj)
-                  }
-                </td>
-                <td>Calcular</td>
+                <td>{handleHora(obj)}</td>
+                {/* <td>Calcular</td> */}
               </tr>
             ))}
           </tbody>
