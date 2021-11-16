@@ -5,6 +5,7 @@ import ButtonMenu from "../../components/ButtonMenu"
 import Admin from '../../assets/icons/administrator-developer.svg'
 import Car from "../../assets/icons/car.svg"
 import Study from "../../assets/icons/online-course.svg"
+import Videos from "../../assets/icons/videos.svg"
 import Voltar from "../../assets/icons/angle-circle-arrow-left.svg"
 
 import "../Home/style.scss"
@@ -34,9 +35,13 @@ const HomeCadastros = () => {
               <img src={Car} alt="Carros e Salas" />
               <p>Veículos/Salas</p>
             </ButtonMenu>
-            <ButtonMenu onClick={() => handleClick("/cadastros-itens")}>
+            <ButtonMenu onClick={() => handleClick("/cadastros-cursos")}>
               <img src={Study} alt="Cursos" />
               <p>Cursos</p>
+            </ButtonMenu>
+            <ButtonMenu onClick={() => handleClick("/cadastros-videos")}>
+              <img src={Videos} alt="Videos" />
+              <p>Videos</p>
             </ButtonMenu>
           </div>
         </>

@@ -10,6 +10,14 @@
     justify-content: center;
     align-items: center;
     padding: 0.3125rem 0.5rem;
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+    }
   }
 
   .rolagem {
@@ -30,20 +38,52 @@
       border-radius: 1rem; /* roundness of the scroll thumb */
       border: 3px solid rgb(70, 69, 68); /* creates padding around scroll thumb */
     }
-    height: 27rem;
+    height: 25rem;
 
-    tbody tr:hover {
-      background: var(--gray-50);
+    tbody tr {
+      // vertical-align: middle;
+      &:hover {
+        background: var(--gray-50);
+      }
+
+      td {
+        &.id {
+          width: 4rem;
+          text-align: center;
+          // padding-top: 0.5rem;
+        }
+        &.img {
+          text-align: center;
+          width: 10rem;
+        }
+        img {
+          width: 8rem;
+          height: 8rem;
+          border-radius: 5px;
+        }
+        &:last-child {
+          width: 8rem;
+          text-align: center;
+        }
+      }
     }
-
-    tbody tr td:nth-child(1) {
+  }
+  /* tbody tr td {
+      &:nth-child(1) {
       width: 4rem;
       text-align: center;
+      // padding-top: 0.5rem;
     }
-
-    tbody tr td:nth-child(3) {
+    &:last-child {
+      width: 8rem;
+      text-align: center;
+    }
+}
+    tbody tr td:last-child {
       width: 8rem;
       text-align: center;
     }
   }
+
+} */
 }

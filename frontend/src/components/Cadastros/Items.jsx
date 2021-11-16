@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useItems } from "../../context/cadastros/ItemsContext";
+
 import "./cadastro.style.scss";
 
 
@@ -103,8 +104,8 @@ const ItemsCadastro = () => {
         </div>
       </div>
       <hr />
-      <div className=" container-fluid table-responsive rolagem">
-        <table className="table table-striped table-sm">
+      <div className=" container-fluid table-responsive rolagem ">
+        <table className="table align-middle table-sm table-striped">
           <thead /* className="bg-dark text-light" */>
             <tr>
               <th className="text-center">#</th>

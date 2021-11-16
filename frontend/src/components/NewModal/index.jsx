@@ -4,7 +4,7 @@ Modal.setAppElement("#root");
 
 const NewModal = ({ isOpen, onRequestClose, url }) => {
   return (
-    <div className="container">
+    <div className="container position-relative">
       <div className="row">
         <Modal
           isOpen={isOpen}

@@ -23,7 +23,7 @@ const HomeCursos = () => {
             :
             <Videos tipo={c.id} />
       })
-      console.log(tabsContents)
+      console.log('tabsContents', tabsContents)
       return setList(tabsContents)
     })
   }, [cursos, erro])

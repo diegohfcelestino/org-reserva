@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import NewModal from "../../components/NewModal";
 import { supabase } from "../../supabaseClient";
 
-import Erro from "../../assets/img/icons8-erro.gif"
+import { useCursos } from "../../context/cadastros/CursosContext";
+import Erro from "../../assets/img/icons8-erro.gif";
 
 import "./style.scss";
 
 const Videos = ({ tipo }) => {
+  const { setVideoAmount } = useCursos()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lista, setLista] = useState([]);
   const [url, setUrl] = useState(null);
-
-
 
   useEffect(() => {
     async function searchVideo() {
@@ -21,11 +21,15 @@ const Videos = ({ tipo }) => {
         .select("*")
         .filter("tipo", "eq", tipo)
         .order("id", { ascending: true });
-
       setLista(videos);
+      if (!videos.length) {
+        setVideoAmount(null)
+      } else {
+        setVideoAmount(videos.length)
+      }
     }
     searchVideo();
-  }, [tipo]);
+  }, [setVideoAmount, tipo]);
 
   function handleOpenNewModal() {
     setIsModalOpen(true);
@@ -57,7 +61,7 @@ const Videos = ({ tipo }) => {
                     setUrl(video.url);
                   }}
                 >
-                  <img src={video.image} alt="reinf" />
+                  <img src={video.image} alt="cursos" />
                 </button>
                 <p>{video.subject}</p>
               </div>
