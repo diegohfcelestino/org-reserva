@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import Calendar from "../../assets/icons/calendar-date.svg";
-// import Config from "../../assets/icons/config.svg";
 import Cadastrar from "../../assets/icons/online-form.svg";
 import Treinamento from "../../assets/icons/online-learning.svg";
 import Ponto from "../../assets/icons/realtime.svg";
@@ -40,13 +39,13 @@ export default function Home() {
             <p>Cadastros</p>
           </ButtonMenu>
         )}
-        <ButtonMenu onClick={() => handleClick("/ponto")}>
-          <img src={Ponto} alt="Ponto" />
-          <p>Ponto</p>
-        </ButtonMenu>
         <ButtonMenu onClick={() => handleClick("/cursos")}>
           <img src={Treinamento} alt="Treinamentos" />
           <p className="text-center">Cursos e Treinamentos</p>
+        </ButtonMenu>
+        <ButtonMenu onClick={() => handleClick("/ponto")}>
+          <img src={Ponto} alt="Ponto" />
+          <p>Ponto</p>
         </ButtonMenu>
         {/* <ButtonMenu onClick={() => handleClick("/home")}>
           <img src={Config} alt="Configurações" />

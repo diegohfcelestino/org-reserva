@@ -10,7 +10,7 @@ export function CursoProvider({ children }) {
   const [selectedCurso, setSelectedCurso] = useState({})
   const [videoAmount, setVideoAmount] = useState()
 
-  const { getUrl } = useStorage()
+  const { getUrl, imgUrl } = useStorage()
 
   async function buscaCursos() {
     let { data: cursos, error } = await supabase
@@ -70,6 +70,12 @@ export function CursoProvider({ children }) {
       .from("cursos")
       .update(curso)
       .match({ id: curso.id });
+
+
+    const { video } = await supabase
+      .from('videos')
+      .update({ image: `${imgUrl}${curso.img_name}` })
+      .match({ tipo: curso.id })
 
     if (error) {
       return alert("Erro ao atualizar curso.");

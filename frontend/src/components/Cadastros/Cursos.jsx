@@ -7,7 +7,7 @@ import "./cadastro.style.scss";
 
 export default function Cursos() {
   const { cursos, insertCurso, deleteCurso, updateCurso } = useCursos();
-  const { cursosImg, imgUrl, uploadFile, getStorage } = useStorage();
+  const { cursosImg, getUrl, imgUrl, uploadFile, getStorage } = useStorage();
   const [selectedImg, setSelectedImg] = useState();
   const [isUpdating, setIsUpdating] = useState();
   const [onSave, setOnSave] = useState(false);
@@ -141,6 +141,7 @@ export default function Cursos() {
                     <select name="img" value={selectedImg} id="img"
                       className="form-select" onChange={e => {
                         setSelectedImg(e.target.value)
+                        if (isUpdating) getUrl(e.target.value)
                       }} >
                       <option value=""></option>
                       {cursosImg.map(img => {

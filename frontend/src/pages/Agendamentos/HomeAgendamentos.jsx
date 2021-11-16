@@ -76,7 +76,8 @@ export default function HomeAgendamentos() {
     }
     //Separa em novos arrays as categorias e quantidades para exibir no gráfico
     const categories = [], series = []
-    for (const item of totalHoras) {
+    const veic = totalHoras.filter(v => v.id_tipo === 2)
+    for (const item of veic) {
       categories.push(item.description)
       series.push(renderHora(item.duration))
     }

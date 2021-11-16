@@ -1,15 +1,14 @@
 import React from "react"
 import { useHistory } from "react-router"
-import ButtonMenu from "../../components/ButtonMenu"
-
 import Admin from '../../assets/icons/administrator-developer.svg'
 import Car from "../../assets/icons/car.svg"
 import Study from "../../assets/icons/online-course.svg"
 import Videos from "../../assets/icons/videos.svg"
-import Voltar from "../../assets/icons/angle-circle-arrow-left.svg"
-
-import "../Home/style.scss"
+import ButtonMenu from "../../components/ButtonMenu"
 import { useAuth } from "../../context/Auth"
+import "../Home/style.scss"
+
+
 
 const HomeCadastros = () => {
   const { user } = useAuth()
@@ -27,10 +26,6 @@ const HomeCadastros = () => {
         <>
           <h1>Selecione uma opção:</h1>
           <div className="button">
-            <ButtonMenu onClick={() => handleClick("/home")}>
-              <img src={Voltar} alt="Cursos" />
-              <p>Voltar</p>
-            </ButtonMenu>
             <ButtonMenu onClick={() => handleClick("/cadastros-itens")}>
               <img src={Car} alt="Carros e Salas" />
               <p>Veículos/Salas</p>
