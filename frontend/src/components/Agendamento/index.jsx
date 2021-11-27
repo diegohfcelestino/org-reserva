@@ -56,6 +56,7 @@ export default function Agendamento() {
       ag.id_tipo = parseInt(selectedTipo)
       ag.id_item = parseInt(selectedItem)
       ag.id_user = user.id
+      ag.data = { name: user.user_metadata.name }
       insertAgendamento(ag)
       setAgendamento(ag)
     }
@@ -68,6 +69,7 @@ export default function Agendamento() {
       ag.id_tipo = parseInt(selectedTipo)
       ag.id_item = parseInt(selectedItem)
       ag.id_user = user.id
+      ag.data = { name: user.user_metadata.name }
       setAgendamento(ag)
       insertAgendamento(ag)
     }

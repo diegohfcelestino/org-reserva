@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
-import { useCursos } from "./CursosContext";
+import { toast } from 'react-toastify';
 
 export const VideoContext = createContext();
 
@@ -18,6 +18,7 @@ export function VideoProvider({ children }) {
       cursos(curso_name)
     `)
       .order("id", { ascending: true })
+
     setVideos(videos)
   }
 
@@ -31,15 +32,35 @@ export function VideoProvider({ children }) {
     return data
   }
 
+  async function updateVideo(video) {
+    const { data, error } = await supabase
+      .from('videos')
+      .update(video)
+      .match({ id: video.id })
+    // getVideos()
+    if (error) {
+      return toast.warn("Ocorreu um erro ao atualizar! Verifique!")
+    } else {
+      toast.success("Video atualizado com sucesso!")
+      return data
+    }
+  }
+
   useEffect(() => {
     getVideos()
   }, [])
+
+  useEffect(() => {
+    getVideos()
+  }, [videos])
 
   return (
     <VideoContext.Provider value={{
       videos,
       insertVideo,
-      semFoto
+      semFoto,
+      updateVideo,
+      getVideos
     }}>
       {children}
     </VideoContext.Provider>

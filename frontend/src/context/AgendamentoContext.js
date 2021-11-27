@@ -2,6 +2,7 @@
 import { hoursToMinutes } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
+import { useAuth } from '../context/Auth'
 // import { useItems } from './cadastros/ItemsContext'
 
 const AgendamentoContext = React.createContext();
@@ -11,6 +12,7 @@ export function useAgendamento() {
 }
 
 export function AgendamentoProvider({ children }) {
+  const { user } = useAuth()
   const [selectedTipo, setSelectedTipo] = useState();
   const [selectedItem, setSelectedItem] = useState("");
   const [agendamentos, setAgendamentos] = useState([]);
@@ -38,10 +40,10 @@ export function AgendamentoProvider({ children }) {
       .select(`
         *,
         items(description),
-        tipos_item(name),
-        profiles(name)
+        tipos_item(name)
       `);
     setAgendamentos(agendamentos);
+    console.log('agendamentos', agendamentos)
   };
 
   const getAgendamentosByTipo = async (tipo) => {
@@ -51,8 +53,7 @@ export function AgendamentoProvider({ children }) {
         `
         *,
         items(description),
-        tipos_item(name),
-        profiles(email, name)
+        tipos_item(name)
       `
       )
       .filter("id_tipo", "eq", tipo)
@@ -67,8 +68,7 @@ export function AgendamentoProvider({ children }) {
         `
         *,
         items(description),
-        tipos_item(name),
-        profiles(email, name)
+        tipos_item(name)
       `
       )
       .match({ id_tipo: tipo, dt_inicio: data });
@@ -94,8 +94,7 @@ export function AgendamentoProvider({ children }) {
         `
         *,
         items(description),
-        tipos_item(name),
-        profiles(email, name)
+        tipos_item(name)
       `
       )
       .filter("id_tipo", "eq", 1)

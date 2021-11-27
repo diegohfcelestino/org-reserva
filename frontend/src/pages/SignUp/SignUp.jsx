@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   FiAtSign,
   FiFileText,
@@ -9,6 +9,7 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import Orgsystem from "../../assets/img/logo-org-tsplus.png";
 import { useAuth } from "../../context/Auth";
 import { supabase } from "../../supabaseClient";
@@ -27,10 +28,9 @@ function SignUp() {
   }
 
   const [showPassword, setShowPassword] = useState(false);
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
-  const nameRef = useRef("");
-  const cpfRef = useRef("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const { signUp } = useAuth();
 
@@ -40,31 +40,33 @@ function SignUp() {
     e.preventDefault();
 
     // Get email and password input values
-    const email = emailRef.current.value;
+    /* const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const name = nameRef.current.value;
-    const cpf = cpfRef.current.value;
+    const cpf = cpfRef.current.value; */
 
-    // Calls `signUp` function from the context
-    const { user, error } = await signUp({ email, password });
 
-    if (error) {
-      alert("error signing up");
+    if (!email || !password || !name || !values.cpf) {
+      return toast.error("Favor preencha todos os campos!")
     } else {
-      if (!nameRef || !cpfRef) {
-        alert("Favor preencher todos os dados!");
+      // Chama a função signUp do context
+      const { error } = await signUp({ email, password });
+
+      if (error) {
+        return toast.error(error.message)
       } else {
-        const { user, error } = await supabase.auth.update({
-          data: { name: name, cpf: cpf, isAdmin: false },
+        const { error } = await supabase.auth.update({
+          data: { name: name, cpf: values.cpf, isAdmin: false },
         });
         if (error) {
-          alert(
-            `Falha ao atualizar dados pessoais! Favor atualize pela opção "Perfil"`
-          );
-          history.push("/home");
+          return toast.error(error.message, {
+            onClose: () => history.push("/home")
+          })
         } else {
           // Redirect user to Dashboard
-          history.push("/home");
+          return toast.success("Cadastro realizado. ", {
+            onClose: () => history.push("/home"),
+          })
         }
       }
     }
@@ -89,10 +91,11 @@ function SignUp() {
                   <input
                     type="text"
                     className="form-control"
-                    id="name"
+                    name="name"
                     aria-describedby="nomeHelp"
-                    ref={nameRef}
+                    value={name}
                     placeholder="Nome"
+                    onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className="mb-4  loginInputGroup">
@@ -110,26 +113,18 @@ function SignUp() {
                     type="text"
                     id="cpf"
                     aria-describedby="cpfHelp"
-                    ref={cpfRef}
                     placeholder="CPF"
                   />
-                  {/* <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setValues(initialValues);
-                    }}
-                  >
-                    Limpar
-                  </button> */}
                 </div>
                 <div className="mb-4  loginInputGroup">
                   <FiAtSign className="loginIcon" size="25px" color="#555555" />
                   <input
                     type="email"
                     className="form-control"
-                    id="email"
+                    name="email"
                     aria-describedby="emailHelp"
-                    ref={emailRef}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     placeholder="E-mail"
                   />
                 </div>
@@ -139,7 +134,9 @@ function SignUp() {
                     type={showPassword ? "text" : "password"}
                     className="form-control form-border"
                     id="senha"
-                    ref={passwordRef}
+                    name="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     placeholder="Senha"
                   />
                   <button
@@ -158,16 +155,12 @@ function SignUp() {
                     )}
                   </button>
                 </div>
-                {/* <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                  <label className="form-check-label" htmlFor="exampleCheck1">Lembrar senha</label>
-                </div> */}
                 <div className="loginButtonGroup">
                   <button type="submit" className="btn btn-primary">
                     Cadastrar
                   </button>
                 </div>
-                <div id="emailHelp" className="form-text mt-2 container">
+                <div id="emailHelp" className="form-text mt-3 text-center">
                   <h5>
                     Para entrar clique <Link to="/">aqui</Link>.
                   </h5>
@@ -177,6 +170,7 @@ function SignUp() {
           </div>
         </div>
       </div>
+
     </>
   );
 }
