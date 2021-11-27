@@ -118,9 +118,6 @@ export default function VideosManager() {
                         (
                           edit.id === video.id ?
                             <>
-                              {/* <input type="text" name="tipo" value={videoEdit.tipo}
-                                onChange={e => handleChange(e)}
-                              /> */}
                               <select
                                 name="tipo"
                                 value={videoEdit.tipo}
