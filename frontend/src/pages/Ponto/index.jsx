@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { calculaHoras, dateMask, renderHora } from "../../services/helper";
 import { handleLoad } from "../../services/pontoService";
 
+import './ponto.css'
+
 export default function Ponto() {
   let date = new Date(),
     y = date.getFullYear(),
@@ -102,38 +104,42 @@ export default function Ponto() {
           </div>
         </form>
       </div>
-      <div className="table-responsive rolagem">
-        <table className="table table-striped table-sm">
-          <thead>
-            <tr className="text-center">
-              <th>Data</th>
-              <th>Entrada 1</th>
-              <th>Saída 1</th>
-              <th>Entrada 2</th>
-              <th>Saída 2</th>
-              <th>Entrada 3</th>
-              <th>Saída 3</th>
-              <th >Total de horas</th>
-              {/* <th>Horas Acumuladas</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((obj, i) => (
-              <tr key={i} className="text-center">
-                <td>{dateMask(obj.data)}</td>
-                <td>{obj.periodo1In ? obj.periodo1In : (obj.tipo2 === 'FERIADO' ? 'FERIADO' : '-----')}</td>
-                <td>{obj.periodo1Out ? obj.periodo1Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
-                <td>{obj.periodo2In ? obj.periodo2In : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
-                <td>{obj.periodo2Out ? obj.periodo2Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
-                <td>{obj.extrasIn}</td>
-                <td>{obj.extrasOut}</td>
-                <td>{handleHora(obj)}</td>
-                {/* <td>Calcular</td> */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="pageContainer">
+        <div className="pageFlex">
+          <div className="pageContent">
+            <table className="table table-striped table-sm">
+              <thead>
+                <tr className="text-center">
+                  <th>Data</th>
+                  <th>Entrada 1</th>
+                  <th>Saída 1</th>
+                  <th>Entrada 2</th>
+                  <th>Saída 2</th>
+                  <th>Entrada 3</th>
+                  <th>Saída 3</th>
+                  <th >Total de horas</th>
+                  {/* <th>Horas Acumuladas</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((obj, i) => (
+                  <tr key={i} className="text-center">
+                    <td>{dateMask(obj.data)}</td>
+                    <td>{obj.periodo1In ? obj.periodo1In : (obj.tipo2 === 'FERIADO' ? 'FERIADO' : '-----')}</td>
+                    <td>{obj.periodo1Out ? obj.periodo1Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
+                    <td>{obj.periodo2In ? obj.periodo2In : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
+                    <td>{obj.periodo2Out ? obj.periodo2Out : (obj.tipo2 === 'FERIADO' ? '' : '-----')}</td>
+                    <td>{obj.extrasIn}</td>
+                    <td>{obj.extrasOut}</td>
+                    <td>{handleHora(obj)}</td>
+                    {/* <td>Calcular</td> */}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div >
       </div>
-    </div >
+    </div>
   );
 }
